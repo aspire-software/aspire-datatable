@@ -9,22 +9,22 @@ npm install angular-currency-converter --save
 
 import { CurrencyMainModule } from 'angular-currency-converter';
 
-import CurrencyMainModule under @NgModule of your module file.
+Add CurrencyMainModule under @NgModule of your module file.
 
-`@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    CurrencyMainModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})`
+`@NgModule({`<br>
+  `declarations: [`<br>
+    `AppComponent`<br>
+  `],`<br>
+  `imports: [`<br>
+    `BrowserModule,`<br>
+    `CurrencyMainModule,`<br>
+    `BrowserAnimationsModule`<br>
+  `],`<br>
+  `providers: [],`<br>
+  `bootstrap: [AppComponent]`<br>
+`})`
 
-use component into your angular html file
+Integrate component into your angular html file
 
 `<lib-currency-main></lib-currency-main>`
 
