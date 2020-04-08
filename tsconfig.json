@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-currency-converter": [
+        "dist/angular-currency-converter"
+      ],
+      "angular-currency-converter/*": [
+        "dist/angular-currency-converter/*"
+      ]
+    }
   }
 }

@@ -1,6 +1,66 @@
+
 # AngularCurrencyConverter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
+
+## Installation & usage guide
+
+npm install angular-currency-converter --save
+
+import { CurrencyMainModule } from 'angular-currency-converter';
+
+import CurrencyMainModule under @NgModule of your module file.
+
+`@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    CurrencyMainModule,
+    BrowserAnimationsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})`
+
+use component into your angular html file
+
+`<lib-currency-main></lib-currency-main>`
+
+**Usage:** Enter amount and select base currency you wish to convert.This will give you list of converted value as per base rate of currencies.
+
+EX. 10 USD to convert into various currencies.
+
+## Project Configuration
+
+`Angular CLI: 7.3.10`<br/>
+`Node: 8.9.0`<br/>
+`OS: linux x64`<br/>
+`Angular: 7.2.16`<br/>
+`... animations, common, compiler, compiler-cli, core, forms`<br/>
+`... language-service, platform-browser, platform-browser-dynamic`<br/>
+`... router`
+
+Package                            Version
+------------------------------------------------------------
+`@angular-devkit/architect          0.13.10`<br/>
+`@angular-devkit/build-angular      0.13.10`<br/>
+`@angular-devkit/build-ng-packagr   0.13.10`<br/>
+`@angular-devkit/build-optimizer    0.13.10`<br/>
+`@angular-devkit/build-webpack      0.13.10`<br/>
+`@angular-devkit/core               7.3.10`<br/>
+`@angular-devkit/schematics         7.3.10`<br/>
+`@angular/cdk                       7.3.7`<br/>
+`@angular/cli                       7.3.10`<br/>
+`@ngtools/json-schema               1.1.0`<br/>
+`@ngtools/webpack                   7.3.10`<br/>
+`@schematics/angular                7.3.10`<br/>
+`@schematics/update                 0.13.10`<br/>
+`ng-packagr                         4.7.1`<br/>
+`rxjs                               6.3.3`<br/>
+`typescript                         3.2.4`<br/>
+`webpack 4.29.0`
 
 ## Development server
 
