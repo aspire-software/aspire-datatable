@@ -24,6 +24,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Country</th>
           <th scope="col">Country Currency Code</th>
           <th scope="col">Base Rate</th>
           <th scope="col">Converted Rate</th>
@@ -32,9 +33,10 @@
       <tbody *ngFor="let data of convertedRates; let i = index">
         <tr>
           <th scope="row">{{i + 1}}</th>
+          <td>{{data.countryName}}</td>
           <td>{{data.countryCode}}</td>
           <td>{{data.baseCountryRate}}</td>
-          <td>{{data.convertedCountryRate}}</td>
+          <td><span>{{data.convertedCountryRate | currency:data.countryCode:'symbol':'4.2-2' }}</span></td>
         </tr>
       </tbody>
     </table>
