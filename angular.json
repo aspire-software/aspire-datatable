@@ -60,8 +60,7 @@
             "scripts": [],
             "es5BrowserSupport": true,
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ]
           },
           "configurations": {
@@ -117,7 +116,6 @@
             "karmaConfig": "projects/test-library-app/karma.conf.js",
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "projects/test-library-app/src/styles.css"
             ],
             "scripts": [],

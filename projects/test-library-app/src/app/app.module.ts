@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import { CurrencyMainModule } from 'angular-currency-converter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CurrencyConversionModule } from '../../src/app/components/currency-conversion/currency-conversion.module'
 
 @NgModule({
   declarations: [
@@ -11,8 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
   ],
   imports: [
     BrowserModule,
-    CurrencyMainModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CurrencyConversionModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
