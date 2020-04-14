@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CurrencyConversionService } from 'angular-currency-converter';
-import { apis, apisSource } from '../../config/config';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -17,51 +16,58 @@ export class CurrencyConversionComponent implements OnInit {
   public baseCurrencyCode: string; // base currency code
   public convertedRates: any = []; // store converted 
   public currencyRates: any = [];  // store data from currency rates
-  public apisUrl: string = apis  // apis url 
-  public apisSource: any =  apisSource // apis source
-  public disabled: boolean; 
+  public apisSource: any; // apis source
+  public disabled: boolean;
   public selectedSource: string; // selected source
-  submitted: boolean;;
+  public submitted: boolean;
+  public apisDetails: any;
+  public host: any;
 
-  constructor(private currencyConversionService:CurrencyConversionService) {
-   }
+  constructor(private currencyConversionService: CurrencyConversionService) {
+  }
 
   ngOnInit() {
-    // Make form value blank
+    /* Make form value blank */
     this.myForm = new FormGroup({
-      amount: new FormControl('',Validators.required),
-      targetSource: new FormControl('',Validators.required),
-      countryRates: new FormControl('',Validators.required),
-      targetRates: new FormControl('',Validators.required),
+      amount: new FormControl('', Validators.required),
+      targetSource: new FormControl('', Validators.required),
+      countryRates: new FormControl('', Validators.required),
+      targetRates: new FormControl('', Validators.required),
       datePicker: new FormControl('')
     });
 
+    /* Get apisConfigurations */
+    this.apisDetails = this.currencyConversionService.getApisConfigurations()
+    this.host = this.apisDetails.host
+    this.apisSource = this.apisDetails.currencyRateSource
+
+
     // Get latest currencies rate [ default base: USD ]
-    this.currencyConversionService.getCurrencyRates(`${apis}/latest?base=USD`).subscribe(data => {
-      if(data){
+    this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {
+      if (data) {
         for (var key in data['rates']) {
           if (data['rates'].hasOwnProperty(key)) {
-            this.currencyRates.push({ currencyCode: key, rate: data['rates'][key],defaultBase: data.base })
+            this.currencyRates.push({ currencyCode: key, rate: data['rates'][key], defaultBase: data.base })
           }
         }
       }
     })
   }
- 
+
   /* On source change  */
   async onSourceChange(event) {
     this.selectedSource = event.target.options[event.target.options.selectedIndex].text
-    if(this.selectedSource == 'History') { // On select history user have to apply date
+    if (this.selectedSource == 'History') { // On select history user have to apply date
       this.disabled = false;
-    }else{
+    } else {
       /* Get latest currencies rate by selection of latest option [ default base: USD ] */
       this.disabled = true;
       this.currencyRates = [];
-      this.currencyConversionService.getCurrencyRates(`${apis}/latest?base=USD`).subscribe(data => {
-        if(data){
+      this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {
+        if (data) {
           for (var key in data['rates']) {
             if (data['rates'].hasOwnProperty(key)) {
-              this.currencyRates.push({ currencyCode: key, rate: data['rates'][key],defaultBase: data.base })
+              this.currencyRates.push({ currencyCode: key, rate: data['rates'][key], defaultBase: data.base })
             }
           }
         }
@@ -71,15 +77,15 @@ export class CurrencyConversionComponent implements OnInit {
 
   /* On date change get currencies rate of specified date  */
   async onDateChange(model) {
-    if(model !== undefined){
+    if (model !== undefined) {
       this.currencyRates = [];
       let date = `${model.year}-${model.month}-${model.day}`
-      let url = `${apis}/${date}`
+      let url = `${this.host}/${date}`
       this.currencyConversionService.getCurrencyRates(url).subscribe(data => {
-        if(data){
+        if (data) {
           for (var key in data['rates']) {
             if (data['rates'].hasOwnProperty(key)) {
-              this.currencyRates.push({ currencyCode: key, rate: data['rates'][key],defaultBase: data.base })
+              this.currencyRates.push({ currencyCode: key, rate: data['rates'][key], defaultBase: data.base })
             }
           }
         }
@@ -95,23 +101,21 @@ export class CurrencyConversionComponent implements OnInit {
     );
   }
 
-/* Get submitted form values */
+  /* Get submitted form values */
   async onSubmit(form: FormGroup) {
     this.submitted = true;
     this.convertedRates = [];
 
-    if(this.myForm.invalid){
-      // alert('inavalid')
+    if (this.myForm.invalid) {
       return;
-    }else{
-    // alert('valid')
-    let amount = form.value.amount;
-    let baseCurrencyRate = form.value.countryRates.rate;
-    let baseCurrencyCode = form.value.countryRates.currencyCode;
-    let targetCurrencyRate = form.value.targetRates.rate;
-    let targetCurrencyCode = form.value.targetRates.currencyCode;
-    this.convertedRates = await this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
-    this.resetForm()
+    } else {
+      let amount = form.value.amount;
+      let baseCurrencyRate = form.value.countryRates.rate;
+      let baseCurrencyCode = form.value.countryRates.currencyCode;
+      let targetCurrencyRate = form.value.targetRates.rate;
+      let targetCurrencyCode = form.value.targetRates.currencyCode;
+      this.convertedRates = await this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
+      this.resetForm()
     }
   }
 
@@ -119,10 +123,10 @@ export class CurrencyConversionComponent implements OnInit {
   resetForm() {
     this.submitted = false;
     this.myForm = new FormGroup({
-      amount: new FormControl('',Validators.required),
-      targetSource: new FormControl('',Validators.required),
-      countryRates: new FormControl('',Validators.required),
-      targetRates: new FormControl('',Validators.required),
+      amount: new FormControl('', Validators.required),
+      targetSource: new FormControl('', Validators.required),
+      countryRates: new FormControl('', Validators.required),
+      targetRates: new FormControl('', Validators.required),
       datePicker: new FormControl('')
     });
   }

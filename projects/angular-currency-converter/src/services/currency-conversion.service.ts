@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { apisConfigurations } from '../shared/config'
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,21 @@ import { map } from 'rxjs/operators';
 export class CurrencyConversionService {
 
   constructor(private http: HttpClient) { }
-  public currencyRates = []   // store currency rates from api
+  public currencyRates = [];   // Store currency rates from api
   public url: string;
-  public convertedRates: any = [];  //store converted values 
-
+  public convertedRates: any = [];  //Store converted values 
+  public apisConfigurations: any = apisConfigurations
 
   /* 
-  get currency rate from specified url
+  Get currency apis configurations
+  */
+
+  getApisConfigurations() {
+    return pipe(this.apisConfigurations)
+  }
+
+  /* 
+  Get currency rate from specified url
   */
 
   getCurrencyRates(url: string): Observable<any> {
