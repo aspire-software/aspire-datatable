@@ -21,7 +21,7 @@ export class CurrencyConversionComponent implements OnInit {
   public apisSource: any =  apisSource // apis source
   public disabled: boolean; 
   public selectedSource: string; // selected source
-  submitted = false;
+  submitted: boolean;;
 
   constructor(private currencyConversionService:CurrencyConversionService) {
    }
@@ -30,7 +30,7 @@ export class CurrencyConversionComponent implements OnInit {
     // Make form value blank
     this.myForm = new FormGroup({
       amount: new FormControl('',Validators.required),
-      targetSource: new FormControl('latest',Validators.required),
+      targetSource: new FormControl('',Validators.required),
       countryRates: new FormControl('',Validators.required),
       targetRates: new FormControl('',Validators.required),
       datePicker: new FormControl('')
@@ -87,13 +87,24 @@ export class CurrencyConversionComponent implements OnInit {
     }
   }
 
+  isFieldValid(field: string) {
+    return (
+      this.myForm.get(field).errors && this.myForm.get(field).touched ||
+      this.myForm.get(field).untouched &&
+      this.submitted && this.myForm.get(field).errors
+    );
+  }
+
 /* Get submitted form values */
   async onSubmit(form: FormGroup) {
     this.submitted = true;
     this.convertedRates = [];
+
     if(this.myForm.invalid){
+      // alert('inavalid')
       return;
-    }
+    }else{
+    // alert('valid')
     let amount = form.value.amount;
     let baseCurrencyRate = form.value.countryRates.rate;
     let baseCurrencyCode = form.value.countryRates.currencyCode;
@@ -101,17 +112,18 @@ export class CurrencyConversionComponent implements OnInit {
     let targetCurrencyCode = form.value.targetRates.currencyCode;
     this.convertedRates = await this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
     this.resetForm()
+    }
   }
 
   /* Reset form after submit values */
   resetForm() {
+    this.submitted = false;
     this.myForm = new FormGroup({
-      amount: new FormControl(''),
-      targetSource: new FormControl('latest'),
-      countryRates: new FormControl(''),
-      targetRates: new FormControl(''),
+      amount: new FormControl('',Validators.required),
+      targetSource: new FormControl('',Validators.required),
+      countryRates: new FormControl('',Validators.required),
+      targetRates: new FormControl('',Validators.required),
       datePicker: new FormControl('')
     });
-  
   }
 }

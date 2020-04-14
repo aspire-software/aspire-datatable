@@ -4,9 +4,14 @@
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <label for="control-label">Source Currencies Rates:&nbsp;</label>
         <select formControlName="targetSource" class="form-control" id="source-field" (change)="onSourceChange($event)">
-          <option value="latest" [selected]="'Latest'" hidden>Select Source Rate</option>
+          <option value="" [selected]="'Latest'" hidden>Select Source Rate</option>
           <option *ngFor="let option of apisSource" [ngValue]="option" >{{ option.key }}</option>
         </select>
+        <div *ngIf="submitted && isFieldValid('targetSource')">
+          <div style="font-size: 12px; color: red">
+            Source rate is required 
+          </div>
+        </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
         <label for="control-label">Date:&nbsp;</label>
@@ -21,6 +26,11 @@
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2 col-xl-3">
         <label for="control-label">Amount:&nbsp;</label>
         <input class="form-control" type="number" input-group-sm formControlName="amount" placeholder="Enter Amount">
+        <div *ngIf="submitted && isFieldValid('amount')">
+          <div style="font-size: 12px; color: red">
+            Amount is required
+          </div>
+        </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <label for="control-label">Base Currency:&nbsp;</label>
@@ -28,6 +38,11 @@
           <option value='' [selected]="'Select Base Currency'" hidden>Select Base Currency</option>
           <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
+        <div *ngIf="submitted && isFieldValid('countryRates')">
+          <div style="font-size: 12px; color: red">
+            Base currency is required
+          </div>
+        </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-1">
         <label for="control-label">Target Currency:&nbsp;</label>
@@ -35,6 +50,11 @@
           <option value='' [selected]="'Select Target Currency'" hidden>Select Target Currency</option>
           <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
+        <div *ngIf="submitted && isFieldValid('targetRates')">
+          <div style="font-size: 12px; color: red">
+            Target currency is required
+          </div>
+        </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2">
         <button  type="submit" class="btn btn-primary">Convert</button>
