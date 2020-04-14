@@ -21,6 +21,7 @@ export class CurrencyConversionComponent implements OnInit {
   public apisSource: any =  apisSource // apis source
   public disabled: boolean; 
   public selectedSource: string; // selected source
+  submitted = false;
 
   constructor(private currencyConversionService:CurrencyConversionService) {
    }
@@ -29,14 +30,14 @@ export class CurrencyConversionComponent implements OnInit {
     // Make form value blank
     this.myForm = new FormGroup({
       amount: new FormControl('',Validators.required),
-      targetSource: new FormControl('',Validators.required),
+      targetSource: new FormControl('latest',Validators.required),
       countryRates: new FormControl('',Validators.required),
       targetRates: new FormControl('',Validators.required),
       datePicker: new FormControl('')
     });
 
-    // Get default currencies rate [ default base: EUR ]
-    this.currencyConversionService.getCurrencyRates(`${apis}/latest`).subscribe(data => {
+    // Get latest currencies rate [ default base: USD ]
+    this.currencyConversionService.getCurrencyRates(`${apis}/latest?base=USD`).subscribe(data => {
       if(data){
         for (var key in data['rates']) {
           if (data['rates'].hasOwnProperty(key)) {
@@ -50,13 +51,13 @@ export class CurrencyConversionComponent implements OnInit {
   /* On source change  */
   async onSourceChange(event) {
     this.selectedSource = event.target.options[event.target.options.selectedIndex].text
-    if(this.selectedSource == 'history') { // On select history user have to apply date
+    if(this.selectedSource == 'History') { // On select history user have to apply date
       this.disabled = false;
     }else{
-      /* Get latest currencies rate by selection of latest option */
+      /* Get latest currencies rate by selection of latest option [ default base: USD ] */
       this.disabled = true;
       this.currencyRates = [];
-      this.currencyConversionService.getCurrencyRates(`${apis}/latest`).subscribe(data => {
+      this.currencyConversionService.getCurrencyRates(`${apis}/latest?base=USD`).subscribe(data => {
         if(data){
           for (var key in data['rates']) {
             if (data['rates'].hasOwnProperty(key)) {
@@ -87,13 +88,18 @@ export class CurrencyConversionComponent implements OnInit {
   }
 
 /* Get submitted form values */
- async onSubmit(form: FormGroup) {
+  async onSubmit(form: FormGroup) {
+    this.submitted = true;
+    this.convertedRates = [];
+    if(this.myForm.invalid){
+      return;
+    }
     let amount = form.value.amount;
     let baseCurrencyRate = form.value.countryRates.rate;
     let baseCurrencyCode = form.value.countryRates.currencyCode;
     let targetCurrencyRate = form.value.targetRates.rate;
     let targetCurrencyCode = form.value.targetRates.currencyCode;
-    this.convertedRates = await this.currencyConversionService.convertCurrency(amount,baseCurrencyRate,baseCurrencyCode,targetCurrencyRate,targetCurrencyCode);
+    this.convertedRates = await this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
     this.resetForm()
   }
 
@@ -101,7 +107,7 @@ export class CurrencyConversionComponent implements OnInit {
   resetForm() {
     this.myForm = new FormGroup({
       amount: new FormControl(''),
-      targetSource: new FormControl(''),
+      targetSource: new FormControl('latest'),
       countryRates: new FormControl(''),
       targetRates: new FormControl(''),
       datePicker: new FormControl('')

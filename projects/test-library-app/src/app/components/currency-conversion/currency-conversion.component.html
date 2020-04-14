@@ -1,43 +1,46 @@
   <div class="container">
+    <div class="conversionBlock">
     <form class="form-inline" role="form" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">
-        <label for="base">Select Source Rate:&nbsp;</label>
-        <select class="source-field" formControlName="targetSource" (change)="onSourceChange($event)">
-          <option *ngFor="let option of apisSource" [ngValue]="apisSource">{{option.key}}</option>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <label for="control-label">Source Currencies Rates:&nbsp;</label>
+        <select formControlName="targetSource" class="form-control" id="source-field" (change)="onSourceChange($event)">
+          <option value="latest" [selected]="'Latest'" hidden>Select Source Rate</option>
+          <option *ngFor="let option of apisSource" [ngValue]="option" >{{ option.key }}</option>
         </select>
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">
-        <label for="amount">Date:&nbsp;</label>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+        <label for="control-label">Date:&nbsp;</label>
         <div class="input-group">
           <input class="form-control" formControlName="datePicker" placeholder="yyyy-mm-dd"
                  name="dp"  [(ngModel)]="model" (ngModelChange)="onDateChange(model)" ngbDatepicker #d="ngbDatepicker" [disabled]="disabled">
           <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" [disabled]="disabled" type="button"></button>
           </div>
         </div>
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">
-        <label for="amount">Amount:&nbsp;</label>
-        <input type="number" input-group-sm formControlName="amount" placeholder="Enter Amount">
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2 col-xl-3">
+        <label for="control-label">Amount:&nbsp;</label>
+        <input class="form-control" type="number" input-group-sm formControlName="amount" placeholder="Enter Amount">
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-4">
-        <label for="base">Base Currency:&nbsp;</label>
-        <select class="base-currency-field" formControlName="countryRates">
-          <option [ngValue]="null" disabled>-- Select base currency --</option>
-          <option *ngFor="let option of currencyRates;let i = index" [ngValue]="option">{{option.currencyCode}}</option>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <label for="control-label">Base Currency:&nbsp;</label>
+        <select formControlName="countryRates" class="form-control" id="base-currency-field">
+          <option value='' [selected]="'Select Base Currency'" hidden>Select Base Currency</option>
+          <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-6">
-        <label for="target-rates">Target Currency:&nbsp;</label>
-        <select class="targetRates" formControlName="targetRates">
-          <option [ngValue]="null" disabled>-- Select target currency --</option>
-          <option *ngFor="let option of currencyRates;let i = index" [ngValue]="option">{{option.currencyCode}}</option>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-1">
+        <label for="control-label">Target Currency:&nbsp;</label>
+        <select formControlName="targetRates" class="form-control" id="target-rates">
+          <option value='' [selected]="'Select Target Currency'" hidden>Select Target Currency</option>
+          <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-2">
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2">
         <button  type="submit" class="btn btn-primary">Convert</button>
       </div>
     </form>
+  </div>
   <lib-currency-main></lib-currency-main>
   
   <div class="currencyTable">
@@ -58,7 +61,7 @@
           <td>{{data.amount | currency:data.baseCurrencyCode}}</td>
           <td>{{data.baseCurrencyCode}}</td>
           <td>{{data.countryCurrencyCode}}</td>
-          <td>{{data.currencyRate}}</td>
+          <td>{{'1&nbsp;' + data.baseCurrencyCode + '=' + data.currencyRate + '&nbsp;' + data.countryCurrencyCode}}<br>{{'1&nbsp;' + data.countryCurrencyCode + '=' + data.baseCurrencyRate + '&nbsp;' + data.baseCurrencyCode}}</td>
           <td><span>{{data.convertedCountryRate | currency:data.countryCurrencyCode:'symbol':'4.2-2' }}</span></td>
         </tr>
       </tbody>
