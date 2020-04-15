@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CurrencyConversionService } from 'angular-currency-converter';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct,NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-currency-conversion',
   templateUrl: './currency-conversion.component.html',
-  styleUrls: ['./currency-conversion.component.css']
+  styleUrls: ['./currency-conversion.component.css'],
 })
 export class CurrencyConversionComponent implements OnInit {
   model: NgbDateStruct;
@@ -22,18 +22,25 @@ export class CurrencyConversionComponent implements OnInit {
   public submitted: boolean;
   public apisDetails: any;
   public host: any;
+  public isVisible: boolean; // Table visibility
+  public dateError: boolean; // Show date error
 
-  constructor(private currencyConversionService: CurrencyConversionService) {
+  constructor(private currencyConversionService: CurrencyConversionService,private calendar: NgbCalendar) {
   }
 
   ngOnInit() {
+
+    this.isVisible = false; 
+    this.disabled = true;
+    this.dateError = false;
+
     /* Make form value blank */
     this.myForm = new FormGroup({
       amount: new FormControl('', Validators.required),
       targetSource: new FormControl('', Validators.required),
       countryRates: new FormControl('', Validators.required),
       targetRates: new FormControl('', Validators.required),
-      datePicker: new FormControl('')
+      datePicker: new FormControl({value: undefined, disabled: true})
     });
 
     /* Get apisConfigurations */
@@ -56,13 +63,15 @@ export class CurrencyConversionComponent implements OnInit {
 
   /* On source change  */
   async onSourceChange(event) {
+    this.dateError= false;
     this.selectedSource = event.target.options[event.target.options.selectedIndex].text
     if (this.selectedSource == 'History') { // On select history user have to apply date
+      this.myForm.controls['datePicker'].enable();
       this.disabled = false;
     } else {
       /* Get latest currencies rate by selection of latest option [ default base: USD ] */
+      this.myForm.controls['datePicker'].disable();
       this.disabled = true;
-      this.currencyRates = [];
       this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {
         if (data) {
           for (var key in data['rates']) {
@@ -77,9 +86,20 @@ export class CurrencyConversionComponent implements OnInit {
 
   /* On date change get currencies rate of specified date  */
   async onDateChange(model) {
+    this.dateError = false;
     if (model !== undefined) {
       this.currencyRates = [];
+
+      // Display error on selection of today & future dates [date picker]
+     
+      let getToday = this.calendar.getToday()
+      let todayDate = Date.parse(`${getToday.year}-${getToday.month}-${getToday.day}`);
       let date = `${model.year}-${model.month}-${model.day}`
+      let selectedDate = Date.parse(date)
+      this.validateDate(selectedDate,todayDate)
+      
+      
+      // Get currency rate history of selected date
       let url = `${this.host}/${date}`
       this.currencyConversionService.getCurrencyRates(url).subscribe(data => {
         if (data) {
@@ -93,6 +113,16 @@ export class CurrencyConversionComponent implements OnInit {
     }
   }
 
+ /* Date validation */
+  
+  validateDate(selectedDate, todayDate) {
+    if (selectedDate >= todayDate) {
+      this.dateError = true
+      return;
+    }
+  }
+
+  /* validation of form field & return error */
   isFieldValid(field: string) {
     return (
       this.myForm.get(field).errors && this.myForm.get(field).touched ||
@@ -100,15 +130,26 @@ export class CurrencyConversionComponent implements OnInit {
       this.submitted && this.myForm.get(field).errors
     );
   }
-
+ 
   /* Get submitted form values */
   async onSubmit(form: FormGroup) {
     this.submitted = true;
     this.convertedRates = [];
-
-    if (this.myForm.invalid) {
+    if (this.myForm.invalid && (form.value.datePicker == undefined)) {
+      this.isVisible= false;
+      if(form.value.targetSource.value == 'history'){
+        this.dateError = true;
+      }else{
+        this.dateError = false;
+      }
       return;
     } else {
+      this.isVisible = true;
+      if(form.value.targetSource.value === 'history' && form.value.datePicker == undefined){
+        this.dateError= true;
+        this.isVisible= false;
+        return;
+      }
       let amount = form.value.amount;
       let baseCurrencyRate = form.value.countryRates.rate;
       let baseCurrencyCode = form.value.countryRates.currencyCode;
@@ -127,7 +168,7 @@ export class CurrencyConversionComponent implements OnInit {
       targetSource: new FormControl('', Validators.required),
       countryRates: new FormControl('', Validators.required),
       targetRates: new FormControl('', Validators.required),
-      datePicker: new FormControl('')
+      datePicker: new FormControl({value: undefined, disabled: true})
     });
   }
 }
