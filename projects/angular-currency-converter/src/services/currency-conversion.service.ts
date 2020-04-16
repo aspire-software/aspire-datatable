@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, pipe, throwError } from 'rxjs';
+import { map,catchError } from 'rxjs/operators';
 import { apisConfigurations } from '../shared/config'
 
 @Injectable({
@@ -28,7 +28,11 @@ export class CurrencyConversionService {
 
   getCurrencyRates(url: string): Observable<any> {
     return this.http.get(url)
-      .pipe(map((data: Response) => data))
+      .pipe(map((data: Response) => data,catchError(this.handleError)))
+  }
+
+  handleError(error: HttpErrorResponse) {
+    return throwError(error);
   }
 
   /* 

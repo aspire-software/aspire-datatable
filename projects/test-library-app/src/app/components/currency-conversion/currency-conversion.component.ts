@@ -58,6 +58,8 @@ export class CurrencyConversionComponent implements OnInit {
           }
         }
       }
+    }, error => {
+      console.log("Error", error)
     })
   }
 
@@ -80,6 +82,8 @@ export class CurrencyConversionComponent implements OnInit {
             }
           }
         }
+      }, error => {
+        console.log("Error", error)
       })
     }
   }
@@ -109,6 +113,8 @@ export class CurrencyConversionComponent implements OnInit {
             }
           }
         }
+      }, error => {
+        console.log("Error", error)
       })
     }
   }
