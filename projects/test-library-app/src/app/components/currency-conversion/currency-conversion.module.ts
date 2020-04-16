@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CurrencyConversionComponent } from './currency-conversion.component';
 import { ReactiveFormsModule,FormsModule} from '@angular/forms';
-import { CurrencyMainModule } from 'angular-currency-converter';
+import { CurrencyConversionService } from 'angular-currency-converter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyConversionComponent } from './currency-conversion.component';
 
 @NgModule({
-  declarations: [CurrencyConversionComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
-    CurrencyMainModule
   ],
-  exports: [CurrencyConversionComponent]
+  exports: [CurrencyConversionComponent],
+  declarations: [CurrencyConversionComponent],
+  providers: [CurrencyConversionService]
 })
 export class CurrencyConversionModule { }

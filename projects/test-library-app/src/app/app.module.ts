@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { CurrencyConversionModule } from '../../src/app/components/currency-conversion/currency-conversion.module'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CurrencyConversionModule } from '../../src/app/components/currency-conv
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CurrencyConversionModule,
     NgbModule
   ],
