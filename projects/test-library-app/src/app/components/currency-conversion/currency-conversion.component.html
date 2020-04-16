@@ -82,7 +82,7 @@
         <tr>
           <td>{{data.baseCurrencyCode}}</td>
           <td>{{data.countryCurrencyCode}}</td>
-          <td>{{'1&nbsp;' + data.baseCurrencyCode + '=' + data.currencyRate + '&nbsp;' + data.countryCurrencyCode}}</td>
+          <td>{{'1&nbsp;' + data.baseCurrencyCode + '=' + data.oneUnitConversion + '&nbsp;' + data.countryCurrencyCode}}</td>
           <td>{{data.amount | currency:data.baseCurrencyCode}}</td>
           <td><span>{{data.convertedCountryRate | currency:data.countryCurrencyCode:'symbol':'1.0-2' }}</span></td>
         </tr>
