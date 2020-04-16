@@ -19,25 +19,18 @@
          margin-bottom: 15px;
     }
     #source-field {
-         /* padding-right: 50px; */
-         width: inherit;
+         padding-right: 50px;
     }
     #base-currency-field {
-         /* padding-right: 27px; */
-         width: inherit;
+         padding-right: 27px;
     }
     #target-rates {
       width: inherit;
     }
-    #amount {
-      width: inherit;
-      }
- 
     .btn-primary {
      margin-top: 15px;
-     width: inherit;
-     /* padding-right: 75px !important;
-     padding-left: 75px !important; */
+     padding-right: 75px !important;
+     padding-left: 75px !important;
     }
     
  }
@@ -47,24 +40,18 @@
           margin-bottom: 15px;
      }
      #source-field {
-      width: initial;
-      padding-right: 30px;
+          padding-right: 30px;
      }
- 
-     #amount {
-      width: inherit;
-      }
-     /* #base-currency-field {
+     #base-currency-field {
           padding-right: 0px !important;
-     } */
+     }
      #target-rates {
-        width: initial;
+        width: inherit;
      }
      .btn-primary {
          margin-top: 15px;
-         width: inherit;
-         /* padding-right: 78px !important;
-         padding-left: 78px !important; */
+         padding-right: 78px !important;
+         padding-left: 78px !important;
         }
   }
  
@@ -73,22 +60,8 @@
           margin-bottom: 15px;
      }
  
-     #source-field {
-      /* padding-right: 50px; */
-      width: initial;
-      padding-right: 30px;
-      }
- 
-      #target-rates {
-           width: initial;
-      }
- 
-     /* #base-currency-field[_ngcontent-opv-c1] {
+     #base-currency-field[_ngcontent-opv-c1] {
          padding-right: 14px !important;
-     } */
-     .btn-primary {
-      margin-top: 15px;
-      width: inherit;
      }
   }
  
@@ -96,25 +69,12 @@
       .form-inline .form-group {
            margin-bottom: 15px;
       }
-      #amount {
-           width: inherit;
-      }
       #source-field {
-           /* padding-right: 70px; */
-           width: initial;
-           padding-right: 74px;
+           padding-right: 70px;
       }
       #base-currency-field {
-           /* padding-right: 55px !important; */
-           width: inherit;
+           padding-right: 55px !important;
       }
-      #target-rates {
-           width: inherit;
-        }
-      .btn-primary {
-           margin-top: 15px;
-           width: inherit;
-          }
   
    }
  

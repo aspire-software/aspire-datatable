@@ -29,9 +29,18 @@
         </div>
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2 col-xl-3">
+        <label for="control-label">Amount:&nbsp;</label>
+        <input class="form-control" type="number" input-group-sm formControlName="amount" placeholder="Enter Amount">
+        <div *ngIf="submitted && isFieldValid('amount')">
+          <div style="font-size: 12px; color: red">
+            Amount is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <label for="control-label">Base Currency:&nbsp;</label>
         <select formControlName="countryRates" class="form-control" id="base-currency-field">
-          <option value='' [selected]="selected" hidden>Select Base Currency</option>
+          <option value='' [selected]="'Select Base Currency'" hidden>Select Base Currency</option>
           <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
         <div *ngIf="submitted && isFieldValid('countryRates')">
@@ -40,26 +49,17 @@
           </div>
         </div>
       </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-1">
         <label for="control-label">Target Currency:&nbsp;</label>
-        <select formControlName="targetRates" class="form-control" id="target-rates" >
+        <select formControlName="targetRates" class="form-control" id="target-rates">
           <option value='' [selected]="'Select Target Currency'" hidden>Select Target Currency</option>
-          <option *ngFor="let option of currencyRates" [ngValue]="option">{{ option.currencyCode }}</option>
+          <option *ngFor="let option of currencyRates" [ngValue]="option" >{{ option.currencyCode }}</option>
         </select>
         <div *ngIf="submitted && isFieldValid('targetRates')">
           <div style="font-size: 12px; color: red">
             Target currency is required
           </div>
         </div>
-      </div>
-      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-1">
-        <label for="control-label">Amount:&nbsp;</label>
-        <input class="form-control" id="amount" type="number" input-group-sm formControlName="amount" placeholder="Enter Amount">
-        <div *ngIf="submitted && isFieldValid('amount')">
-          <div style="font-size: 12px; color: red">
-            Amount is required
-          </div>
-        </div>        
       </div>
       <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3 offset-lg-2">
         <button  type="submit" class="btn btn-primary">Convert</button>
@@ -71,20 +71,20 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">Amount</th>
           <th scope="col">Base Currency</th>
           <th scope="col">Target Currency</th>
           <th scope="col">Base Rate</th>
+          <th scope="col">Amount</th>
           <th scope="col">Converted Amount</th>
         </tr>
       </thead>
       <tbody *ngFor="let data of convertedRates; let i = index">
         <tr>
-          <td>{{data.amount | currency:data.baseCurrencyCode}}</td>
           <td>{{data.baseCurrencyCode}}</td>
           <td>{{data.countryCurrencyCode}}</td>
           <td>{{'1&nbsp;' + data.baseCurrencyCode + '=' + data.currencyRate + '&nbsp;' + data.countryCurrencyCode}}</td>
-          <td><span>{{data.convertedCountryRate | currency:data.countryCurrencyCode:'symbol':'4.2-2' }}</span></td>
+          <td>{{data.amount | currency:data.baseCurrencyCode}}</td>
+          <td><span>{{data.convertedCountryRate | currency:data.countryCurrencyCode:'symbol':'1.0-2' }}</span></td>
         </tr>
       </tbody>
     </table>
