@@ -5,7 +5,7 @@
         <label for="control-label">Source Currencies Rates:&nbsp;</label>
         <select formControlName="targetSource" class="form-control" id="source-field" (change)="onSourceChange($event)">
           <option value="" [selected]="'Latest'" hidden>Select Source Rate</option>
-          <option *ngFor="let option of apisSource" [ngValue]="option" >{{ option.key }}</option>
+          <option *ngFor="let option of apisSource" [ngValue]="option" >{{ option.label }}</option>
         </select>
         <div *ngIf="submitted && isFieldValid('targetSource')">
           <div style="font-size: 12px; color: red">

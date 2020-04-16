@@ -16,14 +16,14 @@ export class CurrencyConversionComponent implements OnInit {
   public baseCurrencyCode: string; // base currency code
   public convertedRates: any = []; // store converted 
   public currencyRates: any = [];  // store data from currency rates
-  public apisSource: any; // apis source
-  public disabled: boolean;
-  public selectedSource: string; // selected source
-  public submitted: boolean;
-  public apisDetails: any;
-  public host: any;
-  public isVisible: boolean; // Table visibility
-  public dateError: boolean; // Show date error
+  public apisSource: any;          // apis source for source currencies rates dropdown
+  public disabled: boolean;        // disable calender icon 
+  public selectedSource: string;   // selected source
+  public submitted: boolean;       // handle form submit
+  public apisDetails: any;         // api configurations 
+  public host: any;                // host api
+  public isVisible: boolean;       // table visibility
+  public dateError: boolean;       // show date error
 
   constructor(private currencyConversionService: CurrencyConversionService,private calendar: NgbCalendar) {
   }
@@ -48,7 +48,7 @@ export class CurrencyConversionComponent implements OnInit {
     this.host = this.apisDetails.host
     this.apisSource = this.apisDetails.currencyRateSource
 
-
+    
     // Get latest currencies rate [ default base: USD ]
     this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {
       if (data) {
@@ -128,7 +128,7 @@ export class CurrencyConversionComponent implements OnInit {
     }
   }
 
-  /* validation of form field & return error */
+  /* Validation of form field & return error */
   isFieldValid(field: string) {
     return (
       this.myForm.get(field).errors && this.myForm.get(field).touched ||
