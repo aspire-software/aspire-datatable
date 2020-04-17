@@ -162,12 +162,12 @@ export class CurrencyConversionComponent implements OnInit {
       let targetCurrencyRate = form.value.targetRates.rate;
       let targetCurrencyCode = form.value.targetRates.currencyCode;
       this.convertedRates = await this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
-      this.resetForm()
     }
   }
 
   /* Reset form after submit values */
   resetForm() {
+    this.isVisible = false;
     this.submitted = false;
     this.myForm = new FormGroup({
       amount: new FormControl('', Validators.required),
