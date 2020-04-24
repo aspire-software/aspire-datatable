@@ -2,6 +2,29 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
+## Installation & usage guide
+
+
+##### Install Package:
+
+npm install angular-currency-converter --save
+
+##### Import Service:
+
+import { CurrencyConversionService } from 'angular-currency-converter';
+
+##### Register Service:
+
+Register currency conversion service to NgModule of your components typescript file.
+
+`@NgModule({`<br>
+  `imports: [...],`<br>
+  `exports: [...],`<br>
+  `declarations: [...],`<br>
+  `providers: [CurrencyConversionService]`<br>
+`})`
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project angular-currency-converter` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-currency-converter`.
