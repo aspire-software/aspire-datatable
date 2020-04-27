@@ -72,7 +72,7 @@ npm install @aspire.software/angular-currency-converter --save
 
 * Get Api Configurations
 	
-    **host:** https://api.exchangeratesapi.io/latest
+    **host:** https://api.exchangeratesapi.io
     
   ```
   this.currencyConversionService.getApisConfigurations()

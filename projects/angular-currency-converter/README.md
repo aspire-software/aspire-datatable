@@ -17,10 +17,17 @@ npm install @aspire.software/angular-currency-converter --save
 
 ## How to use
 
-* Import currency conversion into your components typescript file.
+* Import currency conversion into your components typescript file & add into constructor call.
 
   ```
   import { CurrencyConversionService } from 'angular-currency-converter';
+  ```
+  Register into constructor call
+  
+  ```
+  constructor(private currencyConversionService: CurrencyConversionService){
+  
+  }
   ```
 
 * Register currency conversion service to NgModule of your components module file.
@@ -36,7 +43,7 @@ npm install @aspire.software/angular-currency-converter --save
 
 * Get Api Configurations
 	
-    **host:** https://api.exchangeratesapi.io/latest
+    **host:** https://api.exchangeratesapi.io
     
   ```
   this.currencyConversionService.getApisConfigurations()
@@ -69,7 +76,7 @@ npm install @aspire.software/angular-currency-converter --save
   |  targetCurrencyRate | number | Require | i.e 76.78 |
   |  targetCurrencyCode | string | Require | i.e INR |
 
- * Request Convert Currency     
+ * Request for Currency Convert     
       
     ```
     this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate,targetCurrencyCode);
