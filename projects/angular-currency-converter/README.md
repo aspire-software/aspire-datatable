@@ -1,47 +1,90 @@
-# AngularCurrencyConverter
+
+# Angular Currency Converter
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
-## Installation & usage guide
+
+## Description
+
+Angular currency converter is an angular library that help you to convert your money into various currencies by used of latest & historical currency exchange rates. 
 
 
-##### Install Package:
+## Installation
 
-npm install angular-currency-converter --save
+```
+npm install @aspire.software/angular-currency-converter --save
+```
 
-##### Import Service:
+## How to use
 
-import { CurrencyConversionService } from 'angular-currency-converter';
+* Import currency conversion into your components typescript file.
 
-##### Register Service:
+  ```
+  import { CurrencyConversionService } from 'angular-currency-converter';
+  ```
 
-Register currency conversion service to NgModule of your components typescript file.
+* Register currency conversion service to NgModule of your components module file.
 
-`@NgModule({`<br>
-  `imports: [...],`<br>
-  `exports: [...],`<br>
-  `declarations: [...],`<br>
-  `providers: [CurrencyConversionService]`<br>
-`})`
+  ```
+  @NgModule({
+    imports: [...],
+    exports: [...],
+    declarations: [...],
+    providers: [CurrencyConversionService]
+  })
+  ```
 
+* Get Api Configurations
+	
+    **host:** https://api.exchangeratesapi.io/latest
+    
+  ```
+  this.currencyConversionService.getApisConfigurations()
+  ```
 
-## Code scaffolding
+* Get Latest Currency Rates
 
-Run `ng generate component component-name --project angular-currency-converter` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-currency-converter`.
-> Note: Don't forget to add `--project angular-currency-converter` or else it will be added to the default project in your `angular.json` file. 
+  ```
+   this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {})
+  ```
 
-## Build
+* Get Historical Currency Rates
 
-Run `ng build angular-currency-converter` to build the project. The build artifacts will be stored in the `dist/` directory.
+    Get historical Data of currency rates on specific date.
+    
+    let url = `${this.host}/${date}?base=USD`
+    i.e dateFormat=yyyy-mm-dd
+    
+    ```
+     this.currencyConversionService.getCurrencyRates(url).subscribe(data => {})
+    ```
 
-## Publishing
+* Convert Currency
 
-After building your library with `ng build angular-currency-converter`, go to the dist folder `cd dist/angular-currency-converter` and run `npm publish`.
+  | Params  | Type | Required | Example
+  | ------------- | ------------- |------------- |------------- |
+  | amount  | number  | Require| i.e 50000 |
+  |  baseCurrencyRate | number | Require | i.e 1.00 |
+  |  baseCurrencyCode | string | Require | i.e USD |
+  |  targetCurrencyRate | number | Require | i.e 76.78 |
+  |  targetCurrencyCode | string | Require | i.e INR |
 
-## Running unit tests
+ * Request Convert Currency     
+      
+    ```
+    this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate,targetCurrencyCode);
+    ```
 
-Run `ng test angular-currency-converter` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Dependencies
 
-## Further help
+Foreign exchange rates API with currency conversion
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [Currencies rates API](https://exchangeratesapi.io/)
+
+## License
+
+* Licence: MIT
+
+## Author
+
+Aspire Software Solutions
