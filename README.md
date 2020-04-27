@@ -1,36 +1,11 @@
 
-# AngularCurrencyConverter
+# Angular Currency Converter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
 
-## Installation & usage guide
+## Description
 
-npm install angular-currency-converter --save
-
-import { CurrencyMainModule } from 'angular-currency-converter';
-
-Add CurrencyMainModule under @NgModule of your module file.
-
-`@NgModule({`<br>
-  `declarations: [`<br>
-    `AppComponent`<br>
-  `],`<br>
-  `imports: [`<br>
-    `BrowserModule,`<br>
-    `CurrencyMainModule,`<br>
-    `BrowserAnimationsModule`<br>
-  `],`<br>
-  `providers: [],`<br>
-  `bootstrap: [AppComponent]`<br>
-`})`
-
-Integrate component into your angular html file
-
-`<lib-currency-main></lib-currency-main>`
-
-**Usage:** Enter amount and select base currency you wish to convert.This will give you list of converted value as per base rate of currencies.
-
-EX. 10 USD to convert into various currencies.
+Angular currency converter is an angular library that help you to convert your money into various currencies by used of latest & historical currency exchange rates. 
 
 ## Project Configuration
 
@@ -42,46 +17,112 @@ EX. 10 USD to convert into various currencies.
 `... language-service, platform-browser, platform-browser-dynamic`<br/>
 `... router`
 
-Package                            Version
-------------------------------------------------------------
-`@angular-devkit/architect          0.13.10`<br/>
-`@angular-devkit/build-angular      0.13.10`<br/>
-`@angular-devkit/build-ng-packagr   0.13.10`<br/>
-`@angular-devkit/build-optimizer    0.13.10`<br/>
-`@angular-devkit/build-webpack      0.13.10`<br/>
-`@angular-devkit/core               7.3.10`<br/>
-`@angular-devkit/schematics         7.3.10`<br/>
-`@angular/cdk                       7.3.7`<br/>
-`@angular/cli                       7.3.10`<br/>
-`@ngtools/json-schema               1.1.0`<br/>
-`@ngtools/webpack                   7.3.10`<br/>
-`@schematics/angular                7.3.10`<br/>
-`@schematics/update                 0.13.10`<br/>
-`ng-packagr                         4.7.1`<br/>
-`rxjs                               6.3.3`<br/>
-`typescript                         3.2.4`<br/>
-`webpack 4.29.0`
+  | Package  | Version
+  | ------------- | ------------- |
+  | @angular-devkit/architect  | 0.13.10  |
+  | @angular-devkit/build-angular | 0.13.10 |
+  | @angular-devkit/build-ng-packagr | 0.13.10 |
+  | @angular-devkit/build-optimizer | 0.13.10 |
+  | @angular-devkit/build-webpack | 0.13.10 |
+  | @angular-devkit/core | 7.3.10|
+  | @angular-devkit/schematics | 7.3.10 | 
+  | @angular/cdk | 7.3.7 |
+  | @angular/cli  | 7.3.10 |
+  | @ngtools/json-schema | 1.1.0 |
+  | @ngtools/webpack | 7.3.10 |
+  | @schematics/angular | 7.3.10 |
+  | @schematics/update | 0.13.10 |
+  | ng-packagr | 4.7.1|
+  | rxjs | 6.3.3 |
+  | typescript | 3.2.4 |
+  | webpack | 4.29.0 |
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+```
+npm install @aspire.software/angular-currency-converter --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to use
 
-## Build
+* Import currency conversion into your components typescript file & add into constructor call.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+  ```
+  import { CurrencyConversionService } from 'angular-currency-converter';
+  ```
+  Register into constructor call
+  
+  ```
+  constructor(private currencyConversionService: CurrencyConversionService){
+  
+  }
+  ```
 
-## Running unit tests
+* Register currency conversion service to NgModule of your components module file.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  ```
+  @NgModule({
+    imports: [...],
+    exports: [...],
+    declarations: [...],
+    providers: [CurrencyConversionService]
+  })
+  ```
 
-## Running end-to-end tests
+* Get Api Configurations
+	
+    **host:** https://api.exchangeratesapi.io/latest
+    
+  ```
+  this.currencyConversionService.getApisConfigurations()
+  ```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Get Latest Currency Rates
 
-## Further help
+  ```
+   this.currencyConversionService.getCurrencyRates(`${this.host}/latest?base=USD`).subscribe(data => {})
+  ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Get Historical Currency Rates
+
+    Get historical Data of currency rates on specific date.
+    
+    let url = `${this.host}/${date}?base=USD`
+    i.e dateFormat=yyyy-mm-dd
+    
+    ```
+     this.currencyConversionService.getCurrencyRates(url).subscribe(data => {})
+    ```
+
+* Convert Currency
+
+  | Params  | Type | Required | Example
+  | ------------- | ------------- |------------- |------------- |
+  | amount  | number  | Require| i.e 50000 |
+  |  baseCurrencyRate | number | Require | i.e 1.00 |
+  |  baseCurrencyCode | string | Require | i.e USD |
+  |  targetCurrencyRate | number | Require | i.e 76.78 |
+  |  targetCurrencyCode | string | Require | i.e INR |
+
+ * Request for Currency Convert     
+      
+    ```
+    this.currencyConversionService.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate,targetCurrencyCode);
+    ```
+
+## Dependencies
+
+Foreign exchange rates API with currency conversion
+
+* [Currencies rates API](https://exchangeratesapi.io/)
+
+## Demo
+
+![image description or alt text](https://raw.githubusercontent.com/ajay-aspire/angular-currency-converter/development/projects/angular-currency-converter/images/angular-currency-convert-latest.gif)
+
+* Demo code availabel (path): /projects/test-library-app
+
+## License
+
+* Licence: MIT
