@@ -81,6 +81,9 @@ Foreign exchange rates API with currency conversion
 
 * [Currencies rates API](https://exchangeratesapi.io/)
 
+## Demo
+![image description or alt text](https://raw.githubusercontent.com/ajay-aspire/angular-currency-converter/development/projects/angular-currency-converter/images/angular-currency-convert-latest.gif)
+
 ## License
 
 * Licence: MIT
