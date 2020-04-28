@@ -1,6 +1,6 @@
 {
   "name": "@aspire.software/angular-currency-converter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Aspire Software Solutions",
   "license": "MIT",
   "peerDependencies": {
@@ -13,5 +13,11 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  },
+  "keywords": [
+    "currency",
+    "converter",
+    "angular",
+    "library"
+  ]
 }

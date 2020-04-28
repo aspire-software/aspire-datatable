@@ -14,6 +14,11 @@
           "options": {
             "tsConfig": "projects/angular-currency-converter/tsconfig.lib.json",
             "project": "projects/angular-currency-converter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/angular-currency-converter/ng-package.json"
+            }
           }
         },
         "test": {
