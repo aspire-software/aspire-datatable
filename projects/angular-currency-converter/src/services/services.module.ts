@@ -4,7 +4,7 @@ import { CurrencyConversionService } from '../services/currency-conversion.servi
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [CurrencyConversionService],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule
