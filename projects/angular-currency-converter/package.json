@@ -1,6 +1,6 @@
 {
   "name": "@aspire.software/angular-currency-converter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Aspire Software Solutions",
   "license": "MIT",
   "peerDependencies": {
@@ -11,10 +11,6 @@
   "main": "karma.conf.js",
   "dependencies": {},
   "devDependencies": {},
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/ajay-aspire/angular-currency-converter.git"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +19,13 @@
     "converter",
     "angular",
     "library"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajay-aspire/angular-currency-converter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajay-aspire/angular-currency-converter/issues"
+  },
+  "homepage": "https://github.com/ajay-aspire/angular-currency-converter#readme"
 }
