@@ -7,6 +7,9 @@
       "lib",
       "camelCase"
     ],
+    "no-shadowed-variable": false,
+    "max-line-length":false,
+    "eofline":false,
     "component-selector": [
       true,
       "element",

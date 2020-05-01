@@ -5,4 +5,4 @@ export const apisConfigurations = {
         { id: 1 , label: 'Latest', key: 'latest', value: 'latest'},
         { id: 2 , label: 'History', key: 'history', value: 'history'}
     ]
- }
+ };

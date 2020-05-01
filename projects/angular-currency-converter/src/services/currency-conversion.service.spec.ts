@@ -2,13 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CurrencyConversionService } from './currency-conversion.service';
 import { HttpClient } from '@angular/common/http';
-import { apisConfigurations } from '../shared/config'
+import { apisConfigurations } from '../shared/config';
 
 describe('CurrencyConversionService', () => {
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
   let service: CurrencyConversionService;
-  let host: string = apisConfigurations.host
+  const host: string = apisConfigurations.host;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,8 +33,8 @@ describe('CurrencyConversionService', () => {
     });
 
     it('should return api configurations', () => {
-      let data = service.getApisConfigurations();
-      expect(typeof (data)).toEqual('object','returned data should be type of object')
+      const data = service.getApisConfigurations();
+      expect(typeof (data)).toEqual('object', 'returned data should be type of object');
     });
   });
 
@@ -56,13 +56,14 @@ describe('CurrencyConversionService', () => {
 
     it('should expect date if history request called', async () => {
 
-      let expectedDate = '2020-01-03'
-      let url = `${host}/${expectedDate}?base=USD`
-      
+      const expectedDate = '2020-01-03';
+      const url = `${host}/${expectedDate}?base=USD`;
+
       service.getCurrencyRates(`${url}`).subscribe(
         data => expect(typeof (data)).toEqual('object')
       );
-      
+
+      // tslint:disable-next-line:no-shadowed-variable
       const req = httpTestingController.expectOne((req) => req.url === url);
       expect(req.request.method).toEqual('GET');
     });
@@ -70,12 +71,12 @@ describe('CurrencyConversionService', () => {
 
   describe('#getCurrencyConversionAmount', () => {
 
-    let amount: number = 12;
-    let baseCurrencyRate: number = 1;
-    let baseCurrencyCode: string = 'USD';
-    let targetCurrencyRate: number = 76.78;
-    let targetCurrencyCode: string = 'INR';
-    let convertedRates: any = [];
+    const amount = 12;
+    const baseCurrencyRate = 1;
+    const baseCurrencyCode = 'USD';
+    const targetCurrencyRate = 76.78;
+    const targetCurrencyCode = 'INR';
+    const convertedRates: any = [];
 
     beforeEach(() => {
       service = TestBed.get(CurrencyConversionService);
@@ -92,8 +93,8 @@ describe('CurrencyConversionService', () => {
     it('should not return any falsy values', async () => {
 
       convertedRates = await service.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
-      
-      //it will check [false,0,"",undefined,null,NaN]
+
+      // it will check [false,0,"",undefined,null,NaN]
 
       expect(convertedRates[0].amount).not.toBeFalsy();
       expect(convertedRates[0].currencyRate).not.toBeFalsy();
@@ -116,9 +117,9 @@ describe('CurrencyConversionService', () => {
     it('should return converted amount result length will be one', async () => {
 
       convertedRates = await service.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
-      
-      expect(convertedRates.length).toEqual(1, 'should return non empty converted amount array')
-      
+
+      expect(convertedRates.length).toEqual(1, 'should return non empty converted amount array');
+
       service.getCurrencyRates(`${host}/latest?base=USD`).subscribe(
         data => expect(typeof (data)).toEqual('object')
       );
@@ -131,11 +132,11 @@ describe('CurrencyConversionService', () => {
     it('should return converted amount result will be fixed to two decimal', async () => {
 
       convertedRates = await service.convertCurrency(amount, baseCurrencyRate, baseCurrencyCode, targetCurrencyRate, targetCurrencyCode);
-      expect(convertedRates[0].currencyRate).toEqual(parseFloat(convertedRates[0].currencyRate).toFixed(2), 'should returned currency rate will be fixed to two decimal point')
-      expect(convertedRates[0].baseCurrencyRate).toEqual(parseFloat(convertedRates[0].baseCurrencyRate).toFixed(2), 'should returned base currency rate will be fixed to two decimal point')
-      expect(convertedRates[0].convertedCountryRate).toEqual(parseFloat(convertedRates[0].convertedCountryRate).toFixed(2), 'should returned converted rate will be fixed to two decimal point')
-      expect(convertedRates[0].oneUnitConversion).toEqual(parseFloat(convertedRates[0].oneUnitConversion).toFixed(2), 'should returned one unit conversion rate will be fixed to two decimal point')
-      
+      expect(convertedRates[0].currencyRate).toEqual(parseFloat(convertedRates[0].currencyRate).toFixed(2), 'should returned currency rate will be fixed to two decimal point');
+      expect(convertedRates[0].baseCurrencyRate).toEqual(parseFloat(convertedRates[0].baseCurrencyRate).toFixed(2), 'should returned base currency rate will be fixed to two decimal point');
+      expect(convertedRates[0].convertedCountryRate).toEqual(parseFloat(convertedRates[0].convertedCountryRate).toFixed(2), 'should returned converted rate will be fixed to two decimal point');
+      expect(convertedRates[0].oneUnitConversion).toEqual(parseFloat(convertedRates[0].oneUnitConversion).toFixed(2), 'should returned one unit conversion rate will be fixed to two decimal point');
+
       service.getCurrencyRates(`${host}/latest?base=USD`).subscribe(
         data => expect(typeof (data)).toEqual('object')
       );
