@@ -6,10 +6,10 @@ cd angular-lib
 
 git config core.sparseCheckout true
 
-# Replace your desired directory name that you want to checkout from this repository
+// Replace your desired directory name that you want to checkout from this repository
 
 echo <direcory name> > .git/info/sparse-checkout
 
-# For ex. : echo aspire-datatable > .git/info/sparse-checkout
+// For ex. : echo aspire-datatable > .git/info/sparse-checkout
 
-git checkout master # You can use any branchname that you want to checkout
+git checkout master // You can use any branchname that you want to checkout
