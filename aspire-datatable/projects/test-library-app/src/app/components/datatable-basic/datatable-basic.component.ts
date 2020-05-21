@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-import 'datatables.net';
+import { records, customNoDataMessage } from '../../helper/table-record';
+import { dateFormat } from '../../helper/table-record';
 
 @Component({
   selector: 'app-datatable-basic',
@@ -8,31 +8,47 @@ import 'datatables.net';
   styleUrls: ['./datatable-basic.component.scss']
 })
 export class DatatableBasicComponent implements OnInit {
-  public tableWidget: any;
-
+  headers: any[] = [];
+  data: any[] = [];
+  page: number = 1;
+  recordsLength: number;
+  itemsPerPage: number = 5;
+  allowSorting: boolean;
+  dateFormat: string;
+  allowSearch: boolean;
+  noRecordFoundMessage: string;
   constructor() { }
 
   ngOnInit(): void {
+    this.initSampleData();
   }
 
-    // tslint:disable-next-line:use-lifecycle-interface
-    ngAfterViewInit() {
-      this.initDatatable();
-    }
-
-    private initDatatable(): void {
-      const exampleId: any = $('#example');
-      this.tableWidget = exampleId.DataTable({
-        select: true
-      });
-    }
-
-    private reInitDatatable(): void {
-     if (this.tableWidget) {
-       this.tableWidget.destroy();
-       this.tableWidget = null;
-     }
-     setTimeout(() => this.initDatatable(), 0);
-   }
-
+  initSampleData = () => {
+    this.headers = [
+      {'field':'name','type':'string'},
+      {'field': 'address','type':'string'}, 
+      {'field':'mobile','type':'number'}, 
+      {'field':'balance','type':'number'}, 
+      {'field':'email','type':'string'}, 
+      {'field':'isActive','type':'boolean'},
+      {'field':'date','type':'date'},
+      {'field':'age','type':'number'}
+    ];
+      this.data = records.map((item, index) => ({
+        name: `${item.name.first} ${item.name.last}`,
+        address: item.address,
+        mobile: item.phone,
+        balance: item.balance,
+        email: item.email,
+        isActive: item.isActive,
+        date: item.date,
+        age: item.age
+      })
+    );
+    this.recordsLength = records.length;
+    this.allowSorting = true;
+    this.allowSearch = true;
+    this.noRecordFoundMessage = customNoDataMessage;
+    this.dateFormat = dateFormat;
+  }
 }
