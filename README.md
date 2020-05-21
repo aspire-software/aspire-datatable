@@ -1,4 +1,4 @@
-# To check any directory from this repository, Please follow below commands:
+# To checkout any directory from this repository, Please follow below commands:
 
 git clone --no-checkout http://gitlab.aspiresoftware.in/gitlab-admin/angular-lib.git
 
