@@ -8,7 +8,7 @@ git config core.sparseCheckout true
 
 // Replace your desired directory name that you want to checkout from this repository
 
-echo <direcory-name>/ > .git/info/sparse-checkout
+echo [direcory-name]/ > .git/info/sparse-checkout
 
 // For ex. : echo aspire-datatable/ > .git/info/sparse-checkout
 
