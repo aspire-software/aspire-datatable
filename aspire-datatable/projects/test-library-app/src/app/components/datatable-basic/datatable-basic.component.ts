@@ -10,7 +10,6 @@ export class DatatableBasicComponent implements OnInit {
   tableHeaders: any[] = [];
   tableData: any[] = [];
   totalRecords: number;
-  recordsLength: number;
   itemsPerPage: number = 5;
   dateFormat: string;
   tableOptions: any;
@@ -22,10 +21,7 @@ export class DatatableBasicComponent implements OnInit {
       tableRowStyle: '',
       tableDataStyle: '',
       page: 1,
-      ellipses: false,
-      maxSize: 1,
       directionLinks: true,
-      boundaryLinks: true,
       sorting: true,
       search: true,
       dateFormat: 'dd/MM/yyyy',
@@ -70,7 +66,6 @@ export class DatatableBasicComponent implements OnInit {
       age: item.age
     })
     );
-    this.recordsLength = records.length;
     this.tableOptions.sorting = true;
     this.tableOptions.allowSearch = true;
     this.tableOptions.noRecordFoundMessage = customNoDataMessage;

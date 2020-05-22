@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
 import { dataTypes } from '../../constants/constants';
-import { PageRequest } from '../aspire-datatable/aspire-datatable.model';
 import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { DatePipe } from '@angular/common';
+import { PageRequest } from '../../shared/models/aspire-datatable.model';
 
 @Component({
   selector: 'aspire-datatable',
@@ -22,7 +22,6 @@ export class AspireDatatableComponent implements OnInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
-  public payload = new Page();
   public pageRequest = new PageRequest();
   start: any;
   end: any;
@@ -78,11 +77,11 @@ export class AspireDatatableComponent implements OnInit {
     this.tableEvents.setPage(this.options.page);
   }
 
-  getStart(){
+  getStart() {
     return (this.options.page - 1) * Number(this.options.itemsPerPage);
   }
 
-  getEnd(){
+  getEnd() {
     return ((this.options.page - 1) * Number(this.options.itemsPerPage)) + Number(this.options.itemsPerPage);
   }
 }

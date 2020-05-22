@@ -5,10 +5,7 @@ export interface ITableOptions {
     tableRowStyle?: string,
     tableDataStyle?: string,
     page?: number,
-    ellipses?: boolean,
-    maxSize?: 1,
     directionLinks?: boolean,
-    boundaryLinks?: boolean,
     sorting?: boolean,
     search?: boolean,
     dateFormat?: string,
@@ -38,10 +35,7 @@ export class TableOptions implements ITableOptions {
         public tableRowStyle?: string,
         public tableDataStyle?: string,
         public page?: number,
-        public ellipses?: boolean,
-        public maxSize?: 1,
         public directionLinks?: boolean,
-        public boundaryLinks?: boolean,
         public sorting?: boolean,
         public search?: boolean,
         public dateFormat?: string,
@@ -68,10 +62,7 @@ export class TableOptions implements ITableOptions {
         this.tableRowStyle = '';
         this.tableDataStyle = '';
         this.page = 1;
-        this.ellipses = false;
-        this.maxSize = 1;
         this.directionLinks = true;
-        this.boundaryLinks = true;
         this.sorting = true;
         this.search = true;
         this.dateFormat = 'dd/MM/yyyy';
