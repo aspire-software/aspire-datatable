@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./aspire-records-perpage.component.css']
 })
 export class AspireRecordsPerpageComponent implements OnInit {
-  myForm: FormGroup;
+  recordsPerPageForm: FormGroup;
   @Input() itemsPerPage: number;
   @Input() showPageSizeSelector: boolean = true;
   @Input() selectRecordsPerPage: any[] = [2, 4, 6, 8];
@@ -18,8 +18,8 @@ export class AspireRecordsPerpageComponent implements OnInit {
   @Output() getPerPageRecords: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.myForm = new FormGroup({
-      recordsPerPage: new FormControl('', Validators.required)
+    this.recordsPerPageForm = new FormGroup({
+      recordsPerPage: new FormControl(this.itemsPerPage, Validators.required)
     });
   }
 

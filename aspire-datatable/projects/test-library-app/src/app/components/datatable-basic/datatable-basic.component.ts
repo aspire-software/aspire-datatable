@@ -21,7 +21,6 @@ export class DatatableBasicComponent implements OnInit {
       tableDiv: 'table-responsive-md',
       tableRowStyle: '',
       tableDataStyle: '',
-      pageSize: 5,
       page: 1,
       ellipses: false,
       maxSize: 1,

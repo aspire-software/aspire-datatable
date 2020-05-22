@@ -4,7 +4,6 @@ export interface ITableOptions {
     tableDiv?: string,
     tableRowStyle?: string,
     tableDataStyle?: string,
-    pageSize?: number,
     page?: number,
     ellipses?: boolean,
     maxSize?: 1,
@@ -38,7 +37,6 @@ export class TableOptions implements ITableOptions {
         public tableDiv?: string,
         public tableRowStyle?: string,
         public tableDataStyle?: string,
-        public pageSize?: number,
         public page?: number,
         public ellipses?: boolean,
         public maxSize?: 1,
@@ -69,7 +67,6 @@ export class TableOptions implements ITableOptions {
         this.tableDiv = 'table-responsive-md';
         this.tableRowStyle = '';
         this.tableDataStyle = '';
-        this.pageSize = 5;
         this.page = 1;
         this.ellipses = false;
         this.maxSize = 1;

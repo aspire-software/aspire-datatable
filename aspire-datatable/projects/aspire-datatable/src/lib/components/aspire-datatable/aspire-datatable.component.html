@@ -10,7 +10,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        (getPerPageRecords)="getPerPageRecords($event)">
+        (getPerPageRecords)="getPerPageRecords($event)" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-perpage>
     </div>
   </div>
@@ -39,7 +39,7 @@
             </td>
           </tr>
           <tr class="{{options.tableRowStyle}}"
-            *ngFor="let item of records | slice: (options.page-1) * options.pageSize : (options.page-1) * options.pageSize + options.pageSize">
+            *ngFor="let item of records | slice: getStart() : getEnd()">
             <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
               {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
             </td>
