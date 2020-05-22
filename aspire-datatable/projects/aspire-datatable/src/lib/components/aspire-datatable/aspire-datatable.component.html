@@ -1,53 +1,53 @@
 <div class="container">
-  <div class="row" *ngIf="allowSearch">
+  <div class="row" *ngIf="options.search">
     <div class="col-md-4">
       <div class="searching">
-        <aspire-searching [records]="records" [searchingStyle]="searchingStyle"
+        <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
           (getSearchRecords)="getSearchRecords($event)" (getNoDataFoundMessage)="getNoDataFoundMessage($event)">
         </aspire-searching>
       </div>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <aspire-records-perpage [selectRecordsPerPage]="selectRecordsPerPage"
+      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
   </div>
   <div class="row">
-    <div class="{{tableDiv}}">
-      <table id="aspire-data-table" class="{{tableStyle}}">
-        <thead class="{{headerStyle}}">
+    <div class="{{options.tableDiv}}">
+      <table id="aspire-data-table" class="{{options.tableStyle}}">
+        <thead class="{{options.headerStyle}}">
           <tr scope="col" *ngFor="let item of headers let i=index;" [attr.data-index]="i">
             <th scope="row" [attr.rowspan]="getRowSpan()">
-              <span (click)="sort(item, $event)" *ngIf="allowSorting">
+              <span (click)="sort(item, $event)" *ngIf="options.sorting">
                 <span>{{item.field}} </span>
                 <i class="fa fa-sort-down pl-1 sort-icon" aria-hidden="true"></i>
               </span>
-              <span *ngIf="!allowSorting">
+              <span *ngIf="!options.sorting">
                 <span>{{item.field}} </span>
               </span>
             </th>
           </tr>
         </thead>
-        <tbody *ngIf="noDataFoundMessage === false && records.length !== 0">
-          <tr class="{{tableRowStyle}}"
-            *ngFor="let item of records | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-            <td class="{{tableDataStyle}}" *ngFor="let header of headers  let i = index">
+        <tbody *ngIf="options.noDataFoundMessage === false && records.length !== 0">
+          <tr class="{{options.tableRowStyle}}"
+            *ngFor="let item of records | slice: (options.page-1) * options.pageSize : (options.page-1) * options.pageSize + options.pageSize">
+            <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
               {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
             </td>
           </tr>
         </tbody>
-        <tbody *ngIf="noDataFoundMessage === true && records.length === 0">
+        <tbody *ngIf="options.noDataFoundMessage === true && records.length === 0">
           <tr>
             <td [attr.colspan]="headers.length+1">
               <div class="col py-3 px-md-5 border text-center">
-                {{noRecordFoundMessage}}
+                {{options.noRecordFoundMessage}}
               </div>
             </td>
         <tbody>
-          <tr class="{{tableRowStyle}}" *ngFor='let item of records | slice: start:end'>
-            <td class="{{tableDataStyle}}" *ngFor="let header of headers; let i = index">{{item[header]}}</td>
+          <tr class="{{options.tableRowStyle}}" *ngFor='let item of records | slice: start:end'>
+            <td class="{{options.tableDataStyle}}" *ngFor="let header of headers; let i = index">{{item[header]}}</td>
           </tr>
         </tbody>
       </table>
@@ -65,16 +65,16 @@
       <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
     </ngb-pagination>
  -->
-    <div class="col-md-6 records-count" *ngIf='showRecordsCount'>
+    <div class="col-md-6 records-count" *ngIf='options.showRecordsCount'>
       <aspire-records-count [totalRecords]="records.length"
-        [itemsPerPage]="itemsPerPage" [currentPage]="page">
+        [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
-    <div class="col-md-6" *ngIf="showPagination">
-      <aspire-pagination  [totalItems]="records.length" [itemsPerPage]="itemsPerPage"
-        [maxVisiblePage]="maxVisiblePage" [paginationStyle]="paginationStyle" [pageLinkStyle]="pageLinkStyle"
-        [firstPageText]="firstPageText" [prevPageText]="prevPageText" [nextPageText]="nextPageText"
-        [lastPageText]="lastPageText" [reset]="resetPagination" (onPageChanged)="onPageChanged($event)">
+    <div class="col-md-6" *ngIf="options.showPagination">
+      <aspire-pagination  [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
+        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle" [pageLinkStyle]="options.pageLinkStyle"
+        [firstPageText]="options.firstPageText" [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
+        [lastPageText]="options.lastPageText" [reset]="options.resetPagination" (onPageChanged)="onPageChanged($event)">
       </aspire-pagination>
     </div>
   </div>

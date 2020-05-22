@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,  Output, EventEmitter, ViewChild  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
 import * as moment from 'moment';
 import { dataTypes } from '../../constants/constants';
@@ -6,85 +6,57 @@ import { PageRequest } from '../aspire-datatable/aspire-datatable.model';
 import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
+import { ITableOptions } from '../../shared/models/table-options.model';
 
 @Component({
   selector: 'aspire-datatable',
-  templateUrl: './aspire-datatable.component.html'
+  templateUrl: './aspire-datatable.component.html',
 })
+
 export class AspireDatatableComponent implements OnInit {
-  @Input() headers: any[] = [];
-  @Input() records: any[] = [];
-  @Input() tableStyle: string = 'table table-striped table-bordered';
-  @Input() headerStyle: string = 'thead-light';
-  @Input() tableDiv: string = 'table-responsive-md';
-  @Input() tableRowStyle: string = '';
-  @Input() tableDataStyle: string = '';
-  @Input() pageSize: number;
-  @Input() page: number;
-  @Input() ellipses: boolean;
-  @Input() maxSize: number;
-  @Input() directionLinks: boolean;
-  @Input() boundaryLinks: boolean;
-  @Input() allowSorting: boolean;
-  @Input() allowSearch: boolean;
-  @Input() dateFormat: string;
-  @Input() searchingStyle: string = "";
-  @Input() noRecordFoundMessage: string = 'No Data Found';
-  @Input() maxVisiblePage: number = 10;
-  @Input() itemsPerPage: number = 10;
-  @Input() paginationStyle: string = '';
-  @Input() pageItemStyle: string = 'page-item';
-  @Input() pageLinkStyle: string = 'page-link';
-  @Input() showPagination: boolean = true;
-  @Input() firstPageText: any;
-  @Input() prevPageText: any;
-  @Input() nextPageText: any;
-  @Input() lastPageText: any;
-  @Input() resetPagination: boolean = false;
-  @Input() showRecordsCount: boolean = true;
-  @Input() showPageSizeSelector: boolean = true;
-  @Input() selectRecordsPerPage: any[] = [5,10,20,30,50];
+  @Input() headers: any[];
+  @Input() records: any[];
+
+  @Input() options: ITableOptions = { };
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
-  // searchForm = this.formBuilder.group({
-  //   search: [null],
-  // });
-  noDataFoundMessage = false;
-  // totalRecords = []
-  // @Input() paginationClass: string = 'd-flex justify-content-end';
-  // @Input() ariaLabel: string = 'Default pagination';
 
   public payload = new Page();
   public pageRequest = new PageRequest();
+  noDataFoundMessage = false;
   start: any;
   end: any;
   selectedRecords: number;
+  page: number;
+  pageSize: number;
+  itemsPerPage: number;
 
   constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService) { }
 
-  @ViewChild(AspireRecordsCountComponent ) child: AspireRecordsCountComponent;
-  ngOnInit(){
+  @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
+  ngOnInit() {
     this.filterDate();
     this.page = 1;
     this.pageSize = this.itemsPerPage;
     this.sliceRecords();
     this.tableEvents.setPage(this.page);
+    console.log( )
   }
 
   getRowSpan() {
     return this.headers.length;
-  } 
+  }
 
-  sort(item, event){
-    this.records = this.sortServiceService.sorting(item.field,this.records,event,item.type);
+  sort(item, event) {
+    this.records = this.sortServiceService.sorting(item.field, this.records, event, item.type);
   }
 
   filterDate() {
-    if(this.headers){
+    if (this.headers) {
       this.headers.forEach(header => {
-        if(header.type === dataTypes.date){
+        if (header.type === dataTypes.date) {
           this.records.forEach(element => {
-            const date = moment(new Date(element.date)).format(this.dateFormat)
+            const date = moment(new Date(element.date)).format(this.options.dateFormat)
             element[header.type] = date
           });
         }
@@ -103,7 +75,7 @@ export class AspireDatatableComponent implements OnInit {
   onPageChanged(event): void {
     this.page = event.currentPage;
     this.pageSize = this.itemsPerPage;
-    this.resetPagination = true;
+    this.options.resetPagination = true;
     this.resetPageSize();
     this.sliceRecords();
     this.tableEvents.setPage(this.page);
@@ -127,7 +99,7 @@ export class AspireDatatableComponent implements OnInit {
 
   /* Slice record for display per page records */
   sliceRecords() {
-    this.start =  (this.page - 1) * Number(this.pageSize);
+    this.start = (this.page - 1) * Number(this.pageSize);
     this.end = (this.page - 1) * Number(this.pageSize) + Number(this.pageSize);
   }
 }

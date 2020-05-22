@@ -13,11 +13,39 @@ export class DatatableBasicComponent implements OnInit {
   totalRecords: number;
   recordsLength: number;
   itemsPerPage: number = 5;
-  allowSorting: boolean;
   dateFormat: string;
-  allowSearch: boolean;
-  noRecordFoundMessage: string;
-  constructor() { }
+  tableOptions: any;
+  constructor() {
+    this.tableOptions = {
+      tableStyle: 'table table-striped table-bordered',
+      headerStyle: 'thead-light',
+      tableDiv: 'table-responsive-md',
+      tableRowStyle: '',
+      tableDataStyle: '',
+      pageSize: 5,
+      page: 1,
+      ellipses: false,
+      maxSize: 1,
+      directionLinks: true,
+      boundaryLinks: true,
+      sorting: true,
+      search: true,
+      dateFormat: 'dd/MM/yyyy',
+      searchingStyle: "",
+      noRecordFoundMessage: 'No Data Found',
+      maxVisiblePage: 10,
+      itemsPerPage: 10,
+      paginationStyle: '',
+      pageItemStyle: 'page-item',
+      pageLinkStyle: 'page-link',
+      showPagination: true,
+      resetPagination: true,
+      showRecordsCount: true,
+      showPageSizeSelector: true,
+      noDataFoundMessage: false,
+      selectRecordsPerPage: [5, 10, 20, 30, 50],
+    }
+  }
 
   ngOnInit(): void {
     this.initSampleData();
@@ -33,7 +61,6 @@ export class DatatableBasicComponent implements OnInit {
       { 'field': 'isActive', 'type': 'boolean' },
       { 'field': 'date', 'type': 'date' },
       { 'field': 'age', 'type': 'number' },
-      { 'field': '', 'type': 'settings' }
     ];
     this.tableData = records.map((item, index) => ({
       name: `${item.name.first} ${item.name.last}`,
@@ -47,10 +74,10 @@ export class DatatableBasicComponent implements OnInit {
     })
     );
     this.recordsLength = records.length;
-    this.allowSorting = true;
-    this.allowSearch = true;
-    this.noRecordFoundMessage = customNoDataMessage;
-    this.dateFormat = dateFormat;
+    this.tableOptions.sorting = true;
+    this.tableOptions.allowSearch = true;
+    this.tableOptions.noRecordFoundMessage = customNoDataMessage;
+    this.tableOptions.dateFormat = dateFormat;
   }
 
 }
