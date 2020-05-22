@@ -13,7 +13,7 @@ export interface IPaginationOptions {
     lastPageText?: string;
 }
 
-export class PaginationOptions implements PaginationOptions {
+export class PaginationOptions implements IPaginationOptions {
     constructor(
         public directionLinks?: boolean,
         public ariaLabel?: string,
