@@ -51,8 +51,9 @@ export class AspireDatatableComponent implements OnInit {
     if (this.headers) {
       this.headers.forEach(header => {
         if (header.type === dataTypes.date) {
+          const dateHeaderIndex = this.headers.indexOf(header);
           this.records.forEach(element => {
-            const date = this.datePipe.transform(element.date, this.options.dateFormat);
+            const date = this.datePipe.transform(Object.values(element)[dateHeaderIndex], this.options.dateFormat);
             element[header.type] = date
           });
         }
