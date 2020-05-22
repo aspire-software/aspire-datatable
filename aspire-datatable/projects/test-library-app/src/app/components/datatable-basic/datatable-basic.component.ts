@@ -21,22 +21,31 @@ export class DatatableBasicComponent implements OnInit {
       tableRowStyle: '',
       tableDataStyle: '',
       page: 1,
-      directionLinks: true,
       sorting: true,
       search: true,
       dateFormat: 'dd/MM/yyyy',
       searchingStyle: "",
       noRecordFoundMessage: 'No Data Found',
-      maxVisiblePage: 10,
       itemsPerPage: 10,
-      paginationStyle: '',
-      pageItemStyle: 'page-item',
-      pageLinkStyle: 'page-link',
       showPagination: true,
       resetPagination: true,
       showRecordsCount: true,
       showPageSizeSelector: true,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
+      paginationOptions: {
+        directionLinks: true,
+        ariaLabel: 'Default pagination',
+        ellipsis: false,
+        maxVisiblePage: 10,
+        disable: false,
+        paginationStyle: 'pagination justify-content-center',
+        pageItemStyle: 'page-item',
+        pageLinkStyle: 'page-link',
+        firstPageText: '<<',
+        prevPageText: '<',
+        nextPageText: '>',
+        lastPageText: '>>'
+      }
     }
   }
 

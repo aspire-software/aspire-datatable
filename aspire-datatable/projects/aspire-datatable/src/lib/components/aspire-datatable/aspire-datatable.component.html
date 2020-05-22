@@ -38,8 +38,7 @@
               </div>
             </td>
           </tr>
-          <tr class="{{options.tableRowStyle}}"
-            *ngFor="let item of records | slice: getStart() : getEnd()">
+          <tr class="{{options.tableRowStyle}}" *ngFor="let item of records | slice: getStart() : getEnd()">
             <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
               {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
             </td>
@@ -67,10 +66,7 @@
     </div>
     <div class="col-md-6" *ngIf="options.showPagination">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle"
-        [pageLinkStyle]="options.pageLinkStyle" [firstPageText]="options.firstPageText"
-        [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
-        [lastPageText]="options.lastPageText" [reset]="options.resetPagination" (onPageChanged)="onPageChanged($event)">
+        [reset]="options.resetPagination" [options]="options.paginationOptions" (onPageChanged)="onPageChanged($event)">
       </aspire-pagination>
     </div>
   </div>

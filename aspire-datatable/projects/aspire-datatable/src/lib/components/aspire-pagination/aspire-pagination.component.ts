@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Page } from './aspire-pagination.model';
+import { PaginationOptions, IPaginationOptions } from '../../shared/models/pagination-options.model';
 
 @Component({
   selector: 'aspire-pagination',
@@ -11,19 +12,21 @@ export class AspirePaginationComponent implements OnInit {
   pageModel: Page;
   pages: number[] = [];
   totalPages: number;
-  
-  @Input() directionLinks: boolean = true;
-  @Input() ariaLabel: string = 'Default pagination';
-  @Input() ellipsis: boolean = false;
-  @Input() maxVisiblePage: number = 3;
-  @Input() disable: boolean = false;
-  @Input() paginationStyle: string = 'pagination justify-content-center';
-  @Input() pageItemStyle: string = 'page-item';
-  @Input() pageLinkStyle: string = 'page-link';
-  @Input() firstPageText: string;
-  @Input() prevPageText: string;
-  @Input() nextPageText: string;
-  @Input() lastPageText: string;
+
+  @Input() options: IPaginationOptions = new PaginationOptions();
+
+  // @Input() directionLinks: boolean = true;
+  // @Input() ariaLabel: string = 'Default pagination';
+  // @Input() ellipsis: boolean = false;
+  // @Input() maxVisiblePage: number = 3;
+  // @Input() disable: boolean = false;
+  // @Input() paginationStyle: string = 'pagination justify-content-center';
+  // @Input() pageItemStyle: string = 'page-item';
+  // @Input() pageLinkStyle: string = 'page-link';
+  // @Input() firstPageText: string;
+  // @Input() prevPageText: string;
+  // @Input() nextPageText: string;
+  // @Input() lastPageText: string;
 
   totalRecords: number = 0;
   @Input()
@@ -142,7 +145,7 @@ export class AspirePaginationComponent implements OnInit {
     let min = this.pageModel.firstPage;
     let max = (this.pageModel.firstPage + this.validateMaxSize()) - 1;
 
-    if (this.pageModel.currentPage <= this.maxVisiblePage) {
+    if (this.pageModel.currentPage <= this.options.maxVisiblePage) {
       min = 1;
       max = this.validateMaxSize();
     }
@@ -179,14 +182,14 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   validateMaxSize(): number {
-    return this.maxVisiblePage > this.totalPages ? this.totalPages : this.maxVisiblePage;
+    return this.options.maxVisiblePage > this.totalPages ? this.totalPages : this.options.maxVisiblePage;
   }
 
   disablePagination(flag: number = 0): boolean {
     switch (flag) {
-      case 1: return this.totalItems <= 0 || this.pageModel.currentPage === 1 || this.disable;
-      case 2: return this.totalItems <= 0 || this.pageModel.currentPage === this.totalPages || this.disable;
-      default: return this.disable;
+      case 1: return this.totalItems <= 0 || this.pageModel.currentPage === 1 || this.options.disable;
+      case 2: return this.totalItems <= 0 || this.pageModel.currentPage === this.totalPages || this.options.disable;
+      default: return this.options.disable;
     }
   }
 

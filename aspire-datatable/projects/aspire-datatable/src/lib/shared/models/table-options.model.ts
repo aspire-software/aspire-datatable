@@ -1,30 +1,24 @@
+import { IPaginationOptions } from './pagination-options.model';
+
 export interface ITableOptions {
-    tableStyle?: string,
-    headerStyle?: string,
-    tableDiv?: string,
-    tableRowStyle?: string,
-    tableDataStyle?: string,
-    page?: number,
-    directionLinks?: boolean,
-    sorting?: boolean,
-    search?: boolean,
-    dateFormat?: string,
-    searchingStyle?: string,
-    noRecordFoundMessage?: string,
-    maxVisiblePage?: number,
-    itemsPerPage?: number,
-    paginationStyle?: string,
-    pageItemStyle?: string,
-    pageLinkStyle?: string,
-    showPagination?: boolean,
-    firstPageText?: string,
-    prevPageText?: string,
-    nextPageText?: string,
-    lastPageText?: string,
-    resetPagination?: boolean,
-    showRecordsCount?: boolean,
-    showPageSizeSelector?: boolean,
-    selectRecordsPerPage?: number[]
+    tableStyle?: string;
+    headerStyle?: string;
+    tableDiv?: string;
+    tableRowStyle?: string;
+    tableDataStyle?: string;
+    page?: number;
+    sorting?: boolean;
+    search?: boolean;
+    dateFormat?: string;
+    searchingStyle?: string;
+    noRecordFoundMessage?: string;
+    itemsPerPage?: number;
+    showPagination?: boolean;
+    resetPagination?: boolean;
+    showRecordsCount?: boolean;
+    showPageSizeSelector?: boolean;
+    selectRecordsPerPage?: number[];
+    paginationOptions?: IPaginationOptions;
 }
 
 export class TableOptions implements ITableOptions {
@@ -35,52 +29,35 @@ export class TableOptions implements ITableOptions {
         public tableRowStyle?: string,
         public tableDataStyle?: string,
         public page?: number,
-        public directionLinks?: boolean,
         public sorting?: boolean,
         public search?: boolean,
         public dateFormat?: string,
         public searchingStyle?: string,
         public noRecordFoundMessage?: string,
-        public maxVisiblePage?: number,
         public itemsPerPage?: number,
-        public paginationStyle?: string,
-        public pageItemStyle?: string,
-        public pageLinkStyle?: string,
         public showPagination?: boolean,
-        public firstPageText?: string,
-        public prevPageText?: string,
-        public nextPageText?: string,
-        public lastPageText?: string,
         public resetPagination?: boolean,
         public showRecordsCount?: boolean,
         public showPageSizeSelector?: boolean,
-        public selectRecordsPerPage?: number[]
+        public selectRecordsPerPage?: number[],
+        public paginationOptions?: IPaginationOptions
     ) {
-        this.tableStyle = 'table table-striped table-bordered';
-        this.headerStyle = 'thead-light';
-        this.tableDiv = 'table-responsive-md';
-        this.tableRowStyle = '';
-        this.tableDataStyle = '';
-        this.page = 1;
-        this.directionLinks = true;
-        this.sorting = true;
-        this.search = true;
-        this.dateFormat = 'dd/MM/yyyy';
-        this.searchingStyle = "";
-        this.noRecordFoundMessage = 'No Data Found';
-        this.maxVisiblePage = 10;
-        this.itemsPerPage = 10;
-        this.paginationStyle = '';
-        this.pageItemStyle = 'page-item';
-        this.pageLinkStyle = 'page-link';
-        this.showPagination = true;
-        this.firstPageText = '<<';
-        this.prevPageText = '<';
-        this.nextPageText = '>';
-        this.lastPageText = '>>';
-        this.resetPagination = true;
-        this.showRecordsCount = true;
-        this.showPageSizeSelector = true;
-        this.selectRecordsPerPage = [5, 10, 20, 30, 50];
+        this.tableStyle = this.tableStyle || 'table table-striped table-bordered';
+        this.headerStyle = this.headerStyle || 'thead-light';
+        this.tableDiv = this.tableDiv || 'table-responsive-md';
+        this.tableRowStyle = this.tableRowStyle || '';
+        this.tableDataStyle = this.tableDataStyle || '';
+        this.page = this.page || 1;
+        this.sorting = this.sorting || true;
+        this.search = this.search || true;
+        this.dateFormat = this.dateFormat || 'dd/MM/yyyy';
+        this.searchingStyle = this.searchingStyle || "";
+        this.noRecordFoundMessage = this.noRecordFoundMessage || 'No Data Found';
+        this.itemsPerPage = this.itemsPerPage || 10;
+        this.showPagination = this.showPagination || true;
+        this.resetPagination = this.resetPagination || true;
+        this.showRecordsCount = this.showRecordsCount || true;
+        this.showPageSizeSelector = this.showPageSizeSelector || true;
+        this.selectRecordsPerPage = this.selectRecordsPerPage || [5, 10, 20, 30, 50];
     }
 }
