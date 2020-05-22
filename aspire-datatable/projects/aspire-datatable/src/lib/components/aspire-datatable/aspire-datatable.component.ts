@@ -1,34 +1,34 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
-import * as moment from 'moment';
 import { dataTypes } from '../../constants/constants';
 import { PageRequest } from '../aspire-datatable/aspire-datatable.model';
 import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
-import { ITableOptions } from '../../shared/models/table-options.model';
+import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'aspire-datatable',
   templateUrl: './aspire-datatable.component.html',
+  providers: [DatePipe]
 })
 
 export class AspireDatatableComponent implements OnInit {
   @Input() headers: any[];
   @Input() records: any[];
 
-  @Input() options: ITableOptions = { };
+  @Input() options: ITableOptions = new TableOptions();
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
   public payload = new Page();
   public pageRequest = new PageRequest();
-  noDataFoundMessage = false;
   start: any;
   end: any;
   selectedRecords: number;
 
-  constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService) { }
+  constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService, public datePipe: DatePipe) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
   ngOnInit() {
@@ -52,7 +52,7 @@ export class AspireDatatableComponent implements OnInit {
       this.headers.forEach(header => {
         if (header.type === dataTypes.date) {
           this.records.forEach(element => {
-            const date = moment(new Date(element.date)).format(this.options.dateFormat)
+            const date = this.datePipe.transform(element.date, this.options.dateFormat);
             element[header.type] = date
           });
         }
@@ -62,10 +62,6 @@ export class AspireDatatableComponent implements OnInit {
 
   public getSearchRecords(value) {
     this.records = value;
-  }
-
-  public getNoDataFoundMessage(value) {
-    this.noDataFoundMessage = value;
   }
 
   onPageChanged(event): void {

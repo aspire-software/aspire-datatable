@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <div class="searching">
         <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-          (getSearchRecords)="getSearchRecords($event)" (getNoDataFoundMessage)="getNoDataFoundMessage($event)">
+          (getSearchRecords)="getSearchRecords($event)">
         </aspire-searching>
       </div>
     </div>
@@ -30,7 +30,14 @@
             </th>
           </tr>
         </thead>
-        <tbody *ngIf="options.noDataFoundMessage === false && records.length !== 0">
+        <tbody>
+          <tr *ngIf="records.length === 0">
+            <td [attr.colspan]="headers.length+1">
+              <div class="col py-3 px-md-5 border text-center">
+                {{options.noRecordFoundMessage}}
+              </div>
+            </td>
+          </tr>
           <tr class="{{options.tableRowStyle}}"
             *ngFor="let item of records | slice: (options.page-1) * options.pageSize : (options.page-1) * options.pageSize + options.pageSize">
             <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
@@ -38,23 +45,11 @@
             </td>
           </tr>
         </tbody>
-        <tbody *ngIf="options.noDataFoundMessage === true && records.length === 0">
-          <tr>
-            <td [attr.colspan]="headers.length+1">
-              <div class="col py-3 px-md-5 border text-center">
-                {{options.noRecordFoundMessage}}
-              </div>
-            </td>
-        <tbody>
-          <tr class="{{options.tableRowStyle}}" *ngFor='let item of records | slice: start:end'>
-            <td class="{{options.tableDataStyle}}" *ngFor="let header of headers; let i = index">{{item[header]}}</td>
-          </tr>
-        </tbody>
       </table>
     </div>
   </div>
   <div class="row">
-   <!--  <ngb-pagination class="d-flex justify-content-center" aria-label="Default pagination" [(page)]="page"
+    <!--  <ngb-pagination class="d-flex justify-content-center" aria-label="Default pagination" [(page)]="page"
       [pageSize]="pageSize" [collectionSize]="records.length" [ellipses]="ellipses" [maxSize]="maxSize"
       [directionLinks]="directionLinks" [boundaryLinks]="boundaryLinks">
       <ng-template ngbPaginationFirst>First</ng-template>
@@ -66,14 +61,15 @@
     </ngb-pagination>
  -->
     <div class="col-md-6 records-count" *ngIf='options.showRecordsCount'>
-      <aspire-records-count [totalRecords]="records.length"
-        [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+      <aspire-records-count [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage"
+        [currentPage]="options.page">
       </aspire-records-count>
     </div>
     <div class="col-md-6" *ngIf="options.showPagination">
-      <aspire-pagination  [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle" [pageLinkStyle]="options.pageLinkStyle"
-        [firstPageText]="options.firstPageText" [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
+      <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
+        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle"
+        [pageLinkStyle]="options.pageLinkStyle" [firstPageText]="options.firstPageText"
+        [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
         [lastPageText]="options.lastPageText" [reset]="options.resetPagination" (onPageChanged)="onPageChanged($event)">
       </aspire-pagination>
     </div>

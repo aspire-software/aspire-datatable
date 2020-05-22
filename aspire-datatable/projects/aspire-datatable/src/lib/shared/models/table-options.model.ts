@@ -28,7 +28,6 @@ export interface ITableOptions {
     resetPagination?: boolean,
     showRecordsCount?: boolean,
     showPageSizeSelector?: boolean,
-    noDataFoundMessage?: boolean,
     selectRecordsPerPage?: number[]
 }
 
@@ -63,7 +62,6 @@ export class TableOptions implements ITableOptions {
         public resetPagination?: boolean,
         public showRecordsCount?: boolean,
         public showPageSizeSelector?: boolean,
-        public noDataFoundMessage?: boolean,
         public selectRecordsPerPage?: number[]
     ) {
         this.tableStyle = 'table table-striped table-bordered';
@@ -95,7 +93,6 @@ export class TableOptions implements ITableOptions {
         this.resetPagination = true;
         this.showRecordsCount = true;
         this.showPageSizeSelector = true;
-        this.noDataFoundMessage = true;
         this.selectRecordsPerPage = [5, 10, 20, 30, 50];
     }
 }
