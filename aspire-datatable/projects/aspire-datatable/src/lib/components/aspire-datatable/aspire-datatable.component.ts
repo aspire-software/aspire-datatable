@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
 import * as moment from 'moment';
 import { dataTypes } from '../../constants/constants';
@@ -27,20 +27,16 @@ export class AspireDatatableComponent implements OnInit {
   start: any;
   end: any;
   selectedRecords: number;
-  page: number;
-  pageSize: number;
-  itemsPerPage: number;
 
   constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
   ngOnInit() {
     this.filterDate();
-    this.page = 1;
-    this.pageSize = this.itemsPerPage;
+    this.options.page = 1;
+    this.options.pageSize = this.options.itemsPerPage;
     this.sliceRecords();
-    this.tableEvents.setPage(this.page);
-    console.log( )
+    this.tableEvents.setPage(this.options.page);
   }
 
   getRowSpan() {
@@ -73,33 +69,33 @@ export class AspireDatatableComponent implements OnInit {
   }
 
   onPageChanged(event): void {
-    this.page = event.currentPage;
-    this.pageSize = this.itemsPerPage;
+    this.options.page = event.currentPage;
+    this.options.pageSize = this.options.itemsPerPage;
     this.options.resetPagination = true;
     this.resetPageSize();
     this.sliceRecords();
-    this.tableEvents.setPage(this.page);
+    this.tableEvents.setPage(this.options.page);
   }
 
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
-    this.pageSize = value;
-    this.itemsPerPage = value;
+    this.options.pageSize = value;
+    this.options.itemsPerPage = value;
     this.sliceRecords();
     // tslint:disable-next-line:no-unused-expression
     this.child.updateRecordCount(value); // update record count when new value selected from select pageSize options
-    this.tableEvents.setPage(this.page);
+    this.tableEvents.setPage(this.options.page);
   }
 
   /* Reset page record if someone between any pagination number access select pagesize options */
   resetPageSize() {
     this.start = 1;
-    this.end = this.itemsPerPage;
+    this.end = this.options.itemsPerPage;
   }
 
   /* Slice record for display per page records */
   sliceRecords() {
-    this.start = (this.page - 1) * Number(this.pageSize);
-    this.end = (this.page - 1) * Number(this.pageSize) + Number(this.pageSize);
+    this.start = (this.options.page - 1) * Number(this.options.pageSize);
+    this.end = (this.options.page - 1) * Number(this.options.pageSize) + Number(this.options.pageSize);
   }
 }
