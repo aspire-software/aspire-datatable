@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AspireDatatableComponent } from './aspire-datatable.component';
+import { AspireSearchingComponent } from './aspire-searching.component';
 
-describe('AspireDatatableComponent', () => {
-  let component: AspireDatatableComponent;
-  let fixture: ComponentFixture<AspireDatatableComponent>;
+describe('AspirePaginationComponent', () => {
+  let component: AspireSearchingComponent;
+  let fixture: ComponentFixture<AspireSearchingComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireDatatableComponent ]
+      declarations: [ AspireSearchingComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AspireDatatableComponent);
+    fixture = TestBed.createComponent(AspireSearchingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

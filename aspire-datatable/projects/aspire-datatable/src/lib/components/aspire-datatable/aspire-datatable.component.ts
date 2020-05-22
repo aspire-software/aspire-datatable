@@ -1,12 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,  Output, EventEmitter, ViewChild  } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
 import * as moment from 'moment';
 import { dataTypes } from '../../constants/constants';
+import { PageRequest } from '../aspire-datatable/aspire-datatable.model';
+import { Page } from '../aspire-pagination/aspire-pagination.model';
+import { TableEventsService } from '../../shared/table-events.service';
+import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 
 @Component({
-  selector: 'lib-aspire-datatable',
-  templateUrl: './aspire-datatable.component.html',
-  styleUrls: ['./aspire-datatable.component.css']
+  selector: 'aspire-datatable',
+  templateUrl: './aspire-datatable.component.html'
 })
 export class AspireDatatableComponent implements OnInit {
   @Input() headers: any[] = [];
@@ -16,7 +19,6 @@ export class AspireDatatableComponent implements OnInit {
   @Input() tableDiv: string = 'table-responsive-md';
   @Input() tableRowStyle: string = '';
   @Input() tableDataStyle: string = '';
-  @Input() collectionSize: number;
   @Input() pageSize: number;
   @Input() page: number;
   @Input() ellipses: boolean;
@@ -27,22 +29,49 @@ export class AspireDatatableComponent implements OnInit {
   @Input() allowSearch: boolean;
   @Input() dateFormat: string;
   @Input() searchingStyle: string = "";
-  @Input() noRecordFoundMessage: string = "";
+  @Input() noRecordFoundMessage: string = 'No Data Found';
+  @Input() maxVisiblePage: number = 10;
+  @Input() itemsPerPage: number = 10;
+  @Input() paginationStyle: string = '';
+  @Input() pageItemStyle: string = 'page-item';
+  @Input() pageLinkStyle: string = 'page-link';
+  @Input() showPagination: boolean = true;
+  @Input() firstPageText: any;
+  @Input() prevPageText: any;
+  @Input() nextPageText: any;
+  @Input() lastPageText: any;
+  @Input() resetPagination: boolean = false;
+  @Input() showRecordsCount: boolean = true;
+  @Input() showPageSizeSelector: boolean = true;
+  @Input() selectRecordsPerPage: any[] = [5,10,20,30,50];
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
   // searchForm = this.formBuilder.group({
   //   search: [null],
   // });
-  noDataFoundMessage = ''
+  noDataFoundMessage = false;
   // totalRecords = []
   // @Input() paginationClass: string = 'd-flex justify-content-end';
   // @Input() ariaLabel: string = 'Default pagination';
-  constructor(private sortServiceService: SortServiceService) { }
 
-  ngOnInit(): void {
+  public payload = new Page();
+  public pageRequest = new PageRequest();
+  start: any;
+  end: any;
+  selectedRecords: number;
+
+  constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService) { }
+
+  @ViewChild(AspireRecordsCountComponent ) child: AspireRecordsCountComponent;
+  ngOnInit(){
     this.filterDate();
-    // this.totalRecords = this.records;
-    // this.checkSearch();
+    this.page = 1;
+    this.pageSize = this.itemsPerPage;
+    this.sliceRecords();
+    this.tableEvents.setPage(this.page);
   }
-  getRowSpan(){
+
+  getRowSpan() {
     return this.headers.length;
   } 
 
@@ -50,12 +79,12 @@ export class AspireDatatableComponent implements OnInit {
     this.records = this.sortServiceService.sorting(item.field,this.records,event,item.type);
   }
 
-  filterDate(){
+  filterDate() {
     if(this.headers){
       this.headers.forEach(header => {
         if(header.type === dataTypes.date){
           this.records.forEach(element => {
-            var date = moment(new Date(element.date)).format(this.dateFormat)
+            const date = moment(new Date(element.date)).format(this.dateFormat)
             element[header.type] = date
           });
         }
@@ -63,134 +92,42 @@ export class AspireDatatableComponent implements OnInit {
     }
   }
 
-  // checkSearch(){
-  //   this.searchForm = this.formBuilder.group({
-  //     search: [''],
-  //   }); 
-  // }
-
-  // search(){
-  //   var searchItem = this.searchForm.value.search;
-  //   var filterRecord = [];
-  //   if(searchItem === ''){
-  //     console.warn("search is null");
-  //     this.records = this.totalRecords;
-  //   }
-  //   else{
-  //     if(this.records && this.records.length){
-  //       this.records.filter(function searchingFilter(element, index, array){
-  //         Object.values(element).forEach(objectValues=>{
-  //           if(objectValues.toString().includes(searchItem)){
-  //             filterRecord.push(index)
-  //           }
-  //         })
-  //       });
-  //       if(filterRecord && filterRecord.length){
-  //         var  filnalSearchIndexes= this.filterResult(filterRecord);
-  //         var filnalSearchElement = [];
-  //         this.records.forEach((record,index) => {
-  //           if(filnalSearchIndexes && filnalSearchIndexes.length){
-  //             filnalSearchIndexes.forEach(id=>{
-  //               if(index === id){
-  //                 filnalSearchElement.push(record);
-  //               }
-  //             });  
-  //           }
-  //           else{
-  //             console.warn("records inside filnalSearchIndexes No data")
-  //           }
-  //         });
-    
-  //         if(filnalSearchElement.length){
-  //           this.records = filnalSearchElement;
-  //         }
-  //         else {
-  //           this.records = []
-  //           console.warn("error Message")
-  //         }
-  //       }         
-  //       else{
-  //         console.warn("filnalSearchIndexes No data")          
-  //       }    
-
-  //     }
-  //     else{
-  //       console.warn("No Data present")
-  //     }
-  //   }
-
-  // }
-
-  // filterResult(arr){
-  //   var filterDuplicateSearch = [];
-  //   for(var i = 0; i < arr.length; i++){
-  //       if(filterDuplicateSearch.indexOf(arr[i]) == -1){
-  //         filterDuplicateSearch.push(arr[i]);
-  //       }
-  //   }
-  //   return filterDuplicateSearch;
-  // }
-
-  // isSearchClear(event: string){
-  //   var searchItem = event;
-  //   var filterRecord = [];
-  //   if(searchItem === ''){
-  //     this.noDataFoundMessage = ""
-  //     this.records = this.totalRecords;
-  //   }
-  //   else{
-  //     if(this.records && this.records.length){
-  //       this.records.filter(function searchingFilter(element, index, array){
-  //         Object.values(element).forEach(objectValues=>{
-  //           if(objectValues.toString().includes(searchItem)){
-  //             filterRecord.push(index)
-  //           }
-  //         })
-  //       });
-  //       if(filterRecord && filterRecord.length){
-  //         var  filnalSearchIndexes= this.filterResult(filterRecord);
-  //         var filnalSearchElement = [];
-  //         this.records.forEach((record,index) => {
-  //           if(filnalSearchIndexes && filnalSearchIndexes.length){
-  //             filnalSearchIndexes.forEach(id=>{
-  //               if(index === id){
-  //                 filnalSearchElement.push(record);
-  //               }
-  //             });  
-  //           }
-  //           else{
-  //             this.noDataFoundMessage = " No Data Found "
-  //             console.warn("records inside filnalSearchIndexes No data")
-  //           }
-  //         });
-    
-  //         if(filnalSearchElement.length){
-  //           this.records = filnalSearchElement;
-  //         }
-  //         else {
-  //           this.noDataFoundMessage = " No Data Found "            
-  //           console.warn("error Message")
-  //         }
-  //       }         
-  //       else{
-  //         this.noDataFoundMessage = " No Data Found "
-  //         console.warn("filnalSearchIndexes No data")          
-  //       }    
-
-  //     }
-  //     else{
-  //       this.noDataFoundMessage = " No Data Found "
-  //       console.warn("No Data present")
-  //     }
-
-  //   }
-
-  // }
-
-  public getSearchRecords(value): void {
+  public getSearchRecords(value) {
     this.records = value;
   }
-  public getNoDataFoundMessage(value): void {
+
+  public getNoDataFoundMessage(value) {
     this.noDataFoundMessage = value;
+  }
+
+  onPageChanged(event): void {
+    this.page = event.currentPage;
+    this.pageSize = this.itemsPerPage;
+    this.resetPagination = true;
+    this.resetPageSize();
+    this.sliceRecords();
+    this.tableEvents.setPage(this.page);
+  }
+
+  /* Get value from dropdown of per page record selector */
+  public getPerPageRecords(value): void {
+    this.pageSize = value;
+    this.itemsPerPage = value;
+    this.sliceRecords();
+    // tslint:disable-next-line:no-unused-expression
+    this.child.updateRecordCount(value); // update record count when new value selected from select pageSize options
+    this.tableEvents.setPage(this.page);
+  }
+
+  /* Reset page record if someone between any pagination number access select pagesize options */
+  resetPageSize() {
+    this.start = 1;
+    this.end = this.itemsPerPage;
+  }
+
+  /* Slice record for display per page records */
+  sliceRecords() {
+    this.start =  (this.page - 1) * Number(this.pageSize);
+    this.end = (this.page - 1) * Number(this.pageSize) + Number(this.pageSize);
   }
 }

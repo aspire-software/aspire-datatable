@@ -1,21 +1,4 @@
-<lib-aspire-datatable
- [headers]="headers"
- [records]="data"
- [tableStyle]="'table table-striped table-bordered'"
- [headerStyle]="''"
- [tableDiv]="''"
- [tableRowStyle]="''"
- [tableDataStyle]="''"
- [page]="page"
- [pageSize]="itemsPerPage"
- [collectionSize]="recordsLength"
- [ellipses]="true"
- [maxSize]="3"
- [directionLinks]="true"
- [boundaryLinks]="true"
- [allowSorting]="allowSorting"
- [dateFormat] = "dateFormat"
- [searchingStyle]="'navbar justify-content-end'"
- [allowSearch]="allowSearch"
- [noRecordFoundMessage]="noRecordFoundMessage"
-></lib-aspire-datatable>
+<aspire-datatable [headers]="tableHeaders" [records]="tableData" [tableStyle]="'table table-striped table-bordered'"
+    [headerStyle]="''" [tableDiv]="''" [tableRowStyle]="''" [tableDataStyle]="''" [pageSize]="5" [page]="10" [ellipses]="true" [maxSize]="10" [directionLinks]="true" [boundaryLinks]="true" [allowSorting]="true"
+    [allowSearch]="true"  [showPagination]="true">
+</aspire-datatable>

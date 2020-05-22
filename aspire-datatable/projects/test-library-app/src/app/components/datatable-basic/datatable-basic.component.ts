@@ -8,9 +8,9 @@ import { dateFormat } from '../../helper/table-record';
   styleUrls: ['./datatable-basic.component.scss']
 })
 export class DatatableBasicComponent implements OnInit {
-  headers: any[] = [];
-  data: any[] = [];
-  page: number = 1;
+  tableHeaders: any[] = [];
+  tableData: any[] = [];
+  totalRecords: number;
   recordsLength: number;
   itemsPerPage: number = 5;
   allowSorting: boolean;
@@ -24,26 +24,27 @@ export class DatatableBasicComponent implements OnInit {
   }
 
   initSampleData = () => {
-    this.headers = [
-      {'field':'name','type':'string'},
-      {'field': 'address','type':'string'}, 
-      {'field':'mobile','type':'number'}, 
-      {'field':'balance','type':'number'}, 
-      {'field':'email','type':'string'}, 
-      {'field':'isActive','type':'boolean'},
-      {'field':'date','type':'date'},
-      {'field':'age','type':'number'}
+    this.tableHeaders = [
+      { 'field': 'name', 'type': 'string' },
+      { 'field': 'address', 'type': 'string' },
+      { 'field': 'mobile', 'type': 'number' },
+      { 'field': 'balance', 'type': 'number' },
+      { 'field': 'email', 'type': 'string' },
+      { 'field': 'isActive', 'type': 'boolean' },
+      { 'field': 'date', 'type': 'date' },
+      { 'field': 'age', 'type': 'number' },
+      { 'field': '', 'type': 'settings' }
     ];
-      this.data = records.map((item, index) => ({
-        name: `${item.name.first} ${item.name.last}`,
-        address: item.address,
-        mobile: item.phone,
-        balance: item.balance,
-        email: item.email,
-        isActive: item.isActive,
-        date: item.date,
-        age: item.age
-      })
+    this.tableData = records.map((item, index) => ({
+      name: `${item.name.first} ${item.name.last}`,
+      address: item.address,
+      mobile: item.phone,
+      balance: item.balance,
+      email: item.email,
+      isActive: item.isActive,
+      date: item.date,
+      age: item.age
+    })
     );
     this.recordsLength = records.length;
     this.allowSorting = true;
@@ -51,4 +52,5 @@ export class DatatableBasicComponent implements OnInit {
     this.noRecordFoundMessage = customNoDataMessage;
     this.dateFormat = dateFormat;
   }
+
 }

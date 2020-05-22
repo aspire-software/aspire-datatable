@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AspireDatatableComponent } from './aspire-datatable.component';
 
-describe('AspireDatatableComponent', () => {
-  let component: AspireDatatableComponent;
-  let fixture: ComponentFixture<AspireDatatableComponent>;
+import { AspireRecordsCountComponent } from './aspire-records-count.component';
+
+describe('AspirePaginationComponent', () => {
+  let component: AspireRecordsCountComponent;
+  let fixture: ComponentFixture<AspireRecordsCountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireDatatableComponent ]
+      declarations: [ AspireRecordsCountComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AspireDatatableComponent);
+    fixture = TestBed.createComponent(AspireRecordsCountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

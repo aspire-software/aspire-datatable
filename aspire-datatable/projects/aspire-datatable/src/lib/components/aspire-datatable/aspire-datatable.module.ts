@@ -4,6 +4,10 @@ import { AspireDatatableComponent } from './aspire-datatable.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AspireSearchingModule } from '../aspire-searching/aspire-searching.module';
+import { AspirePaginationModule } from '../aspire-pagination/aspire-pagination.module';
+import { AspireRecordsCountModule } from '../aspire-records-count/aspire-records-count.module';
+import { TableEventsService } from '../../shared/table-events.service';
+import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module'
 
 @NgModule({
   declarations: [
@@ -14,10 +18,12 @@ import { AspireSearchingModule } from '../aspire-searching/aspire-searching.modu
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    AspireSearchingModule
+    AspireSearchingModule,
+    AspirePaginationModule,
+    AspireRecordsCountModule,
+    AspireRecordsPerpageModule
   ],
-  exports: [
-    AspireDatatableComponent
-  ]
+  exports: [AspireDatatableComponent],
+  providers: [TableEventsService]
 })
 export class AspireDatatableModule { }

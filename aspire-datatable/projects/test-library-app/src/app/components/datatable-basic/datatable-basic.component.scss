@@ -1,0 +1,16 @@
+/* override css of default bootstrap4 pagination */
+// :host ::ng-deep aspire-pagination {
+//     .page-link{
+//       color: red !important;
+//       background-color: skyblue !important;
+//     }
+//   }
+
+/* custom class declaration for [pageLinkStyle]="'page1'">
+*/
+// :host ::ng-deep aspire-pagination {
+//         .page1{
+//           color: red;
+//           background-color: skyblue;
+//         }
+//       }
