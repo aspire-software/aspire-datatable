@@ -10,13 +10,10 @@ export class AspireSearchingComponent implements OnInit {
   @Input() records: any[] = [];
   @Input() searchingStyle: string = "";
   @Output() getSearchRecords: EventEmitter<any> = new EventEmitter<any>();
-  @Output() getNoDataFoundMessage: EventEmitter<any> = new EventEmitter<any>();
 
-  noDataFoundMessage: boolean;
   totalRecords: any = [];
 
   constructor() {
-    this.noDataFoundMessage = false;
     this.totalRecords = [];
   }
 
@@ -46,8 +43,6 @@ export class AspireSearchingComponent implements OnInit {
         }
       }
     }
-    this.noDataFoundMessage = this.records.length ? false : true;
-    this.getNoDataFoundMessage.emit(this.noDataFoundMessage);
     this.getSearchRecords.emit(this.records);
   }
 }

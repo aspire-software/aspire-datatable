@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { records, customNoDataMessage } from '../../helper/table-record';
-import { dateFormat } from '../../helper/table-record';
 
 @Component({
   selector: 'app-datatable-basic',
@@ -41,7 +40,6 @@ export class DatatableBasicComponent implements OnInit {
       resetPagination: true,
       showRecordsCount: true,
       showPageSizeSelector: true,
-      noDataFoundMessage: false,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
     }
   }
@@ -76,7 +74,6 @@ export class DatatableBasicComponent implements OnInit {
     this.tableOptions.sorting = true;
     this.tableOptions.allowSearch = true;
     this.tableOptions.noRecordFoundMessage = customNoDataMessage;
-    this.tableOptions.dateFormat = dateFormat;
   }
 
 }
