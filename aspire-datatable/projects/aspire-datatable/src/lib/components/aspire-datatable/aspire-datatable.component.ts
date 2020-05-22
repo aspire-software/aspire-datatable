@@ -71,6 +71,7 @@ export class AspireDatatableComponent implements OnInit {
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
     this.options.itemsPerPage = value;
+    this.options.page = 1;
     // tslint:disable-next-line:no-unused-expression
     this.child.updateRecordCount(value); // update record count when new value selected from select pageSize options
     this.tableEvents.setPage(this.options.page);
