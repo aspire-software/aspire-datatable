@@ -32,7 +32,7 @@
         </thead>
         <tbody *ngIf="options.noDataFoundMessage === false && records.length !== 0">
           <tr class="{{options.tableRowStyle}}"
-            *ngFor="let item of records | slice: (options.page-1) * options.pageSize : (options.page-1) * options.pageSize + options.pageSize">
+            *ngFor="let item of records | slice: (options.page-1) * options.itemsPerPage : (options.page-1) * options.itemsPerPage + options.itemsPerPage">
             <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
               {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
             </td>

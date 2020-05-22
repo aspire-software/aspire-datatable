@@ -17,7 +17,7 @@ export class AspireDatatableComponent implements OnInit {
   @Input() headers: any[];
   @Input() records: any[];
 
-  @Input() options: ITableOptions = { };
+  @Input() options: ITableOptions = {};
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
@@ -34,7 +34,6 @@ export class AspireDatatableComponent implements OnInit {
   ngOnInit() {
     this.filterDate();
     this.options.page = 1;
-    this.options.pageSize = this.options.itemsPerPage;
     this.sliceRecords();
     this.tableEvents.setPage(this.options.page);
   }
@@ -70,7 +69,6 @@ export class AspireDatatableComponent implements OnInit {
 
   onPageChanged(event): void {
     this.options.page = event.currentPage;
-    this.options.pageSize = this.options.itemsPerPage;
     this.options.resetPagination = true;
     this.resetPageSize();
     this.sliceRecords();
@@ -79,7 +77,6 @@ export class AspireDatatableComponent implements OnInit {
 
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
-    this.options.pageSize = value;
     this.options.itemsPerPage = value;
     this.sliceRecords();
     // tslint:disable-next-line:no-unused-expression
@@ -95,7 +92,7 @@ export class AspireDatatableComponent implements OnInit {
 
   /* Slice record for display per page records */
   sliceRecords() {
-    this.start = (this.options.page - 1) * Number(this.options.pageSize);
-    this.end = (this.options.page - 1) * Number(this.options.pageSize) + Number(this.options.pageSize);
+    this.start = (this.options.page - 1) * Number(this.options.itemsPerPage);
+    this.end = (this.options.page - 1) * Number(this.options.itemsPerPage) + Number(this.options.itemsPerPage);
   }
 }
