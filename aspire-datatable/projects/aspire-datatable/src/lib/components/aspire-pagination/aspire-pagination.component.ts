@@ -11,7 +11,7 @@ export class AspirePaginationComponent implements OnInit {
   pageModel: Page;
   pages: number[] = [];
   totalPages: number;
-  
+
   @Input() directionLinks: boolean = true;
   @Input() ariaLabel: string = 'Default pagination';
   @Input() ellipsis: boolean = false;

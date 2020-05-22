@@ -1,4 +1,3 @@
-
 <nav [attr.aria-label]="'ariaLabel'">
     <ul class="{{paginationStyle}}">
         <li class="{{pageItemStyle}}" [class.disabled]="disablePagination(1)" *ngIf="directionLinks">
@@ -13,7 +12,8 @@
             *ngIf='ellipsis && ((pageModel.currentPage - maxVisiblePage) > 1)'>
             <a class="{{pageLinkStyle}}" href="javascript:void(0)">{{pageModel.currentPage - maxVisiblePage }}</a>
         </li>
-        <li class="{{pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)" *ngIf='(pageModel.currentPage - maxVisiblePage) > 1'>
+        <li class="{{pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
+            *ngIf='(pageModel.currentPage - maxVisiblePage) > 1'>
             <a class="{{pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>
         <li class="{{pageItemStyle}}" *ngFor="let page of pages" [class.disabled]="disablePagination()"

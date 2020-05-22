@@ -1,20 +1,20 @@
 <div class="container">
-  <div class="row" *ngIf="options.search">
-    <div class="col-md-4">
+  <div class="row no-gutters" *ngIf="options.search">
+    <div class="col-md-4 col-sm-6">
       <div class="searching">
         <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
           (getSearchRecords)="getSearchRecords($event)" (getNoDataFoundMessage)="getNoDataFoundMessage($event)">
         </aspire-searching>
       </div>
     </div>
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-md-4 d-sm-none"></div>
+    <div class="col-md-4 col-sm-6 mt-2 mt-sm-0">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
   </div>
-  <div class="row">
+  <div class="row no-gutters" id="aspire-table">
     <div class="{{options.tableDiv}}">
       <table id="aspire-data-table" class="{{options.tableStyle}}">
         <thead class="{{options.headerStyle}}">
@@ -33,9 +33,11 @@
         <tbody *ngIf="options.noDataFoundMessage === false && records.length !== 0">
           <tr class="{{options.tableRowStyle}}"
             *ngFor="let item of records | slice: (options.page-1) * options.pageSize : (options.page-1) * options.pageSize + options.pageSize">
-            <td class="{{options.tableDataStyle}}" *ngFor="let header of headers  let i = index">
-              {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
-            </td>
+            <ng-container *ngFor="let header of headers  let i = index">
+              <td class="{{options.tableDataStyle}}" [attr.data-title]="header.field">
+                {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
+              </td>
+            </ng-container>
           </tr>
         </tbody>
         <tbody *ngIf="options.noDataFoundMessage === true && records.length === 0">
@@ -45,35 +47,20 @@
                 {{options.noRecordFoundMessage}}
               </div>
             </td>
-        <tbody>
-          <tr class="{{options.tableRowStyle}}" *ngFor='let item of records | slice: start:end'>
-            <td class="{{options.tableDataStyle}}" *ngFor="let header of headers; let i = index">{{item[header]}}</td>
-          </tr>
-        </tbody>
       </table>
     </div>
   </div>
   <div class="row">
-   <!--  <ngb-pagination class="d-flex justify-content-center" aria-label="Default pagination" [(page)]="page"
-      [pageSize]="pageSize" [collectionSize]="records.length" [ellipses]="ellipses" [maxSize]="maxSize"
-      [directionLinks]="directionLinks" [boundaryLinks]="boundaryLinks">
-      <ng-template ngbPaginationFirst>First</ng-template>
-      <ng-template ngbPaginationPrevious>Previous</ng-template>
-      <ng-template ngbPaginationEllipsis>...</ng-template>
-      <ng-template ngbPaginationNext>Next</ng-template>
-      <ng-template ngbPaginationLast>Last</ng-template>
-      <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
-    </ngb-pagination>
- -->
     <div class="col-md-6 records-count" *ngIf='options.showRecordsCount'>
-      <aspire-records-count [totalRecords]="records.length"
-        [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+      <aspire-records-count [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage"
+        [currentPage]="options.page">
       </aspire-records-count>
     </div>
     <div class="col-md-6" *ngIf="options.showPagination">
-      <aspire-pagination  [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle" [pageLinkStyle]="options.pageLinkStyle"
-        [firstPageText]="options.firstPageText" [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
+      <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
+        [maxVisiblePage]="options.maxVisiblePage" [paginationStyle]="options.paginationStyle"
+        [pageLinkStyle]="options.pageLinkStyle" [firstPageText]="options.firstPageText"
+        [prevPageText]="options.prevPageText" [nextPageText]="options.nextPageText"
         [lastPageText]="options.lastPageText" [reset]="options.resetPagination" (onPageChanged)="onPageChanged($event)">
       </aspire-pagination>
     </div>

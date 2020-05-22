@@ -7,9 +7,9 @@ describe('AspirePaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireSearchingComponent ]
+      declarations: [AspireSearchingComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

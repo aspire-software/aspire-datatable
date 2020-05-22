@@ -8,9 +8,9 @@ describe('AspirePaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireRecordsCountComponent ]
+      declarations: [AspireRecordsCountComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

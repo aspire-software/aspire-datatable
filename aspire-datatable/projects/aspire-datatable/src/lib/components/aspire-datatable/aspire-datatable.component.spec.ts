@@ -7,9 +7,9 @@ describe('AspireDatatableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireDatatableComponent ]
+      declarations: [AspireDatatableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

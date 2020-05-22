@@ -11,13 +11,14 @@ import { ITableOptions } from '../../shared/models/table-options.model';
 @Component({
   selector: 'aspire-datatable',
   templateUrl: './aspire-datatable.component.html',
+  styleUrls: ['./aspire-datatable.component.css'],
 })
 
 export class AspireDatatableComponent implements OnInit {
   @Input() headers: any[];
   @Input() records: any[];
 
-  @Input() options: ITableOptions = { };
+  @Input() options: ITableOptions = {};
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 

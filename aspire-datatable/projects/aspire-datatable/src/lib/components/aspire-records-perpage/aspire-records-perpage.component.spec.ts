@@ -8,9 +8,9 @@ describe('AspireRecordsPerpageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspireRecordsPerpageComponent ]
+      declarations: [AspireRecordsPerpageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

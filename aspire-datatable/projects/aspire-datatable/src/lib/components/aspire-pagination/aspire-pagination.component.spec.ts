@@ -8,9 +8,9 @@ describe('AspirePaginationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AspirePaginationComponent ]
+      declarations: [AspirePaginationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
