@@ -15,19 +15,6 @@ export class AspirePaginationComponent implements OnInit {
 
   @Input() options: IPaginationOptions = new PaginationOptions();
 
-  // @Input() directionLinks: boolean = true;
-  // @Input() ariaLabel: string = 'Default pagination';
-  // @Input() ellipsis: boolean = false;
-  // @Input() maxVisiblePage: number = 3;
-  // @Input() disable: boolean = false;
-  // @Input() paginationStyle: string = 'pagination justify-content-center';
-  // @Input() pageItemStyle: string = 'page-item';
-  // @Input() pageLinkStyle: string = 'page-link';
-  // @Input() firstPageText: string;
-  // @Input() prevPageText: string;
-  // @Input() nextPageText: string;
-  // @Input() lastPageText: string;
-
   totalRecords: number = 0;
   @Input()
   set totalItems(val: number) {
