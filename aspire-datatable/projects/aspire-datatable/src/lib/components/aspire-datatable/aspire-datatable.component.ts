@@ -1,17 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
-import { SortServiceService } from '../../shared/services/sort-service.service';
-import { dataTypes } from '../../constants/constants';
-import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
-import { DatePipe } from '@angular/common';
 import { PageRequest } from '../../shared/models/aspire-datatable.model';
 
 @Component({
   selector: 'aspire-datatable',
-  templateUrl: './aspire-datatable.component.html',
-  providers: [DatePipe]
+  templateUrl: './aspire-datatable.component.html'
 })
 
 export class AspireDatatableComponent implements OnInit {
@@ -27,11 +22,11 @@ export class AspireDatatableComponent implements OnInit {
   end: any;
   selectedRecords: number;
 
-  constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService, public datePipe: DatePipe) { }
+  constructor(private tableEvents: TableEventsService) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
   ngOnInit() {
-    this.filterDate();
+    console.log('this.options :::: ', this.options);
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
   }
@@ -41,21 +36,7 @@ export class AspireDatatableComponent implements OnInit {
   }
 
   sort(item, event) {
-    this.records = this.sortServiceService.sorting(item.field, this.records, event, item.type);
-  }
-
-  filterDate() {
-    if (this.headers) {
-      this.headers.forEach(header => {
-        if (header.type === dataTypes.date) {
-          const dateHeaderIndex = this.headers.indexOf(header);
-          this.records.forEach(element => {
-            const date = this.datePipe.transform(Object.values(element)[dateHeaderIndex], this.options.dateFormat);
-            element[header.type] = date
-          });
-        }
-      });
-    }
+    this.records = this.tableEvents.sorting(item.field, this.records, event, item.type);
   }
 
   public getSearchRecords(value) {
