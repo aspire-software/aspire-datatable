@@ -6,7 +6,7 @@ import { PageRequest } from '../aspire-datatable/aspire-datatable.model';
 import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
-import { ITableOptions } from '../../shared/models/table-options.model';
+import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 
 @Component({
   selector: 'aspire-datatable',
@@ -18,7 +18,7 @@ export class AspireDatatableComponent implements OnInit {
   @Input() headers: any[];
   @Input() records: any[];
 
-  @Input() options: ITableOptions = {};
+  @Input() options: ITableOptions = new TableOptions();
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 

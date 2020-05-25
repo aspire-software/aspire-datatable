@@ -28,8 +28,6 @@ export class DatatableBasicComponent implements OnInit {
       maxSize: 1,
       directionLinks: true,
       boundaryLinks: true,
-      sorting: true,
-      search: true,
       dateFormat: 'dd/MM/yyyy',
       searchingStyle: "",
       noRecordFoundMessage: 'No Data Found',
@@ -38,12 +36,32 @@ export class DatatableBasicComponent implements OnInit {
       paginationStyle: '',
       pageItemStyle: 'page-item',
       pageLinkStyle: 'page-link',
-      showPagination: true,
       resetPagination: true,
+      sorting: true,
+      showSearch: true,
       showRecordsCount: true,
+      showPagination: true,
       showPageSizeSelector: true,
       noDataFoundMessage: false,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
+      componentsClass: {
+        pagination: {
+          position: "bottom",
+          classList: "col-md-8 text-center text-md-right"
+        },
+        recordsCount: {
+          position: "bottom",
+          classList: "col-md-4 text-center text-md-left"
+        },
+        search: {
+          position: "top",
+          classList: "col-md-6 text-center text-md-right"
+        },
+        recordsPerPage: {
+          position: "top",
+          classList: "col-md-6 text-center text-md-left"
+        },
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 <nav [attr.aria-label]="'ariaLabel'">
-    <ul class="{{paginationStyle}}">
+    <ul class="p-0">
         <li class="{{pageItemStyle}}" [class.disabled]="disablePagination(1)" *ngIf="directionLinks">
             <a class="{{pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onFirstPageClick()">{{firstPageText ? firstPageText : '&laquo;&laquo;'}}</a>
