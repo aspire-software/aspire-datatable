@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
@@ -10,20 +10,21 @@ import { PaginationOptions } from '../../shared/models/pagination-options.model'
   templateUrl: './aspire-datatable.component.html'
 })
 
-export class AspireDatatableComponent implements OnInit {
+export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() headers: any[];
   @Input() records: any[];
-
   @Input() options: ITableOptions = new TableOptions();
 
   public pageRequest = new PageRequest();
   start: any;
   end: any;
   selectedRecords: number;
+  isPageLoad: boolean;
 
   constructor(private tableEvents: TableEventsService) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
+
   ngOnInit() {
     this.options = new TableOptions(
       this.options.tableStyle,
@@ -60,6 +61,13 @@ export class AspireDatatableComponent implements OnInit {
     );
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
+    this.isPageLoad = true;
+  }
+
+  public ngAfterViewInit(): void {
+    this.child.updatedTotalCounts(this.records.length);
+    this.child.updateRecordCount(this.options.itemsPerPage);
+    this.isPageLoad = false;
   }
 
   getRowSpan() {
@@ -71,8 +79,8 @@ export class AspireDatatableComponent implements OnInit {
   }
 
   public getSearchRecords(value) {
-    this.records = value;
-    this.child.updatedTotalCounts(this.records.length);
+    if (!this.isPageLoad) this.records = value;
+    if (this.child) this.child.updatedTotalCounts(this.records.length);
   }
 
   onPageChanged(event): void {
@@ -83,10 +91,10 @@ export class AspireDatatableComponent implements OnInit {
 
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
-    this.options.itemsPerPage = Number(value);
+    if (value) this.options.itemsPerPage = Number(value);
     this.options.page = 1;
     // tslint:disable-next-line:no-unused-expression
-    this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
+    if (this.child) this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
     this.tableEvents.setPage(this.options.page);
   }
 

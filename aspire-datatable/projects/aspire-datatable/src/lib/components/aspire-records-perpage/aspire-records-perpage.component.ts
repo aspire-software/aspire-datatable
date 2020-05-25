@@ -16,16 +16,15 @@ export class AspireRecordsPerpageComponent implements OnInit {
 
   constructor() { }
   // tslint:disable-next-line:no-output-on-prefix
-  // @Output() getPerPageRecords: EventEmitter<any> = new EventEmitter<any>();
   public subject = new Subject<number>();
-  private getPerPageRecords = new BehaviorSubject(this.selectRecordsPerPage[0]);
+  private getPerPageRecords = new BehaviorSubject(this.itemsPerPage);
   @Output() perPageRecords = this.getPerPageRecords.asObservable();
 
   ngOnInit(): void {
     this.recordsPerPageForm = new FormGroup({
       recordsPerPage: new FormControl(this.itemsPerPage, Validators.required)
     });
-    this.getPerPageRecords.next(this.selectRecordsPerPage[0]);
+    this.getPerPageRecords.next(this.itemsPerPage);
   }
 
   onSelection(value) {
