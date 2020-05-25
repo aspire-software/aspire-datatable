@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
 import { SortServiceService } from '../../shared/services/sort-service.service';
 import { dataTypes } from '../../constants/constants';
-import { Page } from '../aspire-pagination/aspire-pagination.model';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
@@ -23,9 +22,6 @@ export class AspireDatatableComponent implements OnInit {
   @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
   public pageRequest = new PageRequest();
-  start: any;
-  end: any;
-  selectedRecords: number;
 
   constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService, public datePipe: DatePipe) { }
 
