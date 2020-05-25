@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { records, customNoDataMessage } from '../../helper/table-record';
-import { dateFormat } from '../../helper/table-record';
 
 @Component({
   selector: 'app-datatable-basic',
@@ -8,10 +7,11 @@ import { dateFormat } from '../../helper/table-record';
   styleUrls: ['./datatable-basic.component.scss']
 })
 export class DatatableBasicComponent implements OnInit {
+
+
   tableHeaders: any[] = [];
   tableData: any[] = [];
   totalRecords: number;
-  recordsLength: number;
   itemsPerPage: number = 5;
   dateFormat: string;
   tableOptions: any;
@@ -22,28 +22,34 @@ export class DatatableBasicComponent implements OnInit {
       tableDiv: 'table-responsive-md',
       tableRowStyle: '',
       tableDataStyle: '',
-      pageSize: 5,
       page: 1,
-      ellipses: false,
       maxSize: 1,
-      directionLinks: true,
       boundaryLinks: true,
       dateFormat: 'dd/MM/yyyy',
       searchingStyle: "",
       noRecordFoundMessage: 'No Data Found',
-      maxVisiblePage: 10,
       itemsPerPage: 10,
-      paginationStyle: '',
-      pageItemStyle: 'page-item',
-      pageLinkStyle: 'page-link',
       resetPagination: true,
       sorting: true,
       showSearch: true,
       showRecordsCount: true,
       showPagination: true,
       showPageSizeSelector: true,
-      noDataFoundMessage: false,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
+      paginationOptions: {
+        directionLinks: true,
+        ariaLabel: 'Default pagination',
+        ellipsis: false,
+        maxVisiblePage: 10,
+        disable: false,
+        paginationStyle: 'pagination justify-content-center',
+        pageItemStyle: 'page-item',
+        pageLinkStyle: 'page-link',
+        firstPageText: '<<',
+        prevPageText: '<',
+        nextPageText: '>',
+        lastPageText: '>>'
+      },
       componentsClass: {
         topBlankComponentClassList: "col-md-4 col-sm-12",
         bottomBlankComponentClassList: "col-md-4 col-sm-12",
@@ -66,7 +72,7 @@ export class DatatableBasicComponent implements OnInit {
           position: "top-left",
           classList: "col-md-6 col-sm-6",
           componentClassList: "itemsPerPage"
-        },
+        }
       }
     }
   }
@@ -97,11 +103,9 @@ export class DatatableBasicComponent implements OnInit {
       age: item.age
     })
     );
-    this.recordsLength = records.length;
     this.tableOptions.sorting = true;
     this.tableOptions.allowSearch = true;
     this.tableOptions.noRecordFoundMessage = customNoDataMessage;
-    this.tableOptions.dateFormat = dateFormat;
   }
 
 }
