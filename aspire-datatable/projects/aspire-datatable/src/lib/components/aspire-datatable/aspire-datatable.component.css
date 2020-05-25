@@ -61,3 +61,16 @@
     display: table-row;
   }
 }
+
+@media only screen and (min-width: 576px) {
+  .justify-right {
+    float: right;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .justify-center-center {
+    text-align: center;
+  }
+}
+

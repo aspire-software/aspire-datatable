@@ -45,21 +45,27 @@ export class DatatableBasicComponent implements OnInit {
       noDataFoundMessage: false,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
       componentsClass: {
+        topBlankComponentClassList: "col-md-4 col-sm-12",
+        bottomBlankComponentClassList: "col-md-4 col-sm-12",
         pagination: {
-          position: "bottom",
-          classList: "col-md-8 text-center text-md-right"
+          position: "bottom-right",
+          classList: "col-md-8 col-sm-8 mt-2 mt-sm-0",
+          componentClassList: "justify-right justify-center-center"
         },
         recordsCount: {
-          position: "bottom",
-          classList: "col-md-4 text-center text-md-left"
+          position: "bottom-left",
+          classList: "col-md-4 col-sm-4 mt-2 mt-sm-0",
+          componentClassList: "justify-center-center"
         },
         search: {
-          position: "top",
-          classList: "col-md-6 text-center text-md-right"
+          position: "top-right",
+          classList: "col-md-6 col-sm-6 mb-2 mb-sm-0",
+          componentClassList: "justify-right"
         },
         recordsPerPage: {
-          position: "top",
-          classList: "col-md-6 text-center text-md-left"
+          position: "top-left",
+          classList: "col-md-6 col-sm-6",
+          componentClassList: "itemsPerPage"
         },
       }
     }

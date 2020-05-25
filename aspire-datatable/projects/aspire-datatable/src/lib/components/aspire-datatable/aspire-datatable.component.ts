@@ -99,4 +99,5 @@ export class AspireDatatableComponent implements OnInit {
     this.start = (this.options.page - 1) * Number(this.options.pageSize);
     this.end = (this.options.page - 1) * Number(this.options.pageSize) + Number(this.options.pageSize);
   }
+
 }
