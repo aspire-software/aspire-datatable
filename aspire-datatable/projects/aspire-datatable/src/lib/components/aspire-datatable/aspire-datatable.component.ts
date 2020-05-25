@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';

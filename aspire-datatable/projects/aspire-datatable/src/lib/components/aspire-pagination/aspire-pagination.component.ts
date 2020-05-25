@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Page } from './aspire-pagination.model';
 import { PaginationOptions, IPaginationOptions } from '../../shared/models/pagination-options.model';
 import { Subject, BehaviorSubject } from 'rxjs';
