@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AspireSearchingComponent implements OnInit {
   @Input() records: any[] = [];
   @Input() searchingStyle: string = "";
-  // @Output() getSearchRecords: EventEmitter<any> = new EventEmitter<any>();
+
   public subject = new Subject<number>();
   private getSearchRecords = new BehaviorSubject(this.records);
   @Output() searchRecords = this.getSearchRecords.asObservable();
