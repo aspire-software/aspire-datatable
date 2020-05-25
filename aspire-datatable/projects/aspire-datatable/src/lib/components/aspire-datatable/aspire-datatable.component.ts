@@ -60,6 +60,7 @@ export class AspireDatatableComponent implements OnInit {
 
   public getSearchRecords(value) {
     this.records = value;
+    this.child.updatedTotalCounts(this.records.length);
   }
 
   onPageChanged(event): void {
@@ -70,10 +71,10 @@ export class AspireDatatableComponent implements OnInit {
 
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
-    this.options.itemsPerPage = value;
+    this.options.itemsPerPage = Number(value);
     this.options.page = 1;
     // tslint:disable-next-line:no-unused-expression
-    this.child.updateRecordCount(value); // update record count when new value selected from select pageSize options
+    this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
     this.tableEvents.setPage(this.options.page);
   }
 
