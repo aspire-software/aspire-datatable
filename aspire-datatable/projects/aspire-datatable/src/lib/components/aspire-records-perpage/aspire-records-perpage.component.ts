@@ -18,7 +18,6 @@ export class AspireRecordsPerpageComponent implements OnInit {
   @Output() getPerPageRecords: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit(): void {
-    debugger
     this.recordsPerPageForm = new FormGroup({
       recordsPerPage: new FormControl(this.itemsPerPage, Validators.required)
     });

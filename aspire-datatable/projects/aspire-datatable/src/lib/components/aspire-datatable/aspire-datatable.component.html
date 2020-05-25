@@ -4,7 +4,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'top-left'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
@@ -41,7 +41,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'top-center'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
@@ -79,7 +79,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'top-right'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
@@ -153,7 +153,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'bottom-left'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
@@ -190,7 +190,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'bottom-center'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
@@ -228,7 +228,7 @@
     <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'bottom-right'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
         (getPerPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
