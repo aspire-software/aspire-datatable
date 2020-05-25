@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PageRequest } from '../../shared/models/aspire-datatable.model';
+import { PaginationOptions } from '../../shared/models/pagination-options.model';
 
 @Component({
   selector: 'aspire-datatable',
@@ -26,7 +27,39 @@ export class AspireDatatableComponent implements OnInit {
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
   ngOnInit() {
-    console.log('this.options :::: ', this.options);
+    this.options = new TableOptions(
+      this.options.tableStyle,
+      this.options.headerStyle,
+      this.options.tableDiv,
+      this.options.tableRowStyle,
+      this.options.tableDataStyle,
+      this.options.page,
+      this.options.sorting,
+      this.options.search,
+      this.options.dateFormat,
+      this.options.searchingStyle,
+      this.options.noRecordFoundMessage,
+      this.options.itemsPerPage,
+      this.options.showPagination,
+      this.options.resetPagination,
+      this.options.showRecordsCount,
+      this.options.showPageSizeSelector,
+      this.options.selectRecordsPerPage,
+      this.options.paginationOptions ? new PaginationOptions(
+        this.options.paginationOptions.directionLinks,
+        this.options.paginationOptions.ariaLabel,
+        this.options.paginationOptions.ellipsis,
+        this.options.paginationOptions.maxVisiblePage,
+        this.options.paginationOptions.disable,
+        this.options.paginationOptions.paginationStyle,
+        this.options.paginationOptions.pageItemStyle,
+        this.options.paginationOptions.pageLinkStyle,
+        this.options.paginationOptions.firstPageText,
+        this.options.paginationOptions.prevPageText,
+        this.options.paginationOptions.nextPageText,
+        this.options.paginationOptions.lastPageText
+      ) : new PaginationOptions()
+    );
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
   }

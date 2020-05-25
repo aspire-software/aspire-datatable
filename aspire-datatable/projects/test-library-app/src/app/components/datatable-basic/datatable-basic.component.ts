@@ -76,8 +76,6 @@ export class DatatableBasicComponent implements OnInit {
     })
     );
     this.tableOptions.sorting = true;
-    this.tableOptions.allowSearch = true;
     this.tableOptions.noRecordFoundMessage = customNoDataMessage;
   }
-
 }
