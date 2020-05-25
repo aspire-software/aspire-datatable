@@ -15,8 +15,6 @@ export class AspireDatatableComponent implements OnInit {
   @Input() records: any[];
 
   @Input() options: ITableOptions = new TableOptions();
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
   public pageRequest = new PageRequest();
   start: any;
@@ -78,7 +76,7 @@ export class AspireDatatableComponent implements OnInit {
   }
 
   onPageChanged(event): void {
-    this.options.page = event.currentPage;
+    this.options.page = event ? event.currentPage : 1;
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }

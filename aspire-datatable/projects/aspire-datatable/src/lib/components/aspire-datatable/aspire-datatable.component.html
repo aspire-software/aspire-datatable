@@ -71,7 +71,7 @@
     </div>
     <div class="col-md-6" *ngIf="options.showPagination">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (onPageChanged)="onPageChanged($event)">
+        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)">
       </aspire-pagination>
     </div>
   </div>

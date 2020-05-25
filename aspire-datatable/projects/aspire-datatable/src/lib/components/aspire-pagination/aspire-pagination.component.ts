@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Page } from './aspire-pagination.model';
 import { PaginationOptions, IPaginationOptions } from '../../shared/models/pagination-options.model';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-pagination',
@@ -51,7 +52,9 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   // tslint:disable-next-line:no-output-on-prefix
-  @Output() onPageChanged: EventEmitter<Page> = new EventEmitter<Page>();
+  public subject = new Subject<Page>();
+  private onPageChanged = new BehaviorSubject(this.pageModel);
+  @Output() pageChanged = this.onPageChanged.asObservable();
 
   constructor() { }
 
@@ -92,7 +95,7 @@ export class AspirePaginationComponent implements OnInit {
     this.pageModel.firstPage = min;
     this.pageModel.lastPage = max;
 
-    this.onPageChanged.emit(this.pageModel);
+    this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
 
@@ -117,7 +120,7 @@ export class AspirePaginationComponent implements OnInit {
     this.pageModel.firstPage = min;
     this.pageModel.lastPage = max;
 
-    this.onPageChanged.emit(this.pageModel);
+    this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
 
@@ -148,7 +151,7 @@ export class AspirePaginationComponent implements OnInit {
     this.pageModel.firstPage = min;
     this.pageModel.lastPage = max;
 
-    this.onPageChanged.emit(this.pageModel);
+    this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
 
@@ -156,7 +159,7 @@ export class AspirePaginationComponent implements OnInit {
     this.pageModel.currentPage = 1;
     this.pageModel.firstPage = this.pageModel.currentPage;
     this.pageModel.lastPage = (this.pageModel.firstPage + this.validateMaxSize()) - 1;
-    this.onPageChanged.emit(this.pageModel);
+    this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
 
@@ -164,7 +167,7 @@ export class AspirePaginationComponent implements OnInit {
     this.pageModel.currentPage = this.totalPages;
     this.pageModel.firstPage = (this.pageModel.currentPage - this.validateMaxSize()) + 1;
     this.pageModel.lastPage = this.pageModel.currentPage;
-    this.onPageChanged.emit(this.pageModel);
+    this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
 
