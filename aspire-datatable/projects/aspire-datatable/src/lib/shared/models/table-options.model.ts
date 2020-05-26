@@ -24,21 +24,27 @@ export interface ITableOptions {
     selectRecordsPerPage?: number[];
     paginationOptions?: IPaginationOptions;
     componentsClass?: {
+        topBlankComponentClassList?: string;
+        bottomBlankComponentClassList?: string;
         search?: {
             position?: string;
             classList?: string;
+            componentClassList?: string;
         },
         pagination?: {
             position?: string;
             classList?: string;
+            componentClassList?: string;
         },
         recordsCount?: {
             position?: string;
             classList?: string;
+            componentClassList?: string;
         },
         recordsPerPage?: {
             position?: string;
             classList?: string;
+            componentClassList?: string;
         },
     }
 }
@@ -68,22 +74,28 @@ export class TableOptions implements ITableOptions {
         public selectRecordsPerPage?: number[],
         public paginationOptions?: IPaginationOptions,
         public componentsClass?: {
+            topBlankComponentClassList?: string,
+            bottomBlankComponentClassList?: string,
             search?: {
                 position?: string,
-                classList?: string
+                classList?: string,
+                componentClassList?: string
             },
             pagination?: {
                 position?: string,
-                classList?: string
+                classList?: string,
+                componentClassList?: string
             },
             recordsCount?: {
                 position?: string,
-                classList?: string
+                classList?: string,
+                componentClassList?: string
             },
             recordsPerPage?: {
                 position?: string,
-                classList?: string
-            },
+                classList?: string,
+                componentClassList?: string
+            }
         }
     ) {
         this.tableStyle = this.tableStyle || 'table table-striped table-bordered';
@@ -108,21 +120,27 @@ export class TableOptions implements ITableOptions {
         this.maxSize = this.maxSize || 1;
         this.selectRecordsPerPage = this.selectRecordsPerPage || [5, 10, 20, 30, 50];
         this.componentsClass = {
-            search: {
-                position: "top",
-                classList: "right"
-            },
+            topBlankComponentClassList: "col-md-4 col-sm-12",
+            bottomBlankComponentClassList: "col-md-4 col-sm-12",
             pagination: {
-                position: "bottom",
-                classList: "right"
+                position: "bottom-right",
+                classList: "col-md-8 col-sm-8 mt-2 mt-sm-0",
+                componentClassList: "justify-right justify-center-center"
             },
             recordsCount: {
-                position: "bottom",
-                classList: "left"
+                position: "bottom-left",
+                classList: "col-md-4 col-sm-4 mt-2 mt-sm-0",
+                componentClassList: "justify-center-center"
+            },
+            search: {
+                position: "top-right",
+                classList: "col-md-6 col-sm-6 mb-2 mb-sm-0",
+                componentClassList: "justify-right"
             },
             recordsPerPage: {
-                position: "top",
-                classList: "left"
+                position: "top-left",
+                classList: "col-md-6 col-sm-6",
+                componentClassList: "itemsPerPage"
             }
         }
     }

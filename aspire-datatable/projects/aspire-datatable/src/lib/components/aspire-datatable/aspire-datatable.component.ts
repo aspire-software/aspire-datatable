@@ -1,36 +1,76 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ɵConsole } from '@angular/core';
-import { SortServiceService } from '../../shared/services/sort-service.service';
-import { dataTypes } from '../../constants/constants';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
-import { DatePipe } from '@angular/common';
 import { PageRequest } from '../../shared/models/aspire-datatable.model';
+import { PaginationOptions } from '../../shared/models/pagination-options.model';
 
 @Component({
   selector: 'aspire-datatable',
   templateUrl: './aspire-datatable.component.html',
-  styleUrls: ['./aspire-datatable.component.css'],
-  providers: [DatePipe]
+  styleUrls: ['./aspire-datatable.component.css']
 })
 
-export class AspireDatatableComponent implements OnInit {
+export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() headers: any[];
   @Input() records: any[];
-
   @Input() options: ITableOptions = new TableOptions();
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onPageChange: EventEmitter<PageRequest> = new EventEmitter<PageRequest>();
 
   public pageRequest = new PageRequest();
+  isPageLoad: boolean;
 
-  constructor(private tableEvents: TableEventsService, private sortServiceService: SortServiceService, public datePipe: DatePipe) { }
+  constructor(private tableEvents: TableEventsService) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
+
   ngOnInit() {
-    this.filterDate();
+    this.options = new TableOptions(
+      this.options.pageSize,
+      this.options.maxSize,
+      this.options.page,
+      this.options.itemsPerPage,
+      this.options.tableStyle,
+      this.options.headerStyle,
+      this.options.tableDiv,
+      this.options.tableRowStyle,
+      this.options.tableDataStyle,
+      this.options.dateFormat,
+      this.options.searchingStyle,
+      this.options.noRecordFoundMessage,
+      this.options.sorting,
+      this.options.resetPagination,
+      this.options.showSearch,
+      this.options.showPagination,
+      this.options.showRecordsCount,
+      this.options.showPageSizeSelector,
+      this.options.boundaryLinks,
+      this.options.noDataFoundMessage,
+      this.options.selectRecordsPerPage,
+      this.options.paginationOptions ? new PaginationOptions(
+        this.options.paginationOptions.directionLinks,
+        this.options.paginationOptions.ariaLabel,
+        this.options.paginationOptions.ellipsis,
+        this.options.paginationOptions.maxVisiblePage,
+        this.options.paginationOptions.disable,
+        this.options.paginationOptions.paginationStyle,
+        this.options.paginationOptions.pageItemStyle,
+        this.options.paginationOptions.pageLinkStyle,
+        this.options.paginationOptions.firstPageText,
+        this.options.paginationOptions.prevPageText,
+        this.options.paginationOptions.nextPageText,
+        this.options.paginationOptions.lastPageText
+      ) : new PaginationOptions(),
+      this.options.componentsClass //TODO handle for sub options
+    );
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
+    this.isPageLoad = true;
+  }
+
+  public ngAfterViewInit(): void {
+    this.child.updatedTotalCounts(this.records.length);
+    this.child.updateRecordCount(this.options.itemsPerPage);
+    this.isPageLoad = false;
   }
 
   getRowSpan() {
@@ -38,40 +78,26 @@ export class AspireDatatableComponent implements OnInit {
   }
 
   sort(item, event) {
-    this.records = this.sortServiceService.sorting(item.field, this.records, event, item.type);
-  }
-
-  filterDate() {
-    if (this.headers) {
-      this.headers.forEach(header => {
-        if (header.type === dataTypes.date) {
-          const dateHeaderIndex = this.headers.indexOf(header);
-          this.records.forEach(element => {
-            const date = this.datePipe.transform(Object.values(element)[dateHeaderIndex], this.options.dateFormat);
-            element[header.type] = date
-          });
-        }
-      });
-    }
+    this.records = this.tableEvents.sorting(item.field, this.records, event, item.type);
   }
 
   public getSearchRecords(value) {
-    this.records = value;
-    this.child.updatedTotalCounts(this.records.length);
+    if (!this.isPageLoad) this.records = value;
+    if (this.child) this.child.updatedTotalCounts(this.records.length);
   }
 
   onPageChanged(event): void {
-    this.options.page = event.currentPage;
+    this.options.page = event ? event.currentPage : 1;
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }
 
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value): void {
-    this.options.itemsPerPage = Number(value);
+    if (value) this.options.itemsPerPage = Number(value);
     this.options.page = 1;
     // tslint:disable-next-line:no-unused-expression
-    this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
+    if (this.child) this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
     this.tableEvents.setPage(this.options.page);
   }
 
