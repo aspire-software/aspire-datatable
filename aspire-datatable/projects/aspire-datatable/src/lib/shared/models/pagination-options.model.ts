@@ -28,11 +28,11 @@ export class PaginationOptions implements IPaginationOptions {
         public nextPageText?: string,
         public lastPageText?: string
     ) {
-        this.directionLinks = this.directionLinks || true;
+        this.directionLinks = this.directionLinks === undefined || this.directionLinks === null ? true : this.directionLinks;
         this.ariaLabel = this.ariaLabel || 'Default pagination';
-        this.ellipsis = this.ellipsis || false;
+        this.ellipsis = this.ellipsis === undefined || this.ellipsis === null ? false : this.ellipsis;
         this.maxVisiblePage = this.maxVisiblePage || 3;
-        this.disable = this.disable || false;
+        this.disable = this.disable === undefined || this.disable === null ? false : this.disable;
         this.paginationStyle = this.paginationStyle || 'pagination justify-content-center';
         this.pageItemStyle = this.pageItemStyle || 'page-item';
         this.pageLinkStyle = this.pageLinkStyle || 'page-link';

@@ -17,12 +17,9 @@ export class DatatableBasicComponent implements OnInit {
     this.tableOptions = {
       tableStyle: 'table table-striped table-bordered',
       headerStyle: 'thead-light',
-      tableDiv: 'table-responsive-md',
       tableRowStyle: '',
       tableDataStyle: '',
       page: 1,
-      maxSize: 1,
-      boundaryLinks: true,
       dateFormat: 'dd/MM/yyyy',
       searchingStyle: "",
       noRecordFoundMessage: 'No Data Found',

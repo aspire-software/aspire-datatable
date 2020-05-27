@@ -27,12 +27,10 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.options = new TableOptions(
       this.options.pageSize,
-      this.options.maxSize,
       this.options.page,
       this.options.itemsPerPage,
       this.options.tableStyle,
       this.options.headerStyle,
-      this.options.tableDiv,
       this.options.tableRowStyle,
       this.options.tableDataStyle,
       this.options.dateFormat,
@@ -44,7 +42,6 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
       this.options.showPagination,
       this.options.showRecordsCount,
       this.options.showPageSizeSelector,
-      this.options.boundaryLinks,
       this.options.noDataFoundMessage,
       this.options.selectRecordsPerPage,
       this.options.paginationOptions ? new PaginationOptions(
@@ -76,8 +73,10 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.child.updatedTotalCounts(this.records.length);
-    this.child.updateRecordCount(this.options.itemsPerPage);
+    if (this.child) {
+      this.child.updatedTotalCounts(this.records.length);
+      this.child.updateRecordCount(this.options.itemsPerPage);
+    }
     this.isPageLoad = false;
   }
 
