@@ -74,3 +74,11 @@
   }
 }
 
+th {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+select.form-control {
+  max-width: 250px;
+}

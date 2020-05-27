@@ -16,9 +16,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() headers: any[];
   @Input() records: any[];
   @Input() options: ITableOptions = new TableOptions();
+  isPageLoad: boolean;
 
   public pageRequest = new PageRequest();
-  isPageLoad: boolean;
 
   constructor(private tableEvents: TableEventsService) { }
 
@@ -92,6 +92,7 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   public getSearchRecords(value) {
     if (!this.isPageLoad) this.records = value;
     if (this.child) this.child.updatedTotalCounts(this.records.length);
+    this.onPageChanged(null);
   }
 
   onPageChanged(event): void {
