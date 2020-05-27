@@ -7,8 +7,6 @@ import { records, customNoDataMessage } from '../../helper/table-record';
   styleUrls: ['./datatable-basic.component.scss']
 })
 export class DatatableBasicComponent implements OnInit {
-
-
   tableHeaders: any[] = [];
   tableData: any[] = [];
   totalRecords: number;

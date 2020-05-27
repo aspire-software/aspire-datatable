@@ -1,4 +1,5 @@
 import { IPaginationOptions } from './pagination-options.model';
+import { IComponentsClass } from './components-class.model';
 
 export interface ITableOptions {
     pageSize?: number;
@@ -23,30 +24,7 @@ export interface ITableOptions {
     noDataFoundMessage?: boolean;
     selectRecordsPerPage?: number[];
     paginationOptions?: IPaginationOptions;
-    componentsClass?: {
-        topBlankComponentClassList?: string;
-        bottomBlankComponentClassList?: string;
-        search?: {
-            position?: string;
-            classList?: string;
-            componentClassList?: string;
-        },
-        pagination?: {
-            position?: string;
-            classList?: string;
-            componentClassList?: string;
-        },
-        recordsCount?: {
-            position?: string;
-            classList?: string;
-            componentClassList?: string;
-        },
-        recordsPerPage?: {
-            position?: string;
-            classList?: string;
-            componentClassList?: string;
-        },
-    }
+    componentsClass?: IComponentsClass;
 }
 
 export class TableOptions implements ITableOptions {
@@ -73,30 +51,7 @@ export class TableOptions implements ITableOptions {
         public noDataFoundMessage?: boolean,
         public selectRecordsPerPage?: number[],
         public paginationOptions?: IPaginationOptions,
-        public componentsClass?: {
-            topBlankComponentClassList?: string,
-            bottomBlankComponentClassList?: string,
-            search?: {
-                position?: string,
-                classList?: string,
-                componentClassList?: string
-            },
-            pagination?: {
-                position?: string,
-                classList?: string,
-                componentClassList?: string
-            },
-            recordsCount?: {
-                position?: string,
-                classList?: string,
-                componentClassList?: string
-            },
-            recordsPerPage?: {
-                position?: string,
-                classList?: string,
-                componentClassList?: string
-            }
-        }
+        public componentsClass?: IComponentsClass
     ) {
         this.tableStyle = this.tableStyle || 'table table-striped table-bordered';
         this.headerStyle = this.headerStyle || 'thead-light';
@@ -119,29 +74,5 @@ export class TableOptions implements ITableOptions {
         this.pageSize = this.pageSize || 5;
         this.maxSize = this.maxSize || 1;
         this.selectRecordsPerPage = this.selectRecordsPerPage || [5, 10, 20, 30, 50];
-        this.componentsClass = {
-            topBlankComponentClassList: "col-md-4 col-sm-12",
-            bottomBlankComponentClassList: "col-md-4 col-sm-12",
-            pagination: {
-                position: "bottom-right",
-                classList: "col-md-8 col-sm-8 mt-2 mt-sm-0",
-                componentClassList: "justify-right justify-center-center"
-            },
-            recordsCount: {
-                position: "bottom-left",
-                classList: "col-md-4 col-sm-4 mt-2 mt-sm-0",
-                componentClassList: "justify-center-center"
-            },
-            search: {
-                position: "top-right",
-                classList: "col-md-6 col-sm-6 mb-2 mb-sm-0",
-                componentClassList: "justify-right"
-            },
-            recordsPerPage: {
-                position: "top-left",
-                classList: "col-md-6 col-sm-6",
-                componentClassList: "itemsPerPage"
-            }
-        }
     }
 }

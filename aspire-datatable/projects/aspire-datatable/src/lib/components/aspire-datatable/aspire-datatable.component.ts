@@ -4,6 +4,7 @@ import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-reco
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PageRequest } from '../../shared/models/aspire-datatable.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
+import { ComponentsClass } from '../../shared/models/components-class.model';
 
 @Component({
   selector: 'aspire-datatable',
@@ -60,7 +61,14 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
         this.options.paginationOptions.nextPageText,
         this.options.paginationOptions.lastPageText
       ) : new PaginationOptions(),
-      this.options.componentsClass //TODO handle for sub options
+      this.options.componentsClass ? new ComponentsClass(
+        this.options.componentsClass.topBlankComponentClassList,
+        this.options.componentsClass.bottomBlankComponentClassList,
+        this.options.componentsClass.search,
+        this.options.componentsClass.pagination,
+        this.options.componentsClass.recordsCount,
+        this.options.componentsClass.recordsPerPage
+      ) : new ComponentsClass()
     );
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
