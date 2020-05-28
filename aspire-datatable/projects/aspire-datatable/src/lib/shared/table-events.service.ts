@@ -6,18 +6,17 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class TableEventsService {
   page: number;
-  pageSize: number;
   public subject = new Subject<number>();
   private pageSource = new BehaviorSubject(this.page);
   currentPage = this.pageSource.asObservable();
 
   constructor() { }
 
-  public setPage(page) {
+  public setPage(page: number): void {
     this.pageSource.next(page);
   }
 
-  public sorting(field, records, event, dataType) {
+  public sorting(field: String, records: any[], event: any, dataType: String): any[] {
     let sortData;
 
     const elements = document.querySelectorAll('thead tr th i.active');
@@ -43,16 +42,16 @@ export class TableEventsService {
     return sortData;
   }
 
-  // Comparator Function    
-  private sortData(prop, asc, dataType) {
-    return (a, b) => {
-      let valueFirst = a[prop];
-      let valueSecond = b[prop];
+  // Comparator Function
+  private sortData(prop: any, asc: boolean, dataType: String): any {
+    return (first: any, second: any) => {
+      let valueFirst = first[prop];
+      let valueSecond = second[prop];
       if (dataType === 'date') {
         valueFirst = new Date(valueFirst).getTime();
         valueSecond = new Date(valueSecond).getTime();
-        if (!valueFirst) valueFirst = 0;
-        if (!valueSecond) valueSecond = 0;
+        if (!valueFirst) { valueFirst = 0; }
+        if (!valueSecond) { valueSecond = 0; }
       }
 
       if (asc) {
@@ -60,6 +59,6 @@ export class TableEventsService {
       } else {
         return (valueSecond > valueFirst) ? 1 : ((valueSecond < valueFirst) ? -1 : 0);
       }
-    }
+    };
   }
 }

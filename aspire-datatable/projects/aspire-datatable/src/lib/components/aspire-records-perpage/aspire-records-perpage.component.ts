@@ -10,15 +10,15 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AspireRecordsPerpageComponent implements OnInit {
   recordsPerPageForm: FormGroup;
   @Input() itemsPerPage: number;
-  @Input() showPageSizeSelector: boolean = true;
-  @Input() selectRecordsPerPage: any[] = [5, 10, 20, 30, 50];
-  selectedRecords: any;
+  @Input() showRecordsPerPageSelector: boolean = true;
+  @Input() recordsPerPageOptions: any[] = [5, 10, 20, 30, 50];
 
-  constructor() { }
   // tslint:disable-next-line:no-output-on-prefix
   public subject = new Subject<number>();
   private getPerPageRecords = new BehaviorSubject(this.itemsPerPage);
   @Output() perPageRecords = this.getPerPageRecords.asObservable();
+  
+  constructor() { }
 
   ngOnInit(): void {
     this.recordsPerPageForm = new FormGroup({
@@ -27,7 +27,7 @@ export class AspireRecordsPerpageComponent implements OnInit {
     this.getPerPageRecords.next(this.itemsPerPage);
   }
 
-  onSelection(value) {
+  onSelection(value: number): void {
     this.getPerPageRecords.next(value);
   }
 }

@@ -11,4 +11,4 @@ export const dataTypes = {
     Array: 'array',
     tuple: 'tuple',
     date: 'date'
-}
+};

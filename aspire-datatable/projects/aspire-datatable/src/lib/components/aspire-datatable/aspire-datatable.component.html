@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row no-gutters">
     <!-- -------------------------------TOP-LEFT-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'top-left'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'top-left'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-left'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -18,7 +18,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'top-left'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -26,11 +26,11 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-left') &&
+    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-left') &&
     (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-left') &&
     (options?.showSearch && options?.componentsClass?.search?.position !== 'top-left') &&
     (options.showPagination && options?.componentsClass?.pagination?.position !== 'top-left')"
@@ -38,17 +38,17 @@
     </div>
 
     <!-- -------------------------------TOP-CENTER-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'top-center'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'top-center'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
 
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-center'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -56,7 +56,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'top-center'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -64,29 +64,22 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <!-- <div *ngIf="options?.componentsClass?.recordsPerPage?.position !== 'top-center' &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-center') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'top-center') &&
-    options.showPagination && options?.componentsClass?.pagination?.position !== 'top-center'"
-      [class]="options?.componentsClass?.topBlankComponentClassList">
-    </div> -->
-
     <!-- -------------------------------TOP-RIGHT-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'top-right'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'top-right'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
 
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-right'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -94,7 +87,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'top-right'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -102,11 +95,11 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-right') &&
+    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-right') &&
     (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-right') &&
     (options?.showSearch && options?.componentsClass?.search?.position !== 'top-right') &&
     (options.showPagination && options?.componentsClass?.pagination?.position !== 'top-right')"
@@ -120,11 +113,11 @@
         <thead class="{{options.headerStyle}}">
           <tr scope="col" *ngFor="let item of headers let i=index;" [attr.data-index]="i">
             <th scope="row" [attr.rowspan]="getRowSpan()">
-              <span (click)="sort(item, $event)" *ngIf="options.sorting">
+              <span (click)="sort(item, $event)" *ngIf="options.showSorting">
                 <span>{{item.field}} </span>
                 <i class="fa fa-sort-down pl-1 sort-icon" aria-hidden="true"></i>
               </span>
-              <span *ngIf="!options.sorting">
+              <span *ngIf="!options.showSorting">
                 <span>{{item.field}} </span>
               </span>
             </th>
@@ -156,16 +149,16 @@
   <div class="row">
 
     <!-- -------------------------------BOTTOM-LEFT-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-left'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-left'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-left'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -173,7 +166,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'bottom-left'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -181,11 +174,11 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-left') &&
+    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-left') &&
     (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-left') &&
     (options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-left') &&
     (options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-left')"
@@ -193,17 +186,17 @@
     </div>
 
     <!-- -------------------------------BOTTOM-CENTER-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-center'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-center'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
 
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-center'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -211,7 +204,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'bottom-center'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -219,29 +212,22 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <!-- <div *ngIf="options?.componentsClass?.recordsPerPage?.position !== 'bottom-center' &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-center') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-center') &&
-    options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-center'"
-      [class]="options?.componentsClass?.bottomBlankComponentClassList">
-    </div> -->
-
     <!-- -------------------------------BOTTOM-RIGHT-POSITION------------------------------------- -->
-    <div *ngIf="options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-right'"
+    <div *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-right'"
       [class]="options?.componentsClass?.recordsPerPage?.classList ? options?.componentsClass?.recordsPerPage?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-perpage [selectRecordsPerPage]="options.selectRecordsPerPage"
-        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.componentClassList"
+      <aspire-records-perpage [recordsPerPageOptions]="options.recordsPerPageOptions"
+        [itemsPerPage]="options.itemsPerPage" [class]="options?.componentsClass?.recordsPerPage?.alignmentClassList"
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
 
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-right'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
-      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.componentClassList"
+      <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
         [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
       </aspire-records-count>
     </div>
@@ -249,7 +235,7 @@
     <div *ngIf="options?.showSearch && options?.componentsClass?.search?.position === 'bottom-right'"
       [class]="options?.componentsClass?.search?.classList ? options?.componentsClass?.search?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-searching [records]="records" [searchingStyle]="options.searchingStyle"
-        [class]="options?.componentsClass?.search?.componentClassList" (searchRecords)="getSearchRecords($event)">
+        [class]="options?.componentsClass?.search?.alignmentClassList" (searchRecords)="getSearchRecords($event)">
       </aspire-searching>
     </div>
 
@@ -257,11 +243,11 @@
       [class]="options?.componentsClass?.pagination?.classList ? options?.componentsClass?.pagination?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
         [options]="options.paginationOptions" [reset]="options.resetPagination" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.componentClassList">
+        [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showPageSizeSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-right') &&
+    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-right') &&
     (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-right') &&
     (options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-right') &&
     (options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-right')"

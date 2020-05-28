@@ -51,6 +51,15 @@
   }
 }
 
+th {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+select.form-control {
+  max-width: 250px;
+}
+
 @media only screen and (max-width: 400px) {
   #aspire-table td {
     padding-left: 10px;
@@ -72,13 +81,4 @@
   .justify-center-center {
     text-align: center;
   }
-}
-
-th {
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-select.form-control {
-  max-width: 250px;
 }

@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/cor
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
-import { PageRequest } from '../../shared/models/aspire-datatable.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
 
@@ -18,15 +17,12 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() options: ITableOptions = new TableOptions();
   isPageLoad: boolean;
 
-  public pageRequest = new PageRequest();
-
   constructor(private tableEvents: TableEventsService) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.options = new TableOptions(
-      this.options.pageSize,
       this.options.page,
       this.options.itemsPerPage,
       this.options.tableStyle,
@@ -36,14 +32,13 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
       this.options.dateFormat,
       this.options.searchingStyle,
       this.options.noRecordFoundMessage,
-      this.options.sorting,
+      this.options.showSorting,
       this.options.resetPagination,
       this.options.showSearch,
       this.options.showPagination,
       this.options.showRecordsCount,
-      this.options.showPageSizeSelector,
-      this.options.noDataFoundMessage,
-      this.options.selectRecordsPerPage,
+      this.options.showRecordsPerPageSelector,
+      this.options.recordsPerPageOptions,
       this.options.paginationOptions ? new PaginationOptions(
         this.options.paginationOptions.ariaLabel,
         this.options.paginationOptions.maxVisiblePage,
@@ -65,6 +60,8 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
         this.options.componentsClass.recordsPerPage
       ) : new ComponentsClass()
     );
+    // if page size selector and pagination is disabled then it will display all records on single page
+    if (!this.options.showRecordsPerPageSelector && !this.options.showPagination) { this.options.itemsPerPage = this.records.length; }
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
     this.isPageLoad = true;
@@ -78,40 +75,42 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     this.isPageLoad = false;
   }
 
-  getRowSpan() {
+  getRowSpan(): number {
     return this.headers.length;
   }
 
-  sort(item, event) {
+  sort(item: any, event: any): void {
     this.records = this.tableEvents.sorting(item.field, this.records, event, item.type);
   }
 
-  public getSearchRecords(value) {
-    if (!this.isPageLoad) this.records = value;
-    if (this.child) this.child.updatedTotalCounts(this.records.length);
+  public getSearchRecords(value: any): void {
+    if (!this.isPageLoad) { this.records = value; }
+    if (this.child) { this.child.updatedTotalCounts(this.records.length); }
     this.onPageChanged(null);
   }
 
-  onPageChanged(event): void {
+  onPageChanged(event: any): void {
     this.options.page = event ? event.currentPage : 1;
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }
 
   /* Get value from dropdown of per page record selector */
-  public getPerPageRecords(value): void {
-    if (value) this.options.itemsPerPage = Number(value);
+  public getPerPageRecords(value: any): void {
+    if (value) { this.options.itemsPerPage = Number(value); }
     this.options.page = 1;
-    // tslint:disable-next-line:no-unused-expression
-    if (this.child) this.child.updateRecordCount(this.options.itemsPerPage); // update record count when new value selected from select pageSize options
+    if (this.child) {
+      // update record count when new value selected from select page size options
+      this.child.updateRecordCount(this.options.itemsPerPage);
+    }
     this.tableEvents.setPage(this.options.page);
   }
 
-  getStart() {
+  getStart(): number {
     return (this.options.page - 1) * Number(this.options.itemsPerPage);
   }
 
-  getEnd() {
+  getEnd(): number {
     return ((this.options.page - 1) * Number(this.options.itemsPerPage)) + Number(this.options.itemsPerPage);
   }
 

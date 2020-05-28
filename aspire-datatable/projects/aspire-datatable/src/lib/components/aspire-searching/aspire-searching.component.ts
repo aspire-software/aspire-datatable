@@ -9,7 +9,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 export class AspireSearchingComponent implements OnInit {
   @Input() records: any[] = [];
-  @Input() searchingStyle: string = "";
+  @Input() searchingStyle: string = '';
 
   public subject = new Subject<number>();
   private getSearchRecords = new BehaviorSubject(this.records);
@@ -21,13 +21,13 @@ export class AspireSearchingComponent implements OnInit {
     this.totalRecords = [];
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.totalRecords = this.records;
     this.getSearchRecords.next(this.records);
   }
 
-  search(event: string) {
-    let searchItem: any = event;
+  search(event: string): void {
+    const searchItem: any = event;
     let filterRecord: any = [];
     if (searchItem === '') {
       this.records = this.totalRecords;
@@ -39,7 +39,7 @@ export class AspireSearchingComponent implements OnInit {
             const isAvailable = Object.values(element).some(objectValues =>
               objectValues.toString().trim().toLowerCase().includes(searchItem.toLowerCase().trim())
             );
-            if (isAvailable) return element;
+            if (isAvailable) { return element; }
           });
           this.records = filterRecord.length ? [...new Set(filterRecord)] : [];
         }

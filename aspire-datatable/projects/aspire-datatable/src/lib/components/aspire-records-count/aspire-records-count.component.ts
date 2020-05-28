@@ -20,11 +20,11 @@ export class AspireRecordsCountComponent implements OnInit {
 
   constructor(private tableEvents: TableEventsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.updatedTotalCounts(this.totalRecords);
   }
 
-  getRecordsCount() {
+  getRecordsCount(): void {
     this.tableEvents.currentPage.subscribe(page => {
       if (this.itemsPerPage >= this.totalCount) {
         this.startCount = page;
@@ -37,12 +37,12 @@ export class AspireRecordsCountComponent implements OnInit {
     });
   }
 
-  updateRecordCount(value) {
+  updateRecordCount(value: number): void {
     this.itemsPerPage = value;
     this.getRecordsCount();
   }
 
-  updatedTotalCounts(recordsCount) {
+  updatedTotalCounts(recordsCount: number): void {
     this.totalCount = recordsCount;
     this.totalPages = Math.ceil(this.totalCount / this.itemsPerPage);
     this.getRecordsCount();

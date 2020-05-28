@@ -7,7 +7,7 @@ import { AspireSearchingModule } from '../aspire-searching/aspire-searching.modu
 import { AspirePaginationModule } from '../aspire-pagination/aspire-pagination.module';
 import { AspireRecordsCountModule } from '../aspire-records-count/aspire-records-count.module';
 import { TableEventsService } from '../../shared/table-events.service';
-import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module'
+import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module';
 
 @NgModule({
   declarations: [

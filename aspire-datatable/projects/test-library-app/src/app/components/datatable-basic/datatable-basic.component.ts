@@ -9,9 +9,6 @@ import { records, customNoDataMessage } from '../../helper/table-record';
 export class DatatableBasicComponent implements OnInit {
   tableHeaders: any[] = [];
   tableData: any[] = [];
-  totalRecords: number;
-  itemsPerPage: number = 5;
-  dateFormat: string;
   tableOptions: any;
   constructor() {
     this.tableOptions = {
@@ -21,19 +18,19 @@ export class DatatableBasicComponent implements OnInit {
       tableDataStyle: '',
       page: 1,
       dateFormat: 'dd/MM/yyyy',
-      searchingStyle: "",
-      noRecordFoundMessage: 'No Data Found',
+      searchingStyle: '',
+      noRecordFoundMessage: customNoDataMessage,
       itemsPerPage: 10,
       resetPagination: true,
-      sorting: true,
+      showSorting: true,
       showSearch: true,
       showRecordsCount: true,
       showPagination: true,
-      showPageSizeSelector: true,
-      selectRecordsPerPage: [5, 10, 20, 30, 50],
+      showRecordsPerPageSelector: true,
+      recordsPerPageOptions: [5, 10, 20, 30, 50],
       paginationOptions: {
         ariaLabel: 'Default pagination',
-        disable: false,
+        disable: true,
         paginationStyle: 'pagination justify-content-center',
         pageItemStyle: 'page-item',
         pageLinkStyle: 'page-link',
@@ -43,30 +40,30 @@ export class DatatableBasicComponent implements OnInit {
         lastPageText: '>>'
       },
       componentsClass: {
-        topBlankComponentClassList: "col-md-4 col-sm-12",
-        bottomBlankComponentClassList: "col-md-4 col-sm-12",
+        topBlankComponentClassList: 'col-md-4 col-sm-12',
+        bottomBlankComponentClassList: 'col-md-4 col-sm-12',
         pagination: {
-          position: "bottom-right",
-          classList: "col-md-8 col-sm-8 mt-2 mt-sm-0",
-          componentClassList: "justify-right justify-center-center"
+          position: 'bottom-right',
+          classList: 'col-md-8 col-sm-8 mt-2 mt-sm-0',
+          alignmentClassList: 'justify-right justify-center-center'
         },
         recordsCount: {
-          position: "bottom-left",
-          classList: "col-md-4 col-sm-4 mt-2 mt-sm-0",
-          componentClassList: "justify-center-center"
+          position: 'bottom-left',
+          classList: 'col-md-4 col-sm-4 mt-2 mt-sm-0',
+          alignmentClassList: 'justify-center-center'
         },
         search: {
-          position: "top-right",
-          classList: "col-md-6 col-sm-6 mb-2 mb-sm-0",
-          componentClassList: "justify-right"
+          position: 'top-right',
+          classList: 'col-md-6 col-sm-6 mb-2 mb-sm-0',
+          alignmentClassList: 'justify-right'
         },
         recordsPerPage: {
-          position: "top-left",
-          classList: "col-md-6 col-sm-6",
-          componentClassList: "itemsPerPage"
+          position: 'top-left',
+          classList: 'col-md-6 col-sm-6',
+          alignmentClassList: 'itemsPerPage'
         }
       }
-    }
+    };
   }
 
   ngOnInit(): void {
@@ -75,14 +72,14 @@ export class DatatableBasicComponent implements OnInit {
 
   initSampleData = () => {
     this.tableHeaders = [
-      { 'field': 'name', 'type': 'string' },
-      { 'field': 'address', 'type': 'string' },
-      { 'field': 'mobile', 'type': 'number' },
-      { 'field': 'balance', 'type': 'number' },
-      { 'field': 'email', 'type': 'string' },
-      { 'field': 'isActive', 'type': 'boolean' },
-      { 'field': 'date', 'type': 'date' },
-      { 'field': 'age', 'type': 'number' },
+      { field: 'name', type: 'string' },
+      { field: 'address', type: 'string' },
+      { field: 'mobile', type: 'number' },
+      { field: 'balance', type: 'number' },
+      { field: 'email', type: 'string' },
+      { field: 'isActive', type: 'boolean' },
+      { field: 'date', type: 'date' },
+      { field: 'age', type: 'number' },
     ];
     this.tableData = records.map((item, index) => ({
       name: `${item.name.first} ${item.name.last}`,
@@ -95,7 +92,5 @@ export class DatatableBasicComponent implements OnInit {
       age: item.age
     })
     );
-    this.tableOptions.sorting = true;
-    this.tableOptions.noRecordFoundMessage = customNoDataMessage;
   }
 }

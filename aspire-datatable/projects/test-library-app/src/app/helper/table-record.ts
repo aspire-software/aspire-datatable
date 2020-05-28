@@ -257,4 +257,4 @@ export const records = [
   }
 ];
 
-export const customNoDataMessage = "No Records Found"
+export const customNoDataMessage = 'No Records Found';

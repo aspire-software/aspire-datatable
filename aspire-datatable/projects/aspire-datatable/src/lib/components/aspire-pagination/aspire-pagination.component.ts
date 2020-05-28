@@ -58,7 +58,7 @@ export class AspirePaginationComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.initPagination();
   }
 
