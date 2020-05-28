@@ -1,7 +1,5 @@
 export interface IPaginationOptions {
-    directionLinks?: boolean;
     ariaLabel?: string;
-    ellipsis?: boolean;
     maxVisiblePage?: number;
     disable?: boolean;
     paginationStyle?: string;
@@ -15,9 +13,7 @@ export interface IPaginationOptions {
 
 export class PaginationOptions implements IPaginationOptions {
     constructor(
-        public directionLinks?: boolean,
         public ariaLabel?: string,
-        public ellipsis?: boolean,
         public maxVisiblePage?: number,
         public disable?: boolean,
         public paginationStyle?: string,
@@ -28,10 +24,8 @@ export class PaginationOptions implements IPaginationOptions {
         public nextPageText?: string,
         public lastPageText?: string
     ) {
-        this.directionLinks = this.directionLinks === undefined || this.directionLinks === null ? true : this.directionLinks;
         this.ariaLabel = this.ariaLabel || 'Default pagination';
-        this.ellipsis = this.ellipsis === undefined || this.ellipsis === null ? false : this.ellipsis;
-        this.maxVisiblePage = this.maxVisiblePage || 3;
+        this.maxVisiblePage = 5;
         this.disable = this.disable === undefined || this.disable === null ? false : this.disable;
         this.paginationStyle = this.paginationStyle || 'pagination justify-content-center';
         this.pageItemStyle = this.pageItemStyle || 'page-item';

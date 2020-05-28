@@ -32,10 +32,7 @@ export class DatatableBasicComponent implements OnInit {
       showPageSizeSelector: true,
       selectRecordsPerPage: [5, 10, 20, 30, 50],
       paginationOptions: {
-        directionLinks: true,
         ariaLabel: 'Default pagination',
-        ellipsis: false,
-        maxVisiblePage: 10,
         disable: false,
         paginationStyle: 'pagination justify-content-center',
         pageItemStyle: 'page-item',

@@ -45,9 +45,7 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
       this.options.noDataFoundMessage,
       this.options.selectRecordsPerPage,
       this.options.paginationOptions ? new PaginationOptions(
-        this.options.paginationOptions.directionLinks,
         this.options.paginationOptions.ariaLabel,
-        this.options.paginationOptions.ellipsis,
         this.options.paginationOptions.maxVisiblePage,
         this.options.paginationOptions.disable,
         this.options.paginationOptions.paginationStyle,

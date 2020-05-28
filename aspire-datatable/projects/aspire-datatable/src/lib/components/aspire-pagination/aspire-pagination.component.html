@@ -1,15 +1,15 @@
 <nav [attr.aria-label]="'options.ariaLabel'">
     <ul class="{{options.paginationStyle}}">
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" *ngIf="options.directionLinks">
+        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onFirstPageClick()">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" *ngIf="options.directionLinks">
+        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onPreviousPageClick(pageModel.currentPage - 1)">{{options.prevPageText ? options.prevPageText : '&laquo;'}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
-            *ngIf='options.ellipsis && ((pageModel.currentPage - options.maxVisiblePage) > 1)'>
+            *ngIf='((pageModel.currentPage - options.maxVisiblePage) > 1)'>
             <a class="{{options.pageLinkStyle}}"
                 href="javascript:void(0)">{{pageModel.currentPage - options.maxVisiblePage }}</a>
         </li>
@@ -22,18 +22,18 @@
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)" (click)="onPageClick(page)">{{page}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
-            *ngIf='options.ellipsis && (pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
+            *ngIf='(pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
-            *ngIf='options.ellipsis && (pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
+            *ngIf='(pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">{{totalPages}}</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" *ngIf="options.directionLinks">
+        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onNextPageClick(pageModel.currentPage + 1)">{{options.nextPageText ? options.nextPageText : '&raquo;' }}</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" *ngIf="options.directionLinks">
+        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onLastPageClick()">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
         </li>
