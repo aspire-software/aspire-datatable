@@ -16,7 +16,7 @@ export class TableEventsService {
     this.pageSource.next(page);
   }
 
-  public sorting(field: String, records: any[], event: any, dataType: String): any[] {
+  public sorting(field: string, records: any[], event: any, dataType: string): any[] {
     let sortData;
 
     const elements = document.querySelectorAll('thead tr th i.active');
@@ -43,7 +43,7 @@ export class TableEventsService {
   }
 
   // Comparator Function
-  private sortData(prop: any, asc: boolean, dataType: String): any {
+  private sortData(prop: any, asc: boolean, dataType: string): any {
     return (first: any, second: any) => {
       let valueFirst = first[prop];
       let valueSecond = second[prop];

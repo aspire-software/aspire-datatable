@@ -61,7 +61,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
       ) : new ComponentsClass()
     );
     // if page size selector and pagination is disabled then it will display all records on single page
-    if (!this.options.showRecordsPerPageSelector && !this.options.showPagination) { this.options.itemsPerPage = this.records.length; }
+    if ((!this.options.showRecordsPerPageSelector && !this.options.showPagination) || this.options.paginationOptions.disable) {
+      this.options.itemsPerPage = this.records.length;
+    }
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
     this.isPageLoad = true;

@@ -17,7 +17,7 @@ export class AspireRecordsPerpageComponent implements OnInit {
   public subject = new Subject<number>();
   private getPerPageRecords = new BehaviorSubject(this.itemsPerPage);
   @Output() perPageRecords = this.getPerPageRecords.asObservable();
-  
+
   constructor() { }
 
   ngOnInit(): void {
