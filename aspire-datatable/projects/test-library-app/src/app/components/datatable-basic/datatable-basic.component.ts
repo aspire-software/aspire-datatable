@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { records, customNoDataMessage } from '../../helper/table-record';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-datatable-basic',
@@ -10,7 +11,10 @@ export class DatatableBasicComponent implements OnInit {
   tableHeaders: any[] = [];
   tableData: any[] = [];
   tableOptions: any;
-  constructor() {
+  id;
+
+  constructor(private router: Router,
+    private route: ActivatedRoute) {
     this.tableOptions = {
       tableStyle: 'table table-striped table-bordered',
       headerStyle: 'thead-light',
@@ -30,7 +34,7 @@ export class DatatableBasicComponent implements OnInit {
       recordsPerPageOptions: [5, 10, 20, 30, 50],
       paginationOptions: {
         ariaLabel: 'Default pagination',
-        disable: true,
+        disable: false,
         paginationStyle: 'pagination justify-content-center',
         pageItemStyle: 'page-item',
         pageLinkStyle: 'page-link',
@@ -67,9 +71,19 @@ export class DatatableBasicComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+    })
+
+    // this.deleteRecord(this.id)
     this.initSampleData();
   }
-
+  deleteRecord(index) {
+    let recordIndex = records.findIndex(item => {
+      return item._id === index;
+    })
+    records.splice(recordIndex, 1);
+  }
   initSampleData = () => {
     this.tableHeaders = [
       { field: 'name', type: 'string' },
@@ -80,6 +94,7 @@ export class DatatableBasicComponent implements OnInit {
       { field: 'isActive', type: 'boolean' },
       { field: 'date', type: 'date' },
       { field: 'age', type: 'number' },
+      { field: 'action', type: 'any' }
     ];
     this.tableData = records.map((item, index) => ({
       name: `${item.name.first} ${item.name.last}`,
@@ -87,9 +102,14 @@ export class DatatableBasicComponent implements OnInit {
       mobile: item.phone,
       balance: item.balance,
       email: item.email,
-      isActive: item.isActive,
+      isActive: item.isActive ? 'yes' : 'no',
       date: item.date,
-      age: item.age
+      age: item.age,
+      action: {
+        id: item._id, classType: 'fa fa-cog', perform: [{ perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
+        { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
+        ]
+      }
     })
     );
   }

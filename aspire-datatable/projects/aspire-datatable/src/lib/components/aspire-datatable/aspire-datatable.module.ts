@@ -8,6 +8,12 @@ import { AspirePaginationModule } from '../aspire-pagination/aspire-pagination.m
 import { AspireRecordsCountModule } from '../aspire-records-count/aspire-records-count.module';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module';
+import { RouterModule, Routes, Route } from '@angular/router';
+import { AspirePaginationComponent } from '../aspire-pagination/aspire-pagination.component';
+
+const routes:Routes = [
+  { path: 'delete', component: AspirePaginationComponent, outlet:'popup'}
+];
 
 @NgModule({
   declarations: [
@@ -15,6 +21,7 @@ import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-rec
   ],
   imports: [
     CommonModule,
+    RouterModule.forChild(routes),
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,

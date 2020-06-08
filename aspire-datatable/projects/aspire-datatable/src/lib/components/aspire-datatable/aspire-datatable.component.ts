@@ -4,6 +4,8 @@ import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-reco
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
+import { Router } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'aspire-datatable',
@@ -17,7 +19,8 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() options: ITableOptions = new TableOptions();
   isPageLoad: boolean;
 
-  constructor(private tableEvents: TableEventsService) { }
+  constructor(private tableEvents: TableEventsService,
+    private router:Router) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
 
