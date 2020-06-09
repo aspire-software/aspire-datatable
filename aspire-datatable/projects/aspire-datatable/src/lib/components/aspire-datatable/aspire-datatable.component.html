@@ -1,5 +1,8 @@
+
+<!-- <lib-aspire-popup [popupLib]="popup"></lib-aspire-popup> -->
 <div class="container">
   <div class="row no-gutters">
+   
     <!-- -------------------------------TOP-LEFT-POSITION------------------------------------- -->
     <div
       *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'top-left'"
@@ -9,7 +12,7 @@
         (perPageRecords)="getPerPageRecords($event)">
       </aspire-records-perpage>
     </div>
-
+   
     <!-- {{options.componentsClass.recordsPerPage.classList}} -->
     <!-- <div *ngIf="options?.componentsClass?.recordsPerPage?.position === 'top-left'">
       <div [hidden]="options.showRecordsPerPageSelector" [class]="options.componentsClass.recordsPerPage.classList">
@@ -194,9 +197,15 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
                 <div class="dropdown">
                   <button type="button" class="dropbtn"><span [class]=item[header.field].classType></span></button>
                   <div class="dropdown-content">
-                    <span *ngFor="let value of item[header.field].perform">
+                    <span *ngFor="let value of item[header.field].perform;let i=index;">
                       <a class="dropdown-item" 
                       [href]=value.url>{{value.perAction}}</a>
+                      <!-- <lib-aspire-popup [popupLib]="popup" [index]="i" [records]="records" (confirmDelete)="onConfirmDelete($event)">{{i}}</lib-aspire-popup> -->
+                    </span>
+                    <span *ngFor="let value of item[header.field].perform;let i=index;">
+                      <!-- <a class="dropdown-item" 
+                      [href]=value.url>{{value.perAction}}</a> -->
+                      <lib-aspire-popup [popupLib]="popup" [index]="i" [records]="records" (confirmDelete)="onConfirmDelete($event)">{{i}}</lib-aspire-popup>
                     </span>
                   </div>
                 </div>

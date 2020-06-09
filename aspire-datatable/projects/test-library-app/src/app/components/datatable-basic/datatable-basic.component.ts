@@ -11,6 +11,7 @@ export class DatatableBasicComponent implements OnInit {
   tableHeaders: any[] = [];
   tableData: any[] = [];
   tableOptions: any;
+  tablePopup: any;
   id;
 
   constructor(private router: Router,
@@ -84,6 +85,11 @@ export class DatatableBasicComponent implements OnInit {
     })
     records.splice(recordIndex, 1);
   }
+
+  onConfirmUserDelete(event){
+    console.log(event);
+    records.splice(event,1);
+  }
   initSampleData = () => {
     this.tableHeaders = [
       { field: 'name', type: 'string' },
@@ -112,5 +118,7 @@ export class DatatableBasicComponent implements OnInit {
       }
     })
     );
+    this.tablePopup={body:"Do You want to delete ?",header:"profile update!!!"};
   }
+
 }

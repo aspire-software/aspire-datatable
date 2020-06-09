@@ -10,6 +10,7 @@ import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module';
 import { RouterModule, Routes, Route } from '@angular/router';
 import { AspirePaginationComponent } from '../aspire-pagination/aspire-pagination.component';
+import { AspirePopupModule } from '../aspire-popup/aspire-popup.module';
 
 // const routes:Routes = [
 //   { path: 'delete', component: AspirePaginationComponent, outlet:'popup'}
@@ -28,7 +29,8 @@ import { AspirePaginationComponent } from '../aspire-pagination/aspire-paginatio
     AspireSearchingModule,
     AspirePaginationModule,
     AspireRecordsCountModule,
-    AspireRecordsPerpageModule
+    AspireRecordsPerpageModule,
+    AspirePopupModule
   ],
   exports: [AspireDatatableComponent],
   providers: [TableEventsService]

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Output,EventEmitter} from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
@@ -6,6 +6,7 @@ import { PaginationOptions } from '../../shared/models/pagination-options.model'
 import { ComponentsClass } from '../../shared/models/components-class.model';
 import { Router } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
+
 
 @Component({
   selector: 'aspire-datatable',
@@ -17,6 +18,8 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() headers: any[];
   @Input() records: any[];
   @Input() options: ITableOptions = new TableOptions();
+  @Input() popup:any;
+  @Output() confirmUserDelete=new EventEmitter();
   isPageLoad: boolean;
 
   constructor(private tableEvents: TableEventsService,
@@ -99,7 +102,10 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }
-
+  onConfirmDelete(event:any){
+    
+    this.confirmUserDelete.emit(event);
+  }
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value: any): void {
     if (value) { this.options.itemsPerPage = Number(value); }

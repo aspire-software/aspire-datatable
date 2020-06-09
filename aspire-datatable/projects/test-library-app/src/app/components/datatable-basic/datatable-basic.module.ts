@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DatatableBasicComponent } from './datatable-basic.component';
 import { AspireDatatableModule, AspirePaginationModule } from 'aspire-datatable';
 import { RouterModule } from '@angular/router';
+import { AspirePopupModule } from 'projects/aspire-datatable/src/lib/components/aspire-popup/aspire-popup.module';
 
 @NgModule({
   declarations: [DatatableBasicComponent],
@@ -10,7 +11,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     AspireDatatableModule,
     AspirePaginationModule,
-    RouterModule
+    RouterModule,
+    AspirePopupModule
   ],
   exports: [DatatableBasicComponent]
 })

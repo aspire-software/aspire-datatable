@@ -1,4 +1,5 @@
 
-
-<aspire-datatable [headers]="tableHeaders" [records]="tableData" [options]="tableOptions">
+ 
+<aspire-datatable [headers]="tableHeaders" [records]="tableData" [options]="tableOptions"
+[popup]="tablePopup" (confirmUserDelete)="onConfirmUserDelete($event)">
 </aspire-datatable>
