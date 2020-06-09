@@ -10,33 +10,18 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class AspirePopupComponent implements OnInit {
   closeResult = '';
   @Input() popupLib;
-  @Input() index;
-  @Input() records;
-  @Input() classList = "dropdown-item";
+  @Input() classList = 'dropdown-item';
   @Output() confirmDelete = new EventEmitter<any>();
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
   onConfirm() {
-    this.confirmDelete.emit(this.index);
+    this.confirmDelete.emit();
 
   }
 }

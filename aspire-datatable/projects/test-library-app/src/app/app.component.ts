@@ -7,11 +7,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'test-library-app';
-  
-  constructor(public router:Router){
-
-  }
-  onAdd(){
-this.router.navigate(['add'])
+  constructor(public router: Router) { }
+  onAdd() {
+    this.router.navigate(['add']);
   }
 }

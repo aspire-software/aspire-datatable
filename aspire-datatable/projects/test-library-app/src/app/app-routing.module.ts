@@ -5,7 +5,6 @@ import { DatatableBasicComponent } from './components/datatable-basic/datatable-
 import { AspireDatatableComponent } from 'projects/aspire-datatable/src/public-api';
 import { DaatatableEditComponent } from './components/daatatable-edit/daatatable-edit.component';
 import { ViewDatatableComponent } from './components/view-datatable/view-datatable.component';
-import { DatatableDeleteComponent, DatatableDeleteDialogComponent } from './components/datatable-delete/datatable-delete.component';
 
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  entryComponents:[DatatableDeleteDialogComponent, DatatableDeleteComponent],
+  // entryComponents: [DatatableDeleteDialogComponent, DatatableDeleteComponent],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

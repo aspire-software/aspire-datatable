@@ -14,8 +14,7 @@ export class DatatableBasicComponent implements OnInit {
   tablePopup: any;
   id;
 
-  constructor(private router: Router,
-    private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.tableOptions = {
       tableStyle: 'table table-striped table-bordered',
       headerStyle: 'thead-light',
@@ -73,22 +72,23 @@ export class DatatableBasicComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-    })
+      const id = 'id';
+      this.id = params[id];
+    });
 
     // this.deleteRecord(this.id)
     this.initSampleData();
   }
-  deleteRecord(index) {
-    let recordIndex = this.tableData.findIndex(item => {
-      return item._id === index;
-    })
-    this.tableData.splice(recordIndex, 1);
-  }
+  // deleteRecord(index) {
+  //   const recordIndex = this.tableData.findIndex(item => {
+  //     return item._id === index;
+  //   });
+  //   this.tableData.splice(recordIndex, 1);
+  // }
 
   onConfirmUserDelete(event) {
     console.log(event);
-    let recordIndex = this.tableData.findIndex(item => {
+    const recordIndex = this.tableData.findIndex(item => {
       return item.email === event.email;
     });
     this.tableData.splice(recordIndex, 1);
@@ -125,7 +125,7 @@ export class DatatableBasicComponent implements OnInit {
       }
     })
     );
-    this.tablePopup = { body: "Do You want to delete ?", header: "profile update!!!" };
+    this.tablePopup = { body: 'Do You want to delete ?', header: 'profile update!!!' };
   }
 
 }

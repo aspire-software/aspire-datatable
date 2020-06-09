@@ -8,8 +8,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./daatatable-edit.component.scss']
 })
 export class DaatatableEditComponent implements OnInit {
-  dataTableForm: FormGroup
-  updatedData
+  dataTableForm: FormGroup;
+  updatedData;
   id: number;
   editMode = false;
   modifiedValue;
@@ -18,10 +18,11 @@ export class DaatatableEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.editMode = params['id'] != null;
+      const id = 'id';
+      this.id = params[id];
+      this.editMode = params[id] != null;
       this.init();
-    })
+    });
     // this.dataTableForm = new FormGroup({
     //   'name': new FormControl(null, [Validators.required]),
     //   'last': new FormControl(null, [Validators.required]),
@@ -49,7 +50,7 @@ export class DaatatableEditComponent implements OnInit {
       phone: this.dataTableForm.value.phone,
       address: this.dataTableForm.value.address,
       date: this.dataTableForm.value.date
-    }
+    };
     if (this.editMode) {
       this.editRecords(this.id, this.modifiedValue);
     } else {
@@ -65,10 +66,10 @@ export class DaatatableEditComponent implements OnInit {
 
   }
   editRecords(index, value) {
-    let recordIndex = records.findIndex(item => {
+    const recordIndex = records.findIndex(item => {
       return item._id === index;
-    })
-    console.log(recordIndex)
+    });
+    console.log(recordIndex);
     records[recordIndex] = value;
   }
 
@@ -76,42 +77,53 @@ export class DaatatableEditComponent implements OnInit {
     // return records[index];
     return records.filter(item => {
       return item._id === index;
-    })
+    });
   }
   init() {
+    let name = '';
+    let last = '';
+    let address = '';
+    let mobile = '';
+    let balance = '';
+    let email = '';
+    let isActive = '';
+    let date = '';
+    let age = '';
+
     if (this.editMode) {
-      let name = '';
-      let address = '';
-      let mobile = '';
-      let balance = '';
-      let email = '';
-      let isActive = '';
-      let date = '';
-      let age = '';
       const record = this.getRecord(this.id);
-      //  console.log(record);
       this.patchingEditValue = record[0];
-      console.log(this.patchingEditValue);
-      // name=record[0].name;
-      address = record[0].address;
-      mobile = record[0].phone;
-      balance = record[0][balance];
-      email = record[0][email];
-      isActive = record[0][isActive];
-      date = record[0][date];
-      age = record[0][age];
+      name = this.patchingEditValue.name.first;
+      last = this.patchingEditValue.name.last;
+      address = this.patchingEditValue.address;
+      mobile = this.patchingEditValue.phone;
+      balance = this.patchingEditValue.balance;
+      email = this.patchingEditValue.email;
+      isActive = this.patchingEditValue.isActive;
+      date = this.patchingEditValue.date;
+      age = this.patchingEditValue.age;
+     
+      // console.log(this.patchingEditValue);
+      // // name=record[0].name;
+      // address = record[0].address;
+      // mobile = record[0].phone;
+      // balance = record[0][balance];
+      // email = record[0][email];
+      // isActive = record[0][isActive];
+      // date = record[0][date];
+      // age = record[0][age];
       //  console.log(record[0].address);
     }
     this.dataTableForm = new FormGroup({
-      'name': new FormControl(this.patchingEditValue.name.first, [Validators.required]),
-      'last': new FormControl(this.patchingEditValue.name.last, [Validators.required]),
-      'address': new FormControl(this.patchingEditValue.address, [Validators.required]),
-      'mobile': new FormControl(this.patchingEditValue.phone, [Validators.required]),
-      'balance': new FormControl(this.patchingEditValue.balance, [Validators.required]),
-      'email': new FormControl(this.patchingEditValue.email, [Validators.required]),
-      'isActive': new FormControl(this.patchingEditValue.isActive, [Validators.required]),
-      'date': new FormControl(this.patchingEditValue.date, [Validators.required]),
-      'age': new FormControl(this.patchingEditValue.age, [Validators.required]),
-    })
+      name: new FormControl(name, [Validators.required]),
+      last: new FormControl(last, [Validators.required]),
+      address: new FormControl(address, [Validators.required]),
+      mobile: new FormControl(mobile, [Validators.required]),
+      balance: new FormControl(balance, [Validators.required]),
+      email: new FormControl(email, [Validators.required]),
+      isActive: new FormControl(isActive, [Validators.required]),
+      date: new FormControl(date, [Validators.required]),
+      age: new FormControl(age, [Validators.required]),
+    });
   }
 }

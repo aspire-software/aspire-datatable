@@ -22,8 +22,7 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Output() confirmUserDelete = new EventEmitter();
   isPageLoad: boolean;
 
-  constructor(private tableEvents: TableEventsService,
-    private router: Router) { }
+  constructor(private tableEvents: TableEventsService, private router: Router) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
 
