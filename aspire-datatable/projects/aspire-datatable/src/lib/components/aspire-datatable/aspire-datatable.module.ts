@@ -11,9 +11,9 @@ import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-rec
 import { RouterModule, Routes, Route } from '@angular/router';
 import { AspirePaginationComponent } from '../aspire-pagination/aspire-pagination.component';
 
-const routes:Routes = [
-  { path: 'delete', component: AspirePaginationComponent, outlet:'popup'}
-];
+// const routes:Routes = [
+//   { path: 'delete', component: AspirePaginationComponent, outlet:'popup'}
+// ];
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ const routes:Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     NgbPaginationModule,
     FormsModule,
     ReactiveFormsModule,
