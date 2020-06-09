@@ -1,20 +1,18 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">{{popupLib.header}}</h4>
-      
-    </div>
-    <div class="modal-body">
-      <form>
-        <label>{{popupLib.body}}</label>
-    
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')"
-      (click)="onConfirm()">Confirm</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-    </div>
-  </ng-template>
-  
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Delete</button>
-  
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{popupLib.header}}</h4>
+
+  </div>
+  <div class="modal-body">
+    <form>
+      <label>{{popupLib.body}}</label>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); onConfirm()">Confirm</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Delete</button>

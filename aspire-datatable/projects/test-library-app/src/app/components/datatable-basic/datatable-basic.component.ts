@@ -80,15 +80,18 @@ export class DatatableBasicComponent implements OnInit {
     this.initSampleData();
   }
   deleteRecord(index) {
-    let recordIndex = records.findIndex(item => {
+    let recordIndex = this.tableData.findIndex(item => {
       return item._id === index;
     })
-    records.splice(recordIndex, 1);
+    this.tableData.splice(recordIndex, 1);
   }
 
-  onConfirmUserDelete(event){
+  onConfirmUserDelete(event) {
     console.log(event);
-    records.splice(event,1);
+    let recordIndex = this.tableData.findIndex(item => {
+      return item.email === event.email;
+    })
+    this.tableData.splice(recordIndex, 1);
   }
   initSampleData = () => {
     this.tableHeaders = [
@@ -118,7 +121,7 @@ export class DatatableBasicComponent implements OnInit {
       }
     })
     );
-    this.tablePopup={body:"Do You want to delete ?",header:"profile update!!!"};
+    this.tablePopup = { body: "Do You want to delete ?", header: "profile update!!!" };
   }
 
 }

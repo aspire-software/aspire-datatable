@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Output,EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
@@ -18,12 +18,12 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() headers: any[];
   @Input() records: any[];
   @Input() options: ITableOptions = new TableOptions();
-  @Input() popup:any;
-  @Output() confirmUserDelete=new EventEmitter();
+  @Input() popup: any;
+  @Output() confirmUserDelete = new EventEmitter();
   isPageLoad: boolean;
 
   constructor(private tableEvents: TableEventsService,
-    private router:Router) { }
+    private router: Router) { }
 
   @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
 
@@ -102,8 +102,7 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }
-  onConfirmDelete(event:any){
-    
+  onConfirmDelete(event: any) {
     this.confirmUserDelete.emit(event);
   }
   /* Get value from dropdown of per page record selector */

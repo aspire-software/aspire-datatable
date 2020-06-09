@@ -205,7 +205,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
                     <span *ngFor="let value of item[header.field].perform;let i=index;">
                       <!-- <a class="dropdown-item" 
                       [href]=value.url>{{value.perAction}}</a> -->
-                      <lib-aspire-popup [popupLib]="popup" [index]="i" [records]="records" (confirmDelete)="onConfirmDelete($event)">{{i}}</lib-aspire-popup>
+                      <lib-aspire-popup [popupLib]="popup" [index]="i" [records]="records" (confirmDelete)="onConfirmDelete(item)">{{i}}</lib-aspire-popup>
                     </span>
                   </div>
                 </div>
