@@ -90,7 +90,7 @@ export class DatatableBasicComponent implements OnInit {
     console.log(event);
     let recordIndex = this.tableData.findIndex(item => {
       return item.email === event.email;
-    })
+    });
     this.tableData.splice(recordIndex, 1);
   }
   initSampleData = () => {
@@ -115,8 +115,12 @@ export class DatatableBasicComponent implements OnInit {
       date: item.date,
       age: item.age,
       action: {
-        id: item._id, classType: 'fa fa-cog', perform: [{ perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
-        { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
+        id: item._id,
+        classType: 'fa fa-cog',
+        perform: [
+          { perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
+          { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
+          { perAction: 'delete', class: 'fa fa-cog', url: null }
         ]
       }
     })
