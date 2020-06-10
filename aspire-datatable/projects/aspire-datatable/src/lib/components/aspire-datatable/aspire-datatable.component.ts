@@ -25,8 +25,6 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   constructor(private tableEvents: TableEventsService,
     private router: Router) { }
 
-  @ViewChild(AspireRecordsCountComponent) child: AspireRecordsCountComponent;
-
   ngOnInit(): void {
     this.options = new TableOptions(
       this.options.page,
@@ -76,10 +74,6 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    if (this.child) {
-      this.child.updatedTotalCounts(this.records.length);
-      this.child.updateRecordCount(this.options.itemsPerPage);
-    }
     this.isPageLoad = false;
   }
 
@@ -93,7 +87,6 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
 
   public getSearchRecords(value: any): void {
     if (!this.isPageLoad) { this.records = value; }
-    if (this.child) { this.child.updatedTotalCounts(this.records.length); }
     this.onPageChanged(null);
   }
 
@@ -102,17 +95,15 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     this.options.resetPagination = true;
     this.tableEvents.setPage(this.options.page);
   }
+
   onConfirmDelete(event: any) {
     this.confirmUserDelete.emit(event);
   }
+
   /* Get value from dropdown of per page record selector */
   public getPerPageRecords(value: any): void {
     if (value) { this.options.itemsPerPage = Number(value); }
     this.options.page = 1;
-    if (this.child) {
-      // update record count when new value selected from select page size options
-      this.child.updateRecordCount(this.options.itemsPerPage);
-    }
     this.tableEvents.setPage(this.options.page);
   }
 

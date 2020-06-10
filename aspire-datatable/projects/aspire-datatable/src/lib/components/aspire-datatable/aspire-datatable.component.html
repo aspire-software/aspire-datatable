@@ -22,7 +22,7 @@
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-left'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 
@@ -92,7 +92,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-center'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 
@@ -132,7 +132,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'top-right'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 
@@ -194,7 +194,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
               </span>
               <span *ngIf="header.field==='action' || header.type==='any'">
                 <div class="dropdown">
-                  <button type="button" class="dropbtn"><span [class]=item[header.field].classType></span></button>
+                  <button type="button" class="dropdown-btn"><span [class]=item[header.field].classType></span></button>
                   <div class="dropdown-content">
                     <span *ngFor="let value of item[header.field].perform;let i=index;">
                       <a class="dropdown-item" *ngIf="value.perAction != 'delete'"
@@ -203,11 +203,6 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
                         [records]="records" [classList]="'dropdown-item'" (confirmDelete)="onConfirmDelete(item)">{{i}}
                       </lib-aspire-popup>
                     </span>
-                    <!-- <span *ngFor="let value of item[header.field].perform;let i=index;"> -->
-                    <!-- <a class="dropdown-item" 
-                      [href]=value.url>{{value.perAction}}</a> -->
-                    <!-- <lib-aspire-popup [popupLib]="popup" [index]="i" [records]="records" (confirmDelete)="onConfirmDelete(item)">{{i}}</lib-aspire-popup>
-                    </span> -->
                   </div>
                 </div>
               </span>
@@ -217,8 +212,8 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
       </table>
     </div>
   </div>
-  <div class="row">
 
+  <div class="row">
     <!-- -------------------------------BOTTOM-LEFT-POSITION------------------------------------- -->
     <div
       *ngIf="options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position === 'bottom-left'"
@@ -231,7 +226,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-left'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-6 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 
@@ -270,7 +265,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-center'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 
@@ -302,7 +297,7 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
     <div *ngIf="options.showRecordsCount && options?.componentsClass?.recordsCount?.position === 'bottom-right'"
       [class]="options?.componentsClass?.recordsCount?.classList ? options?.componentsClass?.recordsCount?.classList : 'col-md-4 col-sm-6 mt-2 mt-sm-0'">
       <aspire-records-count [class]="options?.componentsClass?.recordsCount?.alignmentClassList"
-        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage" [currentPage]="options.page">
+        [totalRecords]="records.length" [itemsPerPage]="options.itemsPerPage">
       </aspire-records-count>
     </div>
 

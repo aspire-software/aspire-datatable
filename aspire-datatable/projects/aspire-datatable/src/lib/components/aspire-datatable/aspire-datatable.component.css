@@ -83,7 +83,7 @@ select.form-control {
   }
 }
 
-.dropbtn {
+.dropdown-btn {
   background-color: rgb(165, 175, 76);
   color: white;
   padding: 16px;
@@ -119,6 +119,6 @@ select.form-control {
   display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropdown-btn {
   background-color: blue;
 }

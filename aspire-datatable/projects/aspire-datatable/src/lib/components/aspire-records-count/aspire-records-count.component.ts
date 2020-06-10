@@ -9,9 +9,27 @@ import { TableEventsService } from '../../shared/table-events.service';
 
 export class AspireRecordsCountComponent implements OnInit {
 
-  @Input() totalRecords: number = 0;
-  @Input() itemsPerPage: number = 5;
-  @Input() currentPage: number = 1;
+  totalRecordsNo: number = 0;
+  @Input()
+  set totalRecords(val: number) {
+    this.totalRecordsNo = val;
+    this.updatedTotalCounts(this.totalRecords);
+  }
+
+  get totalRecords(): number {
+    return this.totalRecordsNo;
+  }
+
+  itemsPerPageNo: number = 5;
+  @Input()
+  set itemsPerPage(val: number) {
+    this.itemsPerPageNo = val;
+    this.updatedTotalCounts(this.totalRecords);
+  }
+
+  get itemsPerPage(): number {
+    return this.itemsPerPageNo;
+  }
 
   startCount: number;
   endCount: number;
