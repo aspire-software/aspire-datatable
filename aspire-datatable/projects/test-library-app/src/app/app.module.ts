@@ -7,21 +7,18 @@ import { AspireDatatableModule } from '../../../aspire-datatable/src/public-api'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LinkRefComponent } from './components/link-ref/link-ref.component';
 import { RouterModule } from '@angular/router';
-// import { DatatableDeleteComponent, DatatableDeleteDialogComponent } from './components/datatable-delete/datatable-delete.component';
 import { DaatatableEditComponent } from './components/daatatable-edit/daatatable-edit.component';
 import { ViewDatatableComponent } from './components/view-datatable/view-datatable.component';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
     LinkRefComponent,
-    // DatatableDeleteComponent,
     DaatatableEditComponent,
     ViewDatatableComponent,
-    // DatatableDeleteDialogComponent
   ],
-  // entryComponents: [DatatableDeleteDialogComponent, DatatableDeleteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

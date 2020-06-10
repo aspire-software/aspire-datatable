@@ -49,7 +49,6 @@ export class DaatatableEditComponent implements OnInit {
   }
 
   addRecords(value) {
-    // console.log(modifiedValue);
     records.push(value);
 
   }
@@ -62,7 +61,6 @@ export class DaatatableEditComponent implements OnInit {
   }
 
   getRecord(index) {
-    // return records[index];
     return records.filter(item => {
       return item._id === index;
     });
