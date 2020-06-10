@@ -68,10 +68,10 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
       
     </div> -->
 
-    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-left') &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-left') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'top-left') &&
-    (options.showPagination && options?.componentsClass?.pagination?.position !== 'top-left')"
+    <div *ngIf="(!options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-left') ||
+    (!options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-left') ||
+    (!options?.showSearch && options?.componentsClass?.search?.position !== 'top-left') ||
+    (!options.showPagination && options?.componentsClass?.pagination?.position !== 'top-left')"
       [class]="options?.componentsClass?.topBlankComponentClassList">
     </div>
 
@@ -151,10 +151,10 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-right') &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-right') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'top-right') &&
-    (options.showPagination && options?.componentsClass?.pagination?.position !== 'top-right')"
+    <div *ngIf="(!options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'top-right') ||
+    (!options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'top-right') ||
+    (!options?.showSearch && options?.componentsClass?.search?.position !== 'top-right') ||
+    (!options.showPagination && options?.componentsClass?.pagination?.position !== 'top-right')"
       [class]="options?.componentsClass?.topBlankComponentClassList">
     </div>
 
@@ -199,8 +199,8 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
                     <span *ngFor="let value of item[header.field].perform;let i=index;">
                       <a class="dropdown-item" *ngIf="value.perAction != 'delete'"
                         [href]=value.url>{{value.perAction}}</a>
-                      <lib-aspire-popup *ngIf="value.perAction == 'delete'" [popupLib]="popup" 
-                         [classList]="'dropdown-item'" (confirmDelete)="onConfirmDelete(item)">
+                      <lib-aspire-popup *ngIf="value.perAction == 'delete'" [popupLib]="popup"
+                        [classList]="'dropdown-item'" (confirmDelete)="onConfirmDelete(item)">
                       </lib-aspire-popup>
                     </span>
                   </div>
@@ -245,10 +245,10 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-left') &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-left') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-left') &&
-    (options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-left')"
+    <div *ngIf="(!options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-left') ||
+    (!options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-left') ||
+    (!options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-left') ||
+    (!options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-left')"
       [class]="options?.componentsClass?.bottomBlankComponentClassList">
     </div>
 
@@ -316,10 +316,10 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
       </aspire-pagination>
     </div>
 
-    <div *ngIf="(options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-right') &&
-    (options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-right') &&
-    (options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-right') &&
-    (options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-right')"
+    <div *ngIf="(!options?.showRecordsPerPageSelector && options?.componentsClass?.recordsPerPage?.position !== 'bottom-right') ||
+    (!options.showRecordsCount && options?.componentsClass?.recordsCount?.position !== 'bottom-right') ||
+    (!options?.showSearch && options?.componentsClass?.search?.position !== 'bottom-right') ||
+    (!options.showPagination && options?.componentsClass?.pagination?.position !== 'bottom-right')"
       [class]="options?.componentsClass?.bottomBlankComponentClassList">
     </div>
 

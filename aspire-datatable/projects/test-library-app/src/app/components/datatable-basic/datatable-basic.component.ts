@@ -44,7 +44,7 @@ export class DatatableBasicComponent implements OnInit {
         lastPageText: '>>'
       },
       componentsClass: {
-        topBlankComponentClassList: 'col-md-4 col-sm-12',
+        topBlankComponentClassList: 'col-md-6 col-sm-12',
         bottomBlankComponentClassList: 'col-md-4 col-sm-12',
         pagination: {
           position: 'bottom-right',
