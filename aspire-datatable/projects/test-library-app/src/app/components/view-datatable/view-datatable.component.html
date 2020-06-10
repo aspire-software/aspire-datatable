@@ -1,40 +1,43 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <label>FirstName:</label>
-           {{displayedObject.name.first}}
+            <label class="font-weight-bold">FirstName:</label>
+            {{displayedObject.name.first}}
         </div>
         <div class="col-sm-6">
-            <label>LastName:</label>
+            <label class="font-weight-bold">LastName:</label>
             {{displayedObject.name.last}}
         </div>
         <div class="col-sm-6">
-            <label>Address:</label>
+            <label class="font-weight-bold">Address:</label>
             {{displayedObject.address}}
         </div>
         <div class="col-sm-6">
-            <label>Mobile:</label>
+            <label class="font-weight-bold">Mobile:</label>
             {{displayedObject.phone}}
         </div>
         <div class="col-sm-6">
-            <label>Balance:</label>
+            <label class="font-weight-bold">Balance:</label>
             {{displayedObject.balance}}
         </div>
         <div class="col-sm-6">
-            <label>Email:</label>
+            <label class="font-weight-bold">Email:</label>
             {{displayedObject.email}}
         </div>
         <div class="col-sm-6">
-            <label>isActive:</label>
+            <label class="font-weight-bold">isActive:</label>
             {{displayedObject.isActive}}
         </div>
         <div class="col-sm-6">
-            <label>Date:</label>
+            <label class="font-weight-bold">Date:</label>
             {{displayedObject.date}}
         </div>
         <div class="col-sm-6">
-            <label>age:</label>
+            <label class="font-weight-bold">age:</label>
             {{displayedObject.age}}
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="float-right" (click)="previousState()">Back</button>
         </div>
     </div>
 </div>

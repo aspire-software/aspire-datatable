@@ -114,4 +114,8 @@ export class DaatatableEditComponent implements OnInit {
       'age': new FormControl(this.patchingEditValue.age, [Validators.required]),
     })
   }
+
+  previousState() {
+    this.router.navigate(['']);
+  }
 }

@@ -1,5 +1,6 @@
-
- 
-<aspire-datatable [headers]="tableHeaders" [records]="tableData" [options]="tableOptions"
-[popup]="tablePopup" (confirmUserDelete)="onConfirmUserDelete($event)">
+<div class="container d-flex justify-content-end pb-2">
+    <button class="btn btn-primary justify-right" (click)="onAdd()">Add</button>
+</div>
+<aspire-datatable [headers]="tableHeaders" [records]="tableData" [options]="tableOptions" [popup]="tablePopup"
+    (confirmUserDelete)="onConfirmUserDelete($event)">
 </aspire-datatable>

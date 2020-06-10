@@ -128,4 +128,7 @@ export class DatatableBasicComponent implements OnInit {
     this.tablePopup = { body: "Do You want to delete ?", header: "profile update!!!" };
   }
 
+  onAdd() {
+    this.router.navigate(['add']);
+  }
 }
