@@ -64,7 +64,7 @@ export class DatatableBasicComponent implements OnInit {
         recordsPerPage: {
           position: 'top-left',
           classList: 'col-md-6 col-sm-6',
-          alignmentClassList: 'itemsPerPage'
+          alignmentClassList: 'justify-left'
         }
       }
     };

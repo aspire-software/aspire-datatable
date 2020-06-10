@@ -37,7 +37,7 @@ export class ComponentsClass implements IComponentsClass {
             new CommonProperty(
                 this.recordsPerPage && this.recordsPerPage.position ? this.recordsPerPage.position : 'top-left',
                 this.recordsPerPage && this.recordsPerPage.classList ? this.recordsPerPage.classList : 'col-md-6 col-sm-6',
-                this.recordsPerPage && this.recordsPerPage.alignmentClassList ? this.recordsPerPage.alignmentClassList : 'itemsPerPage');
+                this.recordsPerPage && this.recordsPerPage.alignmentClassList ? this.recordsPerPage.alignmentClassList : 'justify-left');
     }
 }
 
