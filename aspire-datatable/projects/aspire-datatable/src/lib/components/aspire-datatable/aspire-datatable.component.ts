@@ -95,9 +95,6 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
 
   onConfirmDelete(event: any) {
     this.confirmUserDelete.emit(event);
-    if (this.child) {
-      this.child.updatedTotalCounts(this.records.length);
-    }
   }
 
   /* Get value from dropdown of per page record selector */
