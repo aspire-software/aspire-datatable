@@ -25,7 +25,7 @@ export class ViewDatatableComponent implements OnInit {
   getRecord(index) {
     return records.filter(item => {
       return item._id === index;
-    })
+    });
   }
 
   previousState() {
