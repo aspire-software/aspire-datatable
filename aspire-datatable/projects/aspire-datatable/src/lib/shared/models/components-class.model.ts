@@ -32,7 +32,7 @@ export class ComponentsClass implements IComponentsClass {
             new CommonProperty(
                 this.recordsCount && this.recordsCount.position ? this.recordsCount.position : 'bottom-left',
                 this.recordsCount && this.recordsCount.classList ? this.recordsCount.classList : 'col-md-4 col-sm-4 mt-2 mt-sm-0',
-                this.recordsCount && this.recordsCount.alignmentClassList ? this.recordsCount.alignmentClassList : 'justify-center-center');
+                this.recordsCount && this.recordsCount.alignmentClassList ? this.recordsCount.alignmentClassList : 'justify-left justify-center-center');
         this.recordsPerPage =
             new CommonProperty(
                 this.recordsPerPage && this.recordsPerPage.position ? this.recordsPerPage.position : 'top-left',

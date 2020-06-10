@@ -54,7 +54,7 @@ export class DatatableBasicComponent implements OnInit {
         recordsCount: {
           position: 'bottom-left',
           classList: 'col-md-4 col-sm-4 mt-2 mt-sm-0',
-          alignmentClassList: 'justify-center-center'
+          alignmentClassList: 'justify-left justify-center-center'
         },
         search: {
           position: 'top-right',
@@ -76,15 +76,8 @@ export class DatatableBasicComponent implements OnInit {
       this.id = params[id];
     });
 
-    // this.deleteRecord(this.id)
     this.initSampleData();
   }
-  // deleteRecord(index) {
-  //   const recordIndex = this.tableData.findIndex(item => {
-  //     return item._id === index;
-  //   });
-  //   this.tableData.splice(recordIndex, 1);
-  // }
 
   onConfirmUserDelete(event) {
     console.log(event);
@@ -93,6 +86,7 @@ export class DatatableBasicComponent implements OnInit {
     });
     this.tableData.splice(recordIndex, 1);
   }
+
   initSampleData = () => {
     this.tableHeaders = [
       { field: 'name', type: 'string' },

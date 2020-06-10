@@ -81,10 +81,8 @@ select.form-control {
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .justify-center-center {
-    text-align: center;
-  }
+.justify-center-center {
+  text-align: center;
 }
 
 .dropdown-btn {
