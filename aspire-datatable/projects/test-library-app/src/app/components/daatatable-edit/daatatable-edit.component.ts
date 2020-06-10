@@ -23,17 +23,6 @@ export class DaatatableEditComponent implements OnInit {
       this.editMode = params[id] != null;
       this.init();
     });
-    // this.dataTableForm = new FormGroup({
-    //   'name': new FormControl(null, [Validators.required]),
-    //   'last': new FormControl(null, [Validators.required]),
-    //   'address': new FormControl(null, [Validators.required]),
-    //   'mobile': new FormControl(null, [Validators.required]),
-    //   'balance': new FormControl(null, [Validators.required]),
-    //   'email': new FormControl(null, [Validators.required]),
-    //   'isActive': new FormControl(null, [Validators.required]),
-    //   'date': new FormControl(null, [Validators.required]),
-    //   'age': new FormControl(null, [Validators.required]),
-    // })
   }
   onSubmit() {
     console.log(this.dataTableForm.value);
@@ -44,7 +33,6 @@ export class DaatatableEditComponent implements OnInit {
       name: {
         first: this.dataTableForm.value.name,
         last: this.dataTableForm.value.last,
-
       },
       email: this.dataTableForm.value.email,
       phone: this.dataTableForm.value.phone,
@@ -83,7 +71,7 @@ export class DaatatableEditComponent implements OnInit {
     let name = '';
     let last = '';
     let address = '';
-    let mobile = '';
+    let phone = '';
     let balance = '';
     let email = '';
     let isActive = '';
@@ -96,29 +84,18 @@ export class DaatatableEditComponent implements OnInit {
       name = this.patchingEditValue.name.first;
       last = this.patchingEditValue.name.last;
       address = this.patchingEditValue.address;
-      mobile = this.patchingEditValue.phone;
+      phone = this.patchingEditValue.phone;
       balance = this.patchingEditValue.balance;
       email = this.patchingEditValue.email;
       isActive = this.patchingEditValue.isActive;
       date = this.patchingEditValue.date;
       age = this.patchingEditValue.age;
-     
-      // console.log(this.patchingEditValue);
-      // // name=record[0].name;
-      // address = record[0].address;
-      // mobile = record[0].phone;
-      // balance = record[0][balance];
-      // email = record[0][email];
-      // isActive = record[0][isActive];
-      // date = record[0][date];
-      // age = record[0][age];
-      //  console.log(record[0].address);
     }
     this.dataTableForm = new FormGroup({
       name: new FormControl(name, [Validators.required]),
       last: new FormControl(last, [Validators.required]),
       address: new FormControl(address, [Validators.required]),
-      mobile: new FormControl(mobile, [Validators.required]),
+      phone: new FormControl(phone, [Validators.required]),
       balance: new FormControl(balance, [Validators.required]),
       email: new FormControl(email, [Validators.required]),
       isActive: new FormControl(isActive, [Validators.required]),
