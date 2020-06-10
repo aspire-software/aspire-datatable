@@ -15,8 +15,9 @@ export class ViewDatatableComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-    })
+      const id = 'id';
+      this.id = params[id];
+    });
     this.displayedArray = this.getRecord(this.id);
     this.displayedObject = this.displayedArray[0];
     console.log(this.displayedObject);

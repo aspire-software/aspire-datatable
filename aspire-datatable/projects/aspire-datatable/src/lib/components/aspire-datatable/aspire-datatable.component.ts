@@ -5,8 +5,6 @@ import { ITableOptions, TableOptions } from '../../shared/models/table-options.m
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
 import { Router } from '@angular/router';
-import { RouterModule, Routes } from '@angular/router';
-
 
 @Component({
   selector: 'aspire-datatable',
@@ -22,8 +20,7 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Output() confirmUserDelete = new EventEmitter();
   isPageLoad: boolean;
 
-  constructor(private tableEvents: TableEventsService,
-    private router: Router) { }
+  constructor(private tableEvents: TableEventsService, private router: Router) { }
 
   ngOnInit(): void {
     this.options = new TableOptions(
@@ -98,6 +95,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
 
   onConfirmDelete(event: any) {
     this.confirmUserDelete.emit(event);
+    if (this.child) {
+      this.child.updatedTotalCounts(this.records.length);
+    }
   }
 
   /* Get value from dropdown of per page record selector */
