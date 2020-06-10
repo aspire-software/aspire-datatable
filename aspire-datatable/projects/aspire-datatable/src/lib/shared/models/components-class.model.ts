@@ -16,7 +16,7 @@ export class ComponentsClass implements IComponentsClass {
         public recordsCount?: ICommonProperty,
         public recordsPerPage?: ICommonProperty
     ) {
-        this.topBlankComponentClassList = this.topBlankComponentClassList || 'col-md-4 col-sm-12';
+        this.topBlankComponentClassList = this.topBlankComponentClassList || 'col-md-6 col-sm-12';
         this.bottomBlankComponentClassList = this.bottomBlankComponentClassList || 'col-md-4 col-sm-12';
         this.search =
             new CommonProperty(
