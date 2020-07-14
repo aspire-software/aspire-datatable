@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
-import { AspireRecordsCountComponent } from '../aspire-records-count/aspire-records-count.component';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
