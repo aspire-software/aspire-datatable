@@ -31,7 +31,7 @@ export class DatatableBasicComponent implements OnInit {
       showRecordsCount: true,
       showPagination: true,
       showRecordsPerPageSelector: true,
-      recordsPerPageOptions: [5, 10, 20, 30, 50],
+      recordsPerPageOptions: [3, 10, 5, 30, 50],
       paginationOptions: {
         ariaLabel: 'Default pagination',
         disable: false,
@@ -81,6 +81,7 @@ export class DatatableBasicComponent implements OnInit {
 
   onConfirmUserDelete(event) {
     console.log(event);
+    // console.log();
     const recordIndex = this.tableData.findIndex(item => {
       return item.email === event.email;
     });
@@ -112,14 +113,16 @@ export class DatatableBasicComponent implements OnInit {
         id: item._id,
         classType: 'fa fa-cog',
         perform: [
-          { perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
+          { perAction: 'edit', class: 'fa-fa-cog', url: item.email + '/edit' },
           { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
-          { perAction: 'delete', class: 'fa fa-cog', url: null }
+          { perAction: 'delete', class: 'fa fa-cog', url: null, popupConfirm: true },
+          { perAction: 'another', class: 'fa fa-cog', url: null, popupConfirm: true }
         ]
       }
     })
     );
-    this.tablePopup = { body: 'Do You want to delete ?', header: 'profile update!!!' };
+    this.tablePopup = [{ body: 'Do You want to delete ?', header: 'profile update!!!', perAction: 'delete' },
+    { body: 'Do You want to another ?', header: 'profile update another!!!', perAction: 'another' }];
   }
 
   onAdd() {

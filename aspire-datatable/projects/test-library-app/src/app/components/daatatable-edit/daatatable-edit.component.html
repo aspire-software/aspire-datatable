@@ -1,12 +1,18 @@
 <form [formGroup]="dataTableForm">
     <div class="row">
+        <!-- <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label>Id</label>
+                <input type="string" class="form-control" formControlName="_id">
+            </div>
+        </div> -->
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label>First Name</label>
                 <input type="string" class="form-control" formControlName="name">
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12"> 
             <div class="form-group">
                 <label>Last Name</label>
                 <input type="string" class="form-control" formControlName="last">
@@ -41,7 +47,7 @@
                 <label>isActive</label>
                 <select class="form-control" formControlName="isActive">
                     <option value="true">
-                        yes
+                        YES
                     </option>
                     <option value="false">
                         NO
@@ -52,7 +58,7 @@
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label>Date</label>
-                <input type="date" class="form-control" formControlName="date">
+                <input type="string" class="form-control" formControlName="date">
             </div>
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
@@ -63,7 +69,7 @@
         </div>
         <div class="col-sm-12 col-xs-12">
             <button class="btn btn-primary" type="button" (click)="onSubmit()">Submit</button>
-            <button type="button" class="ml-2" (click)="previousState()">Back</button>
+            <button  type="button" class="btn btn-primary ml-2" (click)="previousState()">Back</button>
         </div>
     </div>
 </form>

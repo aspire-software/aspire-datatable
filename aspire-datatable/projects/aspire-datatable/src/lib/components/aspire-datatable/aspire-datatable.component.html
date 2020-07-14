@@ -197,11 +197,12 @@ options.componentsClass.recordsCount.position==='top-left'"> -->
                   <button type="button" class="dropdown-btn"><span [class]=item[header.field].classType></span></button>
                   <div class="dropdown-content">
                     <span *ngFor="let value of item[header.field].perform;let i=index;">
-                      <a class="dropdown-item" *ngIf="value.perAction != 'delete'"
-                        [href]=value.url>{{value.perAction}}</a>
-                      <lib-aspire-popup *ngIf="value.perAction == 'delete'" [popupLib]="popup"
-                        [classList]="'dropdown-item'" (confirmDelete)="onConfirmDelete(item)">
-                      </lib-aspire-popup>
+                      <a class="dropdown-item" *ngIf="!value.popupConfirm" [href]=value.url>{{value.perAction}}</a>
+                      <a class="dropdown-item">
+                        <lib-aspire-popup *ngIf="value.popupConfirm" [popupLib]="popup" [classList]="'dropdown-item'"
+                          [perAction]="value.perAction" (confirmDelete)="onConfirmDelete(item)">
+                        </lib-aspire-popup>
+                      </a>
                     </span>
                   </div>
                 </div>

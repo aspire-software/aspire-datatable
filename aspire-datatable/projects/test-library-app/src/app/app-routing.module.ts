@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'link', component: LinkRefComponent },
   { path: 'add', component: DaatatableEditComponent },
   { path: ':id/view', component: ViewDatatableComponent },
-  { path: ':id/edit', component: DaatatableEditComponent },
+  { path: ':email/edit', component: DaatatableEditComponent },
 ];
 
 @NgModule({

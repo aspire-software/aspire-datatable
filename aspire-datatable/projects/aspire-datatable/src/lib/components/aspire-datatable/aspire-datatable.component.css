@@ -126,3 +126,6 @@ select.form-control {
 .dropdown:hover .dropdown-btn {
   background-color: blue;
 }
+
+.dropdown-content a:hover {background-color: #ddd;}
+

@@ -10,7 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class DaatatableEditComponent implements OnInit {
   dataTableForm: FormGroup;
   updatedData;
-  id: number;
+  email;
   editMode = false;
   modifiedValue;
   patchingEditValue;
@@ -18,15 +18,17 @@ export class DaatatableEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      const id = 'id';
-      this.id = params[id];
-      this.editMode = params[id] != null;
+      const email = 'email';
+      this.email = params[email];
+      this.editMode = params[email] != null;
       this.init();
+      console.log(this.email);
     });
   }
   onSubmit() {
     console.log(this.dataTableForm.value);
     this.modifiedValue = {
+      // _id:this.dataTableForm.value._id,
       isActive: this.dataTableForm.value.isActive,
       balance: this.dataTableForm.value.balance,
       age: this.dataTableForm.value.age,
@@ -40,7 +42,7 @@ export class DaatatableEditComponent implements OnInit {
       date: this.dataTableForm.value.date
     };
     if (this.editMode) {
-      this.editRecords(this.id, this.modifiedValue);
+      this.editRecords(this.email, this.modifiedValue);
     } else {
 
       this.addRecords(this.modifiedValue);
@@ -53,18 +55,18 @@ export class DaatatableEditComponent implements OnInit {
     records.push(value);
 
   }
-  editRecords(index, value) {
+  editRecords(email, value) {
     const recordIndex = records.findIndex(item => {
-      return item._id === index;
+      return item.email === email;
     });
     console.log(recordIndex);
     records[recordIndex] = value;
   }
 
-  getRecord(index) {
+  getRecord(email) {
     // return records[index];
     return records.filter(item => {
-      return item._id === index;
+      return item.email === email;
     });
   }
   init() {
@@ -77,10 +79,17 @@ export class DaatatableEditComponent implements OnInit {
     let isActive = '';
     let date = '';
     let age = '';
-
     if (this.editMode) {
-      const record = this.getRecord(this.id);
+      const record = this.getRecord(this.email);
+      console.log(record);
       this.patchingEditValue = record[0];
+      // console.log("", this.patchingEditValue);
+      const transformDate = new Date(this.patchingEditValue.date),
+        mnth = ('0' + (transformDate.getMonth() + 1)).slice(-2),
+        day = ('0' + transformDate.getDate()).slice(-2);
+      const getTransformDate = [day, mnth, transformDate.getFullYear()].join('/');
+      //  console.log(getTransformDate);
+      //  _id=this.patchingEditValue._id;
       name = this.patchingEditValue.name.first;
       last = this.patchingEditValue.name.last;
       address = this.patchingEditValue.address;
@@ -88,10 +97,12 @@ export class DaatatableEditComponent implements OnInit {
       balance = this.patchingEditValue.balance;
       email = this.patchingEditValue.email;
       isActive = this.patchingEditValue.isActive;
-      date = this.patchingEditValue.date;
+      date = getTransformDate;
       age = this.patchingEditValue.age;
+      console.log(date);
     }
     this.dataTableForm = new FormGroup({
+      // _id:new FormControl(_id,[Validators.required]),
       name: new FormControl(name, [Validators.required]),
       last: new FormControl(last, [Validators.required]),
       address: new FormControl(address, [Validators.required]),

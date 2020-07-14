@@ -1,10 +1,10 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{popupLib.header}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{popupLib[0].header}}</h4>
   </div>
   <div class="modal-body">
     <form>
-      <label>{{popupLib.body}}</label>
+      <label>{{popupLib[0].body}}</label>
     </form>
   </div>
   <div class="modal-footer">
@@ -13,4 +13,4 @@
   </div>
 </ng-template>
 
-<a [class]="classList" href="javascript:void(0)" (click)="open(content)">delete</a>
+<a [class]="classList" href="javascript:void(0)" (click)="open(content)">{{perAction}}</a>
