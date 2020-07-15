@@ -15,9 +15,7 @@ export class AspirePopupComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.popupLib = this.popupLib.filter(item => {
-      return item.perAction === this.perAction;
-    });
+    this.popupLib = this.popupLib.filter(item => item.perAction === this.perAction);
   }
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
@@ -25,6 +23,5 @@ export class AspirePopupComponent implements OnInit {
 
   onConfirm() {
     this.confirmDelete.emit();
-
   }
 }

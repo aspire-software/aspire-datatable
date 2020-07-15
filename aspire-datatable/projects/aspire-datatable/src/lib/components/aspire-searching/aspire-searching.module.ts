@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AspireSearchingComponent } from './aspire-searching.component';
 
 @NgModule({
   declarations: [AspireSearchingComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [],
   exports: [AspireSearchingComponent],
   providers: []
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-records-perpage',
@@ -10,11 +10,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class AspireRecordsPerpageComponent implements OnInit {
   recordsPerPageForm: FormGroup;
   @Input() itemsPerPage: number;
-  @Input() showRecordsPerPageSelector: boolean = true;
   @Input() recordsPerPageOptions: any[] = [5, 10, 20, 30, 50];
 
-  // tslint:disable-next-line:no-output-on-prefix
-  public subject = new Subject<number>();
   private getPerPageRecords = new BehaviorSubject(this.itemsPerPage);
   @Output() perPageRecords = this.getPerPageRecords.asObservable();
 

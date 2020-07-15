@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Page } from './aspire-pagination.model';
+import { Page } from '../../shared/models/aspire-pagination.model';
 import { PaginationOptions, IPaginationOptions } from '../../shared/models/pagination-options.model';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-pagination',
@@ -51,8 +51,6 @@ export class AspirePaginationComponent implements OnInit {
     return this.resetPagination;
   }
 
-  // tslint:disable-next-line:no-output-on-prefix
-  public subject = new Subject<Page>();
   private onPageChanged = new BehaviorSubject(this.pageModel);
   @Output() pageChanged = this.onPageChanged.asObservable();
 
@@ -100,7 +98,6 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   onPreviousPageClick(prevPage: number): void {
-
     if (prevPage < 1) {
       return;
     }
@@ -125,7 +122,6 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   onNextPageClick(nextPage: number): void {
-
     if (nextPage > this.totalPages) {
       return;
     }
@@ -155,18 +151,10 @@ export class AspirePaginationComponent implements OnInit {
     this.setPages();
   }
 
-  onFirstPageClick(): void {
-    this.pageModel.currentPage = 1;
-    this.pageModel.firstPage = this.pageModel.currentPage;
-    this.pageModel.lastPage = (this.pageModel.firstPage + this.validateMaxSize()) - 1;
-    this.onPageChanged.next(this.pageModel);
-    this.setPages();
-  }
-
-  onLastPageClick(): void {
-    this.pageModel.currentPage = this.totalPages;
-    this.pageModel.firstPage = (this.pageModel.currentPage - this.validateMaxSize()) + 1;
-    this.pageModel.lastPage = this.pageModel.currentPage;
+  onFirstOrLastPageClick(isFirst: boolean): void {
+    this.pageModel.currentPage = isFirst ? 1 : this.totalPages;
+    this.pageModel.firstPage = isFirst ? this.pageModel.currentPage : ((this.pageModel.currentPage - this.validateMaxSize()) + 1);
+    this.pageModel.lastPage = isFirst ? ((this.pageModel.firstPage + this.validateMaxSize()) - 1) : this.pageModel.currentPage;
     this.onPageChanged.next(this.pageModel);
     this.setPages();
   }

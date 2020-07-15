@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableEventsService {
   page: number;
-  public subject = new Subject<number>();
   private pageSource = new BehaviorSubject(this.page);
   currentPage = this.pageSource.asObservable();
 
@@ -17,47 +16,39 @@ export class TableEventsService {
   }
 
   public sorting(field: string, records: any[], event: any, dataType: string): any[] {
-    let sortData;
+    const item = event.currentTarget.children[1];
 
     const elements = document.querySelectorAll('thead tr th i.active');
-
     if (elements) {
       for (const element of elements[Symbol.iterator]()) {
         element.classList.remove('active');
+        if (element !== item) {
+          element.classList.remove('fa-sort-up');
+          element.classList.add('fa-sort-down');
+        }
       }
     }
 
-    const item = event.currentTarget.children[1];
-    if (item.classList.contains('fa-sort-down')) {
-      item.classList.remove('fa-sort-down');
-      item.classList.add('fa-sort-up');
-      item.classList.add('active');
-      sortData = records.sort(this.sortData(field, true, dataType));
-    } else {
-      item.classList.add('fa-sort-down');
-      item.classList.remove('fa-sort-up');
-      item.classList.add('active');
-      sortData = records.sort(this.sortData(field, false, dataType));
-    }
-    return sortData;
+    const isItemContainsSortDown = item.classList.contains('fa-sort-down');
+    item.classList.remove(isItemContainsSortDown ? 'fa-sort-down' : 'fa-sort-up');
+    item.classList.add((isItemContainsSortDown ? 'fa-sort-up' : 'fa-sort-down'), 'active');
+    return records.sort(this.sortData(field, isItemContainsSortDown, dataType));
   }
 
   // Comparator Function
   private sortData(prop: any, asc: boolean, dataType: string): any {
     return (first: any, second: any) => {
-      let valueFirst = first[prop];
-      let valueSecond = second[prop];
       if (dataType === 'date') {
-        valueFirst = new Date(valueFirst).getTime();
-        valueSecond = new Date(valueSecond).getTime();
-        if (!valueFirst) { valueFirst = 0; }
-        if (!valueSecond) { valueSecond = 0; }
+        first[prop] = new Date(first[prop]).getTime();
+        second[prop] = new Date(second[prop]).getTime();
+        if (!first[prop]) { first[prop] = 0; }
+        if (!second[prop]) { second[prop] = 0; }
       }
 
       if (asc) {
-        return (valueFirst > valueSecond) ? 1 : ((valueFirst < valueSecond) ? -1 : 0);
+        return (first[prop] > second[prop]) ? 1 : ((first[prop] < second[prop]) ? -1 : 0);
       } else {
-        return (valueSecond > valueFirst) ? 1 : ((valueSecond < valueFirst) ? -1 : 0);
+        return (second[prop] > first[prop]) ? 1 : ((second[prop] < first[prop]) ? -1 : 0);
       }
     };
   }

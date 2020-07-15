@@ -1,8 +1,6 @@
-<div class="pagesize-selector" *ngIf='showRecordsPerPageSelector'>
-    <form class="form-group" role="form" [formGroup]="recordsPerPageForm" *ngIf='showRecordsPerPageSelector'>
-        <select formControlName="recordsPerPage" class="form-control"
-            (change)="onSelection($event.target.value)">
-            <option value="" selected hidden>Select Records Per Page</option>
+<div class="pagesize-selector">
+    <form class="form-group" role="form" [formGroup]="recordsPerPageForm">
+        <select formControlName="recordsPerPage" class="form-control" (change)="onSelection($event.target.value)">
             <option [value]="items" *ngFor='let items of recordsPerPageOptions'>{{items}} items</option>
         </select>
     </form>

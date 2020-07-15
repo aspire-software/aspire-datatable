@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-searching',
@@ -11,7 +11,6 @@ export class AspireSearchingComponent implements OnInit {
   @Input() records: any[] = [];
   @Input() searchingStyle: string = '';
 
-  public subject = new Subject<number>();
   private getSearchRecords = new BehaviorSubject(this.records);
   @Output() searchRecords = this.getSearchRecords.asObservable();
 

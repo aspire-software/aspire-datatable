@@ -31,7 +31,7 @@ export class DatatableBasicComponent implements OnInit {
       showRecordsCount: true,
       showPagination: true,
       showRecordsPerPageSelector: true,
-      recordsPerPageOptions: [3, 10, 5, 30, 50],
+      recordsPerPageOptions: [5, 10, 30, 50],
       paginationOptions: {
         ariaLabel: 'Default pagination',
         disable: false,

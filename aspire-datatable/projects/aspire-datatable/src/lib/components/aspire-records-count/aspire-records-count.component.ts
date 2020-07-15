@@ -44,14 +44,11 @@ export class AspireRecordsCountComponent implements OnInit {
 
   getRecordsCount(): void {
     this.tableEvents.currentPage.subscribe(page => {
-      if (this.itemsPerPage >= this.totalCount) {
-        this.startCount = page;
-        this.endCount = this.totalCount;
-      } else {
-        this.startCount = (page - 1) * this.itemsPerPage ? ((page - 1) * this.itemsPerPage) + 1 : 1;
-        // tslint:disable-next-line:max-line-length
-        this.endCount = ((page - 1) * this.itemsPerPage + this.itemsPerPage) > this.totalCount ? this.totalCount : (page - 1) * this.itemsPerPage + this.itemsPerPage;
-      }
+      const itemCountDifference = this.itemsPerPage >= this.totalCount;
+      this.startCount = itemCountDifference ? page : ((page - 1) * this.itemsPerPage ? ((page - 1) * this.itemsPerPage) + 1 : 1);
+      this.endCount = itemCountDifference ? this.totalCount :
+      // tslint:disable-next-line:max-line-length
+        (((page - 1) * this.itemsPerPage + this.itemsPerPage) > this.totalCount ? this.totalCount : (page - 1) * this.itemsPerPage + this.itemsPerPage);
     });
   }
 

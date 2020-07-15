@@ -5,9 +5,7 @@ import { TableEventsService } from '../../shared/table-events.service';
 
 @NgModule({
   declarations: [AspirePaginationComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [AspirePaginationComponent],
   providers: [TableEventsService]
 })

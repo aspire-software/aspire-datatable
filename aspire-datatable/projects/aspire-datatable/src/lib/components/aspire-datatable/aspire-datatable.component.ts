@@ -3,7 +3,6 @@ import { TableEventsService } from '../../shared/table-events.service';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'aspire-datatable',
@@ -17,9 +16,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() options: ITableOptions = new TableOptions();
   @Input() popup: any;
   @Output() confirmUserDelete = new EventEmitter();
-  isPageLoad: boolean;
+  isPageLoad: boolean = true;
 
-  constructor(private tableEvents: TableEventsService, private router: Router) { }
+  constructor(private tableEvents: TableEventsService) { }
 
   ngOnInit(): void {
     this.options = new TableOptions(
@@ -66,15 +65,10 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     }
     this.options.page = 1;
     this.tableEvents.setPage(this.options.page);
-    this.isPageLoad = true;
   }
 
   public ngAfterViewInit(): void {
     this.isPageLoad = false;
-  }
-
-  getRowSpan(): number {
-    return this.headers.length;
   }
 
   sort(item: any, event: any): void {

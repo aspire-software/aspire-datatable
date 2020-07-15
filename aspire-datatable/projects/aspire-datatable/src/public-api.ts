@@ -7,4 +7,4 @@ export * from './lib/components/aspire-datatable/aspire-datatable.module';
 export * from './lib/components/aspire-pagination/aspire-pagination.component';
 export * from './lib/components/aspire-pagination/aspire-pagination.module';
 export * from './lib/components/aspire-popup/aspire-popup.component';
-export { Page } from './lib/components/aspire-pagination/aspire-pagination.model';
+export { Page } from './lib/shared/models/aspire-pagination.model';

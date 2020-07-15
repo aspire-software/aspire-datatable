@@ -84,9 +84,9 @@ export class DaatatableEditComponent implements OnInit {
       console.log(record);
       this.patchingEditValue = record[0];
       // console.log("", this.patchingEditValue);
-      const transformDate = new Date(this.patchingEditValue.date),
-        mnth = ('0' + (transformDate.getMonth() + 1)).slice(-2),
-        day = ('0' + transformDate.getDate()).slice(-2);
+      const transformDate = new Date(this.patchingEditValue.date);
+      const mnth = ('0' + (transformDate.getMonth() + 1)).slice(-2);
+      const day = ('0' + transformDate.getDate()).slice(-2);
       const getTransformDate = [day, mnth, transformDate.getFullYear()].join('/');
       //  console.log(getTransformDate);
       //  _id=this.patchingEditValue._id;

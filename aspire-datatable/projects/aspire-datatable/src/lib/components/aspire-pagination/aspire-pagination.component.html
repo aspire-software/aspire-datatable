@@ -2,7 +2,7 @@
     <ul class="{{options.paginationStyle}}">
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onFirstPageClick()">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
+                (click)="onFirstOrLastPageClick(true)">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
@@ -35,7 +35,7 @@
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onLastPageClick()">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
+                (click)="onFirstOrLastPageClick(false)">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
         </li>
     </ul>
 </nav>
