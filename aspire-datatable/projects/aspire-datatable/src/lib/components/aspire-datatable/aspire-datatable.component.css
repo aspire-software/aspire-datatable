@@ -115,8 +115,9 @@ select.form-control {
   display: block;
 }
 
-.dropdown-content > a:hover {
-  background-color: #f1f1f1;
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
@@ -126,6 +127,3 @@ select.form-control {
 .dropdown:hover .dropdown-btn {
   background-color: blue;
 }
-
-.dropdown-content a:hover {background-color: #ddd;}
-

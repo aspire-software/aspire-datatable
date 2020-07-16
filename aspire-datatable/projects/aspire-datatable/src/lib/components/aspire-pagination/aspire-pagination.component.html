@@ -2,40 +2,41 @@
     <ul class="{{options.paginationStyle}}">
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onFirstOrLastPageClick(true)">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
+                (click)="onPageClick(startPageNumber)">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPreviousPageClick(pageModel.currentPage - 1)">{{options.prevPageText ? options.prevPageText : '&laquo;'}}</a>
+                (click)="onPageClick(pageModel.currentPage - 1)">{{options.prevPageText ? options.prevPageText : '&laquo;'}}</a>
+        </li>
+        <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === startPageNumber"
+            *ngIf='totalPages > 0'>
+            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+                (click)="onPageClick(startPageNumber)">{{startPageNumber}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
-            *ngIf='((pageModel.currentPage - options.maxVisiblePage) > 1)'>
-            <a class="{{options.pageLinkStyle}}"
-                href="javascript:void(0)">{{pageModel.currentPage - options.maxVisiblePage }}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
-            *ngIf='(pageModel.currentPage - options.maxVisiblePage) > 1'>
+            *ngIf='(totalPages > options.maxVisiblePage) && pageModel.firstPage > startPageNumber + 1'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>
-        <li class="{{options.pageItemStyle}}" *ngFor="let page of pages" [class.disabled]="disablePagination()"
+        <li class="{{options.pageItemStyle}}" *ngFor="let page of pages"
             [class.active]="pageModel.currentPage === page">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)" (click)="onPageClick(page)">{{page}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
-            *ngIf='(pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
+            *ngIf='(totalPages > options.maxVisiblePage) && pageModel.lastPage < totalPages - 1'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
-            *ngIf='(pageModel.currentPage + options.maxVisiblePage) <= totalPages'>
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">{{totalPages}}</a>
+        <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === totalPages"
+            *ngIf='totalPages > 1'>
+            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+                (click)="onPageClick(totalPages)">{{totalPages}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onNextPageClick(pageModel.currentPage + 1)">{{options.nextPageText ? options.nextPageText : '&raquo;' }}</a>
+                (click)="onPageClick(pageModel.currentPage + 1)">{{options.nextPageText ? options.nextPageText : '&raquo;' }}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onFirstOrLastPageClick(false)">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
+                (click)="onPageClick(totalPages)">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
         </li>
     </ul>
 </nav>

@@ -13,6 +13,7 @@ export class AspirePaginationComponent implements OnInit {
   pageModel: Page;
   pages: number[] = [];
   totalPages: number;
+  startPageNumber: number = 1;
 
   @Input() options: IPaginationOptions = new PaginationOptions();
 
@@ -63,14 +64,16 @@ export class AspirePaginationComponent implements OnInit {
   initPagination(): void {
     this.pages = [];
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    this.pageModel = new Page(1, 1, this.validateMaxSize());
+    this.pageModel = new Page(this.startPageNumber, 1, this.validateMaxSize() - 1);
     this.setPages();
   }
 
   setPages(): void {
     this.pages = [];
     for (let i = this.pageModel.firstPage; i <= this.pageModel.lastPage && i <= this.totalPages; i++) {
-      this.pages.push(i);
+      if (i !== this.startPageNumber && i !== this.totalPages) {
+        this.pages.push(i);
+      }
     }
   }
 
@@ -79,82 +82,22 @@ export class AspirePaginationComponent implements OnInit {
 
     const median = Math.ceil(this.validateMaxSize() / 2) - 1;
     let min = this.pageModel.currentPage - median;
-    let max = this.pageModel.currentPage + median + 1;
+    let max = this.pageModel.currentPage + median - 1;
 
-    if (min < 1) {
-      min = 1;
-      max = this.validateMaxSize();
-    }
-    else if (max > this.totalPages) {
-      max = this.totalPages;
-      min = (this.totalPages - this.validateMaxSize()) + 1;
-    }
-
-    this.pageModel.firstPage = min;
-    this.pageModel.lastPage = max;
-
-    this.onPageChanged.next(this.pageModel);
-    this.setPages();
-  }
-
-  onPreviousPageClick(prevPage: number): void {
-    if (prevPage < 1) {
-      return;
-    }
-
-    this.pageModel.currentPage = prevPage;
-
-    let max = this.pageModel.lastPage;
-    let min = (this.pageModel.currentPage - this.validateMaxSize()) + (max - this.pageModel.currentPage) + 1;
-
-    if (this.pageModel.firstPage > this.pageModel.currentPage) {
-      min = this.pageModel.currentPage;
-      max = (this.pageModel.currentPage + this.validateMaxSize()) - 1;
-      this.pageModel.firstPage = min;
-      this.pageModel.lastPage = max;
-    }
-
-    this.pageModel.firstPage = min;
-    this.pageModel.lastPage = max;
-
-    this.onPageChanged.next(this.pageModel);
-    this.setPages();
-  }
-
-  onNextPageClick(nextPage: number): void {
-    if (nextPage > this.totalPages) {
-      return;
-    }
-
-    this.pageModel.currentPage = nextPage;
-
-    let min = this.pageModel.firstPage;
-    let max = (this.pageModel.firstPage + this.validateMaxSize()) - 1;
-
-    if (this.pageModel.currentPage <= this.options.maxVisiblePage) {
-      min = 1;
-      max = this.validateMaxSize();
+    if (min < 2) {
+      min = 2;
+      max = this.validateMaxSize() - 1;
     }
     else if (max >= this.totalPages) {
-      min = (this.totalPages - this.validateMaxSize()) + 1;
       max = this.totalPages;
-    }
-    else {
-      min = (this.pageModel.currentPage - this.validateMaxSize()) + 1;
-      max = this.pageModel.currentPage;
+      min = (this.totalPages - this.validateMaxSize()) + 2;
+    } else {
+      min = min + 1;
     }
 
     this.pageModel.firstPage = min;
     this.pageModel.lastPage = max;
 
-    this.onPageChanged.next(this.pageModel);
-    this.setPages();
-  }
-
-  onFirstOrLastPageClick(isFirst: boolean): void {
-    this.pageModel.currentPage = isFirst ? 1 : this.totalPages;
-    this.pageModel.firstPage = isFirst ? this.pageModel.currentPage : ((this.pageModel.currentPage - this.validateMaxSize()) + 1);
-    this.pageModel.lastPage = isFirst ? ((this.pageModel.firstPage + this.validateMaxSize()) - 1) : this.pageModel.currentPage;
     this.onPageChanged.next(this.pageModel);
     this.setPages();
   }

@@ -130,9 +130,9 @@
         <tbody>
           <tr *ngIf="records.length === 0">
             <td [attr.colspan]="headers.length+1">
-              <span class="col py-3 px-md-5 border text-center">
+              <div class="col py-3 px-md-5 border text-center">
                 {{options.noRecordFoundMessage}}
-              </span>
+              </div>
             </td>
           </tr>
           <tr class="{{options.tableRowStyle}}" *ngFor="let item of records | slice: getStart() : getEnd()">
@@ -150,7 +150,7 @@
                   <div class="dropdown-content">
                     <span *ngFor="let value of item[header.field].perform;let i=index;">
                       <a class="dropdown-item" *ngIf="!value.popupConfirm" [href]=value.url>{{value.perAction}}</a>
-                      <a class="dropdown-item">
+                      <a class="">
                         <lib-aspire-popup *ngIf="value.popupConfirm" [popupLib]="popup" [classList]="'dropdown-item'"
                           [perAction]="value.perAction" (confirmDelete)="onConfirmDelete(item)">
                         </lib-aspire-popup>
