@@ -22,7 +22,7 @@ export class ViewDatatableComponent implements OnInit {
   }
 
   getRecord(index) {
-    var records = JSON.parse(localStorage.getItem('records'));
+    const records = JSON.parse(localStorage.getItem('records'));
     return records.filter(item => {
       return item._id === index;
     });

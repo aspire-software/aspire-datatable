@@ -88,9 +88,9 @@ export class DatatableBasicComponent implements OnInit {
     });
     this.tableData.splice(recordIndex, 1);
     if (event) {
-      var records = JSON.parse(localStorage.getItem('records'));
-      records.splice(recordIndex, 1);
-      localStorage.setItem('records', JSON.stringify(records));
+      const recordToDelete = JSON.parse(localStorage.getItem('records'));
+      recordToDelete.splice(recordIndex, 1);
+      localStorage.setItem('records', JSON.stringify(recordToDelete));
     }
   }
 

@@ -41,7 +41,8 @@ export class DaatatableEditComponent implements OnInit {
       email: this.dataTableForm.value.email,
       phone: this.dataTableForm.value.phone,
       address: this.dataTableForm.value.address,
-      date: this.datePipe.transform(this.dataTableForm.value.date, "EEE MMM dd yyyy HH:mm:ss").concat(this.dataTableForm.value.actualDate.split('00:00:00')[1])
+      // tslint:disable-next-line:max-line-length
+      date: this.datePipe.transform(this.dataTableForm.value.date, 'EEE MMM dd yyyy HH:mm:ss').concat(this.dataTableForm.value.actualDate.split('00:00:00')[1])
     };
     if (this.editMode) {
       this.editRecords(this.id, this.modifiedValue);
@@ -53,13 +54,13 @@ export class DaatatableEditComponent implements OnInit {
   }
 
   addRecords(value) {
-    var records = this.getRecordsFromLocalStorage();
+    const records = this.getRecordsFromLocalStorage();
     records.push(value);
     localStorage.setItem('records', JSON.stringify(records));
   }
 
   editRecords(index, value) {
-    var records = this.getRecordsFromLocalStorage();
+    const records = this.getRecordsFromLocalStorage();
     const recordIndex = records.findIndex(item => {
       return item._id === index;
     });
