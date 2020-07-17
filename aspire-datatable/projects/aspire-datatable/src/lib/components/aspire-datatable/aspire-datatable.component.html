@@ -144,21 +144,23 @@
               <span *ngIf="header.type != 'date' && header.field != 'action'">
                 {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
               </span>
-              <span *ngIf="header.field==='action' || header.type==='any'">
-                <div class="dropdown">
-                  <button type="button" class="dropdown-btn"><span [class]=item[header.field].classType></span></button>
-                  <div class="dropdown-content">
-                    <span *ngFor="let value of item[header.field].perform;let i=index;">
-                      <a class="dropdown-item" *ngIf="!value.popupConfirm" [href]=value.url>{{value.perAction}}</a>
-                      <a class="">
-                        <lib-aspire-popup *ngIf="value.popupConfirm" [popupLib]="popup" [classList]="'dropdown-item'"
-                          [perAction]="value.perAction" (confirmDelete)="onConfirmDelete(item)">
-                        </lib-aspire-popup>
-                      </a>
-                    </span>
-                  </div>
+              <div class="dropdown" ngbDropdown display="dynamic" placement="left-top left-bottom" container="body"
+                *ngIf="header.field==='action' || header.type==='any'">
+                <button type="button" class="dropdown-btn" id="dropdownMenuButton1" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" ngbDropdownToggle><span
+                    [class]=item[header.field].classType></span></button>
+                <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownMenuButton2">
+                  <span *ngFor="let value of item[header.field].perform;let i=index;">
+                    <a ngbDropdownItem class="dropdown-item" *ngIf="!value.popupConfirm"
+                      [href]=value.url>{{value.perAction}}</a>
+                    <a class="">
+                      <lib-aspire-popup *ngIf="value.popupConfirm" [popupLib]="popup" [classList]="'dropdown-item'"
+                        [perAction]="value.perAction" (confirmDelete)="onConfirmDelete(item)">
+                      </lib-aspire-popup>
+                    </a>
+                  </span>
                 </div>
-              </span>
+              </div>
             </td>
           </tr>
         </tbody>

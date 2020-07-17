@@ -31,7 +31,7 @@ export class DatatableBasicComponent implements OnInit {
       showRecordsCount: true,
       showPagination: true,
       showRecordsPerPageSelector: true,
-      recordsPerPageOptions: [5, 10, 30, 50],
+      recordsPerPageOptions: [5, 10, 20, 30, 50],
       paginationOptions: {
         ariaLabel: 'Default pagination',
         disable: false,
@@ -71,6 +71,9 @@ export class DatatableBasicComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('records')) {
+      localStorage.setItem('records', JSON.stringify(records));
+    }
     this.route.params.subscribe((params: Params) => {
       const id = 'id';
       this.id = params[id];
@@ -80,12 +83,15 @@ export class DatatableBasicComponent implements OnInit {
   }
 
   onConfirmUserDelete(event) {
-    console.log(event);
-    // console.log();
     const recordIndex = this.tableData.findIndex(item => {
       return item.email === event.email;
     });
     this.tableData.splice(recordIndex, 1);
+    if (event) {
+      var records = JSON.parse(localStorage.getItem('records'));
+      records.splice(recordIndex, 1);
+      localStorage.setItem('records', JSON.stringify(records));
+    }
   }
 
   initSampleData = () => {
@@ -100,20 +106,21 @@ export class DatatableBasicComponent implements OnInit {
       { field: 'age', type: 'number' },
       { field: 'action', type: 'any' }
     ];
-    this.tableData = records.map((item, index) => ({
+
+    this.tableData = JSON.parse(localStorage.getItem('records')).map((item, index) => ({
       name: `${item.name.first} ${item.name.last}`,
       address: item.address,
       mobile: item.phone,
       balance: item.balance,
       email: item.email,
-      isActive: item.isActive ? 'yes' : 'no',
+      isActive: item.isActive === true || item.isActive === 'true' ? 'yes' : 'no',
       date: item.date,
       age: item.age,
       action: {
         id: item._id,
         classType: 'fa fa-cog',
         perform: [
-          { perAction: 'edit', class: 'fa-fa-cog', url: item.email + '/edit' },
+          { perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
           { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
           { perAction: 'delete', class: 'fa fa-cog', url: null, popupConfirm: true },
           { perAction: 'another', class: 'fa fa-cog', url: null, popupConfirm: true }

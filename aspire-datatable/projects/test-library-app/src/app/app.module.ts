@@ -9,7 +9,7 @@ import { LinkRefComponent } from './components/link-ref/link-ref.component';
 import { RouterModule } from '@angular/router';
 import { DaatatableEditComponent } from './components/daatatable-edit/daatatable-edit.component';
 import { ViewDatatableComponent } from './components/view-datatable/view-datatable.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

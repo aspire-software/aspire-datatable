@@ -7,6 +7,7 @@ import { TableEventsService } from '../../shared/table-events.service';
 import { AspireRecordsPerpageModule } from '../aspire-records-perpage/aspire-records-perpage.module';
 import { AspirePopupModule } from '../aspire-popup/aspire-popup.module';
 import { CommonModule } from '@angular/common';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     AspirePaginationModule,
     AspireRecordsCountModule,
     AspireRecordsPerpageModule,
-    AspirePopupModule
+    AspirePopupModule,
+    NgbDropdownModule
   ],
   exports: [AspireDatatableComponent],
   providers: [TableEventsService]

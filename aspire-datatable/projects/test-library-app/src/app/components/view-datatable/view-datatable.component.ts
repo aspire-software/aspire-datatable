@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { records } from '../../helper/table-record';
 
 @Component({
   selector: 'app-view-datatable',
@@ -20,9 +19,10 @@ export class ViewDatatableComponent implements OnInit {
     });
     this.displayedArray = this.getRecord(this.id);
     this.displayedObject = this.displayedArray[0];
-    console.log(this.displayedObject);
   }
+
   getRecord(index) {
+    var records = JSON.parse(localStorage.getItem('records'));
     return records.filter(item => {
       return item._id === index;
     });

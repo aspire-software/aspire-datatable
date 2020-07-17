@@ -3,6 +3,7 @@ import { TableEventsService } from '../../shared/table-events.service';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
 import { ComponentsClass } from '../../shared/models/components-class.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-datatable',
@@ -15,7 +16,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() records: any[];
   @Input() options: ITableOptions = new TableOptions();
   @Input() popup: any;
-  @Output() confirmUserDelete = new EventEmitter();
+  private onConfirmUserDelete = new BehaviorSubject(null);
+  @Output() confirmUserDelete = this.onConfirmUserDelete.asObservable();
+
   isPageLoad: boolean = true;
 
   constructor(private tableEvents: TableEventsService) { }
@@ -87,7 +90,8 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   }
 
   onConfirmDelete(event: any) {
-    this.confirmUserDelete.emit(event);
+    this.onConfirmUserDelete.next(event);
+    this.onPageChanged(null);
   }
 
   /* Get value from dropdown of per page record selector */
