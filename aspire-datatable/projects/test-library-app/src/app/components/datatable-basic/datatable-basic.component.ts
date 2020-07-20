@@ -82,7 +82,14 @@ export class DatatableBasicComponent implements OnInit {
     this.initSampleData();
   }
 
-  onConfirmUserDelete(event) {
+  onActionConfirm(event) {
+    if (event) {
+      if (event.action === 'delete') { this.onDeleteConfirm(event.item); }
+      else if (event.action === 'status') { this.onStatusConfirm(event.item); }
+    }
+  }
+
+  onDeleteConfirm(event) {
     const recordIndex = this.tableData.findIndex(item => {
       return item.email === event.email;
     });
@@ -91,6 +98,23 @@ export class DatatableBasicComponent implements OnInit {
       const recordToDelete = JSON.parse(localStorage.getItem('records'));
       recordToDelete.splice(recordIndex, 1);
       localStorage.setItem('records', JSON.stringify(recordToDelete));
+    }
+  }
+
+  onStatusConfirm(event) {
+    const recordIndex = this.tableData.findIndex(item => {
+      return item.email === event.email;
+    });
+    const recordToUpdate = JSON.parse(localStorage.getItem('records'));
+    if (this.tableData[recordIndex].isActive === 'yes') {
+      this.tableData[recordIndex].isActive = 'no';
+      recordToUpdate[recordIndex].isActive = false;
+    } else {
+      this.tableData[recordIndex].isActive = 'yes';
+      recordToUpdate[recordIndex].isActive = true;
+    }
+    if (event) {
+      localStorage.setItem('records', JSON.stringify(recordToUpdate));
     }
   }
 
@@ -123,13 +147,13 @@ export class DatatableBasicComponent implements OnInit {
           { perAction: 'edit', class: 'fa-fa-cog', url: item._id + '/edit' },
           { perAction: 'view', class: 'fa fa-cog', url: item._id + '/view' },
           { perAction: 'delete', class: 'fa fa-cog', url: null, popupConfirm: true },
-          { perAction: 'another', class: 'fa fa-cog', url: null, popupConfirm: true }
+          { perAction: 'status', class: 'fa fa-cog', url: null, popupConfirm: true }
         ]
       }
     })
     );
     this.tablePopup = [{ body: 'Do You want to delete ?', header: 'profile update!!!', perAction: 'delete' },
-    { body: 'Do You want to another ?', header: 'profile update another!!!', perAction: 'another' }];
+    { body: 'Do You want to change status ?', header: 'change status!!!', perAction: 'status' }];
   }
 
   onAdd() {

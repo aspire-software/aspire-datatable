@@ -29,6 +29,9 @@ export class DaatatableEditComponent implements OnInit {
     const randomId = (Math.random().toString(36).substring(2, 15)
       + Math.random().toString(36).substring(2, 15)
       + Math.random().toString(36).substring(2, 5));
+    const dateToConcat = this.dataTableForm.value.actualDate && this.dataTableForm.value.actualDate !== '' ?
+      this.dataTableForm.value.actualDate.split('00:00:00')[1] : ' GMT-0700 (PDT)';
+    const modifiedDate = this.datePipe.transform(this.dataTableForm.value.date, 'EEE MMM dd yyyy HH:mm:ss').concat(dateToConcat);
     this.modifiedValue = {
       _id: this.dataTableForm.value._id ? this.dataTableForm.value._id : randomId,
       isActive: this.dataTableForm.value.isActive,
@@ -41,8 +44,7 @@ export class DaatatableEditComponent implements OnInit {
       email: this.dataTableForm.value.email,
       phone: this.dataTableForm.value.phone,
       address: this.dataTableForm.value.address,
-      // tslint:disable-next-line:max-line-length
-      date: this.datePipe.transform(this.dataTableForm.value.date, 'EEE MMM dd yyyy HH:mm:ss').concat(this.dataTableForm.value.actualDate.split('00:00:00')[1])
+      date: modifiedDate
     };
     if (this.editMode) {
       this.editRecords(this.id, this.modifiedValue);
@@ -112,7 +114,9 @@ export class DaatatableEditComponent implements OnInit {
       email: new FormControl(email, [Validators.required]),
       isActive: new FormControl(isActive, [Validators.required]),
       actualDate: new FormControl(actualDate, [Validators.required]),
-      date: new FormControl(formatDate(actualDate, 'yyyy-MM-dd', 'en', '-0700'), [Validators.required]),
+      date: new FormControl(actualDate && actualDate !== '' ?
+        (formatDate(actualDate, 'yyyy-MM-dd', 'en', '-0700'))
+        : formatDate(new Date().toString(), 'yyyy-MM-dd', 'en'), [Validators.required]),
       age: new FormControl(age, [Validators.required]),
     });
   }

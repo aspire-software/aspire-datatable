@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'lib-aspire-popup',
@@ -10,8 +11,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AspirePopupComponent implements OnInit {
   @Input() popupLib;
   @Input() classList = 'dropdown-item';
-  @Output() confirmDelete = new EventEmitter<any>();
   @Input() perAction;
+
+  private onconfirmAction = new BehaviorSubject(null);
+  @Output() confirmAction = this.onconfirmAction.asObservable();
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
@@ -22,6 +25,6 @@ export class AspirePopupComponent implements OnInit {
   }
 
   onConfirm() {
-    this.confirmDelete.emit();
+    this.onconfirmAction.next(this.perAction);
   }
 }

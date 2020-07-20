@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output } from '@angular/core';
 import { TableEventsService } from '../../shared/table-events.service';
 import { ITableOptions, TableOptions } from '../../shared/models/table-options.model';
 import { PaginationOptions } from '../../shared/models/pagination-options.model';
@@ -16,8 +16,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() records: any[];
   @Input() options: ITableOptions = new TableOptions();
   @Input() popup: any;
-  private onConfirmUserDelete = new BehaviorSubject(null);
-  @Output() confirmUserDelete = this.onConfirmUserDelete.asObservable();
+
+  private onRecordAction = new BehaviorSubject(null);
+  @Output() actionConfirm = this.onRecordAction.asObservable();
 
   isPageLoad: boolean = true;
 
@@ -89,9 +90,11 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
     this.tableEvents.setPage(this.options.page);
   }
 
-  onConfirmDelete(event: any) {
-    this.onConfirmUserDelete.next(event);
-    this.onPageChanged(null);
+  onConfirmAction(event: any, record) {
+    if (event) {
+      this.onRecordAction.next({ action: event, item: record });
+      this.onPageChanged(null);
+    }
   }
 
   /* Get value from dropdown of per page record selector */
