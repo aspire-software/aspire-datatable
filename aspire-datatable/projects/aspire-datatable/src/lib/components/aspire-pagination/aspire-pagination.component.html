@@ -2,11 +2,11 @@
     <ul class="{{options.paginationStyle}}">
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(startPageNumber)">{{options.firstPageText ? options.firstPageText : '&laquo;&laquo;'}}</a>
+                (click)="onPageClick(startPageNumber)">{{options.firstPageText}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(pageModel.currentPage - 1)">{{options.prevPageText ? options.prevPageText : '&laquo;'}}</a>
+                (click)="onPageClick(pageModel.currentPage - 1)">{{options.prevPageText}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === startPageNumber"
             *ngIf='totalPages > 0'>
@@ -32,11 +32,11 @@
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(pageModel.currentPage + 1)">{{options.nextPageText ? options.nextPageText : '&raquo;' }}</a>
+                (click)="onPageClick(pageModel.currentPage + 1)">{{options.nextPageText}}</a>
         </li>
         <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(totalPages)">{{options.lastPageText ? options.lastPageText : '&raquo;&raquo;'}}</a>
+                (click)="onPageClick(totalPages)">{{options.lastPageText}}</a>
         </li>
     </ul>
 </nav>
