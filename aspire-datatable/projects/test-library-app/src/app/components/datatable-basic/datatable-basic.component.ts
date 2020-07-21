@@ -152,6 +152,7 @@ export class DatatableBasicComponent implements OnInit {
       }
     })
     );
+
     this.tablePopup = [{ body: 'Do You want to delete ?', header: 'profile update!!!', perAction: 'delete' },
     { body: 'Do You want to change status ?', header: 'change status!!!', perAction: 'status' }];
   }
