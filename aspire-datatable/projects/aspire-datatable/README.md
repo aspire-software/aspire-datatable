@@ -148,7 +148,7 @@ You can create datatable using below options:
 | componentsClass.recordsPerPage.position | 'top-left' | This option sets position of records per page component. `top-left`, `top-center`, `top-right`, `bottom-left`, `bottom-center`, `bottom-right` are the possible options for position values. |
 | componentsClass.recordsPerPage.classList | 'col-md-6 col-sm-6' | This option sets custom css class list to position records per page component |
 | componentsClass.recordsPerPage.alignmentClassList | 'justify-left' | This option sets custom css class list for alignment of records per page component |
-|  |  |  |
+
 
 Below is the example to set options and sub-options for datatable:
 
@@ -193,3 +193,46 @@ Below is the example to set options and sub-options for datatable:
 &emsp;`}`<br>
 `};`
 
+```typescript
+
+options = {
+    tableStyle: 'table table-striped table-bordered',
+    headerStyle: 'thead-light',
+    recordsPerPageOptions: [5, 10, 20, 30, 50],
+    paginationOptions: {
+        ariaLabel: 'Default pagination',
+        disable: false,
+        paginationStyle: 'pagination justify-content-center',
+        pageItemStyle: 'page-item',
+        pageLinkStyle: 'page-link',
+        firstPageText: '<<',
+        prevPageText: '<',
+        nextPageText: '>',
+        lastPageText: '>>'
+    },
+    componentsClass: {
+        topBlankComponentClassList: 'col-md-6 col-sm-12',
+        bottomBlankComponentClassList: 'col-md-4 col-sm-12',
+        pagination: {
+            position: 'bottom-right',
+            classList: 'col-md-8 col-sm-8 mt-2 mt-sm-0',
+            alignmentClassList: 'justify-right justify-center-center'
+        },
+        recordsCount: {
+            position: 'bottom-left',
+            classList: 'col-md-4 col-sm-4 mt-2 mt-sm-0',
+            alignmentClassList: 'justify-left justify-center-center'
+        },
+        search: {
+            position: 'top-right',
+            classList: 'col-md-6 col-sm-6 mb-2 mb-sm-0',
+            alignmentClassList: 'justify-right'
+        },
+        recordsPerPage: {
+            position: 'top-left',
+            classList: 'col-md-6 col-sm-6',
+            alignmentClassList: 'justify-left'
+        }
+    }
+};
+```
