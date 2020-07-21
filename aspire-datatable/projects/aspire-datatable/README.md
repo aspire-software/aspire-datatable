@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 aspire-datatable is an Angular component for creating data table for large and complex data with lots of configurable features.
 
-It is developed using `Angular CLI 9.1.4`.
+It is developed using `Angular CLI` version `9.1.4`.
 
 ## Installations
 
@@ -52,57 +52,68 @@ Import aspire-datatable module as below:<br>
 Register `AspireDatatableModule` in your module.
 
 Use markup as below:
-
-`<aspire-datatable [headers]="headers" [records]="records" [options]="options" [popup]="popup" (actionConfirm)="actionConfirm($event)">
-</aspire-datatable>`
+```typescript
+<aspire-datatable [headers]="headers" [records]="records" [options]="options" [popup]="popup" (actionConfirm)="actionConfirm($event)">
+</aspire-datatable>
+```
 
 Set details as below:
 
 **headers:<br>**
-`headers = [`<br>
-&emsp;`{ field: 'name', type: 'string' },`<br>
-&emsp;`{ field: 'status', type: 'boolean' },`<br>
-&emsp;`{ field: 'date', type: 'date' },`<br>
-&emsp;`{ field: 'age', type: 'number' },`<br>
-&emsp;`{ field: 'action', type: 'any' }`<br>
-`];`
+```typescript
+headers = [
+    { field: 'name', type: 'string' },
+    { field: 'status', type: 'boolean' },
+    { field: 'date', type: 'date' },
+    { field: 'age', type: 'number' },
+    { field: 'action', type: 'any' }
+];
+```
 
 **records:<br>**
-`records = [`<br>
-&emsp;`{`<br>
-&emsp;&emsp;`name: 'John',`<br>
-&emsp;&emsp;`status: 'yes',`<br>
-&emsp;&emsp;`date: '01/01/2020',`<br>
-&emsp;&emsp;`age: 25,`<br>
-&emsp;&emsp;`action: {`<br>
-&emsp;&emsp;&emsp;`id: 1,`<br>
-&emsp;&emsp;&emsp;`classType: 'fa fa-cog',`<br>
-&emsp;&emsp;&emsp;`perform: [`<br>
-&emsp;&emsp;&emsp;&emsp;`{ perAction: 'edit', url: '1/edit' },`<br>
-&emsp;&emsp;&emsp;&emsp;`{ perAction: 'delete', url: null, popupConfirm: true }`<br>
-&emsp;&emsp;&emsp;`]`<br>
-&emsp;&emsp;`}`<br>
-&emsp;`}`<br>
-`];`
+```typescript
+records = [
+    {
+        name: 'John',
+        status: 'yes',
+        date: '01/01/2020',
+        age: 25,
+        action: {
+            id: 1,
+            classType: 'fa fa-cog',
+            perform: [
+                { perAction: 'edit', url: '1/edit' },
+                { perAction: 'delete', url: null, popupConfirm: true }
+            ]
+        }
+    }
+];
+```
 
 **options:<br>**
-`options = {`<br>
-&emsp;`tableStyle: 'table table-striped table-bordered',`<br>
-&emsp;`headerStyle: 'thead-light',`<br>
-&emsp;`recordsPerPageOptions: [5, 10, 20, 30, 50]`<br>
-`};`
+```typescript
+options = {
+    tableStyle: 'table table-striped table-bordered',
+    headerStyle: 'thead-light',
+    recordsPerPageOptions: [5, 10, 20, 30, 50]
+};
+```
 
 **popup:<br>**
-`Popup = [`<br>
-&emsp;`{ body: 'Do You want to delete this record?', header: 'Delete Action', perAction: 'delete' }`<br>
-`];`
+```typescript
+Popup = [
+    { body: 'Do You want to delete this record?', header: 'Delete Action', perAction: 'delete' }
+];
+```
 
 **actionConfirm:<br>**
-`onActionConfirm(event) {`<br>
-&emsp;`if (event && event.action === 'delete') {`<br>
-&emsp;&emsp;`performDelete(event.item);`<br>
-&emsp;`}`<br>
-`}`
+```typescript
+onActionConfirm(event) {
+    if (event && event.action === 'delete') {
+        performDelete(event.item);
+    }
+}
+```
 
 ## API
 You can create datatable using below options:
@@ -152,49 +163,7 @@ You can create datatable using below options:
 
 Below is the example to set options and sub-options for datatable:
 
-`options = {`<br>
-&emsp;`tableStyle: 'table table-striped table-bordered',`<br>
-&emsp;`headerStyle: 'thead-light',`<br>
-&emsp;`recordsPerPageOptions: [5, 10, 20, 30, 50]`<br>
-&emsp;`paginationOptions: {`<br>
-&emsp;&emsp;`ariaLabel: 'Default pagination',`<br>
-&emsp;&emsp;`disable: false,`<br>
-&emsp;&emsp;`paginationStyle: 'pagination justify-content-center',`<br>
-&emsp;&emsp;`pageItemStyle: 'page-item',`<br>
-&emsp;&emsp;`pageLinkStyle: 'page-link',`<br>
-&emsp;&emsp;`firstPageText: '<<',`<br>
-&emsp;&emsp;`prevPageText: '<',`<br>
-&emsp;&emsp;`nextPageText: '>',`<br>
-&emsp;&emsp;`lastPageText: '>>'`<br>
-&emsp;`},`<br>
-&emsp;`componentsClass: {`<br>
-&emsp;&emsp;`topBlankComponentClassList: 'col-md-6 col-sm-12',`<br>
-&emsp;&emsp;`bottomBlankComponentClassList: 'col-md-4 col-sm-12',`<br>
-&emsp;&emsp;`pagination: {`<br>
-&emsp;&emsp;&emsp;`position: 'bottom-right',`<br>
-&emsp;&emsp;&emsp;`classList: 'col-md-8 col-sm-8 mt-2 mt-sm-0',`<br>
-&emsp;&emsp;&emsp;`alignmentClassList: 'justify-right justify-center-center'`<br>
-&emsp;&emsp;`},`<br>
-&emsp;&emsp;`recordsCount: {`<br>
-&emsp;&emsp;&emsp;`position: 'bottom-left',`<br>
-&emsp;&emsp;&emsp;`classList: 'col-md-4 col-sm-4 mt-2 mt-sm-0',`<br>
-&emsp;&emsp;&emsp;`alignmentClassList: 'justify-left justify-center-center'`<br>
-&emsp;&emsp;`},`<br>
-&emsp;&emsp;`search: {`<br>
-&emsp;&emsp;&emsp;`position: 'top-right',`<br>
-&emsp;&emsp;&emsp;`classList: 'col-md-6 col-sm-6 mb-2 mb-sm-0',`<br>
-&emsp;&emsp;&emsp;`alignmentClassList: 'justify-right'`<br>
-&emsp;&emsp;`},`<br>
-&emsp;&emsp;`recordsPerPage: {`<br>
-&emsp;&emsp;&emsp;`position: 'top-left',`<br>
-&emsp;&emsp;&emsp;`classList: 'col-md-6 col-sm-6',`<br>
-&emsp;&emsp;&emsp;`alignmentClassList: 'justify-left'`<br>
-&emsp;&emsp;`}`<br>
-&emsp;`}`<br>
-`};`
-
 ```typescript
-
 options = {
     tableStyle: 'table table-striped table-bordered',
     headerStyle: 'thead-light',
