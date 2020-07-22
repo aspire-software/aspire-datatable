@@ -26,26 +26,16 @@ export class AspireSearchingComponent implements OnInit {
   }
 
   search(event: string): void {
-    const searchItem: any = event;
     let filterRecord: any = [];
-    if (searchItem === '') {
+    if (this.totalRecords.length && event && event.trim() !== '' && event.trim().length > 2) {
+      filterRecord = this.totalRecords.filter(element => {
+        if (Object.values(element).some(objectValues =>
+          objectValues.toString().trim().toLowerCase().includes(event.toLowerCase().trim())
+        )) { return element; }
+      });
+      this.records = filterRecord.length ? [...new Set(filterRecord)] : [];
+    } else {
       this.records = this.totalRecords;
-    }
-    else {
-      if (this.totalRecords.length) {
-        if (searchItem.length > 2) {
-          filterRecord = this.totalRecords.filter(element => {
-            const isAvailable = Object.values(element).some(objectValues =>
-              objectValues.toString().trim().toLowerCase().includes(searchItem.toLowerCase().trim())
-            );
-            if (isAvailable) { return element; }
-          });
-          this.records = filterRecord.length ? [...new Set(filterRecord)] : [];
-        }
-        else {
-          this.records = this.totalRecords;
-        }
-      }
     }
     this.getSearchRecords.next(this.records);
   }

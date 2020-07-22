@@ -3,9 +3,7 @@
     <h4 class="modal-title" id="modal-basic-title">{{popupLib[0].header}}</h4>
   </div>
   <div class="modal-body">
-    <form>
-      <label>{{popupLib[0].body}}</label>
-    </form>
+    <p>{{popupLib[0].body}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); onConfirm()">Confirm</button>

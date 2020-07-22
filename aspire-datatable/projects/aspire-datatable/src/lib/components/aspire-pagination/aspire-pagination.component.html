@@ -13,7 +13,7 @@
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
                 (click)="onPageClick(startPageNumber)">{{startPageNumber}}</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
+        <li class="{{options.pageItemStyle}}" (click)="cancelEvent($event)"
             *ngIf='(totalPages > options.maxVisiblePage) && pageModel.firstPage > startPageNumber + 1'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>
@@ -21,7 +21,7 @@
             [class.active]="pageModel.currentPage === page">
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)" (click)="onPageClick(page)">{{page}}</a>
         </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
+        <li class="{{options.pageItemStyle}}" (click)="cancelEvent($event)"
             *ngIf='(totalPages > options.maxVisiblePage) && pageModel.lastPage < totalPages - 1'>
             <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
         </li>

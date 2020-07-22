@@ -43,9 +43,7 @@ export class AspirePaginationComponent implements OnInit {
   @Input()
   set reset(val: boolean) {
     this.resetPagination = val;
-    if (this.resetPagination) {
-      this.initPagination();
-    }
+    if (this.resetPagination) this.initPagination();
   }
 
   get reset(): boolean {
@@ -87,11 +85,10 @@ export class AspirePaginationComponent implements OnInit {
     if (min < 2) {
       min = 2;
       max = this.validateMaxSize() - 1;
-    }
-    else if (max >= this.totalPages) {
+    } else if (max >= this.totalPages) {
       max = this.totalPages;
       min = (this.totalPages - this.validateMaxSize()) + 2;
-    } else {
+    } else if (this.totalPages > this.options.maxVisiblePage) {
       min = min + 1;
     }
 
@@ -107,11 +104,12 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   disablePagination(flag: number = 0): boolean {
-    switch (flag) {
-      case 1: return this.totalItems <= 0 || this.pageModel.currentPage === 1 || this.options.disable;
-      case 2: return this.totalItems <= 0 || this.pageModel.currentPage === this.totalPages || this.options.disable;
-      default: return this.options.disable;
+    debugger;
+    if (this.totalItems <= 0 || this.options.disable || (flag === 1 && this.pageModel.currentPage === 1)
+      || (flag === 2 && this.pageModel.currentPage === this.totalPages)) {
+      return true;
     }
+    return false;
   }
 
   cancelEvent(event) {
