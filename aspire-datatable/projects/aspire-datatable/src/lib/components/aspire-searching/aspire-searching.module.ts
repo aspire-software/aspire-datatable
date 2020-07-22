@@ -3,8 +3,6 @@ import { AspireSearchingComponent } from './aspire-searching.component';
 
 @NgModule({
   declarations: [AspireSearchingComponent],
-  imports: [],
-  exports: [AspireSearchingComponent],
-  providers: []
+  exports: [AspireSearchingComponent]
 })
 export class AspireSearchingModule { }

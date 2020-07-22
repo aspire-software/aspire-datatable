@@ -1,42 +1,40 @@
-<nav [attr.aria-label]="'options.ariaLabel'">
-    <ul class="{{options.paginationStyle}}">
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(startPageNumber)">{{options.firstPageText}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(pageModel.currentPage - 1)">{{options.prevPageText}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === startPageNumber"
-            *ngIf='totalPages > 0'>
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(startPageNumber)">{{startPageNumber}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
-            *ngIf='(totalPages > options.maxVisiblePage) && pageModel.firstPage > startPageNumber + 1'>
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" *ngFor="let page of pages"
-            [class.active]="pageModel.currentPage === page">
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)" (click)="onPageClick(page)">{{page}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
-            *ngIf='(totalPages > options.maxVisiblePage) && pageModel.lastPage < totalPages - 1'>
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === totalPages"
-            *ngIf='totalPages > 1'>
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(totalPages)">{{totalPages}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(pageModel.currentPage + 1)">{{options.nextPageText}}</a>
-        </li>
-        <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
-            <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
-                (click)="onPageClick(totalPages)">{{options.lastPageText}}</a>
-        </li>
-    </ul>
+<nav *ngIf="totalPages !== 0" [attr.aria-label]="'options.ariaLabel'">
+  <ul class="{{options.paginationStyle}}">
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(startPageNumber)">{{options.firstPageText}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)">
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(pageModel.currentPage - 1)">{{options.prevPageText}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === startPageNumber"
+      *ngIf='totalPages > 0'>
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(startPageNumber)">{{startPageNumber}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(1)" (click)="cancelEvent($event)"
+      *ngIf='(totalPages > options.maxVisiblePage) && pageModel.firstPage > startPageNumber + 1'>
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" *ngFor="let page of pages" [class.active]="pageModel.currentPage === page">
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)" (click)="onPageClick(page)">{{page}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)" (click)="cancelEvent($event)"
+      *ngIf='(totalPages > options.maxVisiblePage) && pageModel.lastPage < totalPages - 1'>
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)">...</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.active]="pageModel.currentPage === totalPages" *ngIf='totalPages > 1'>
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(totalPages)">{{totalPages}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(pageModel.currentPage + 1)">{{options.nextPageText}}</a>
+    </li>
+    <li class="{{options.pageItemStyle}}" [class.disabled]="disablePagination(2)">
+      <a class="{{options.pageLinkStyle}}" href="javascript:void(0)"
+        (click)="onPageClick(totalPages)">{{options.lastPageText}}</a>
+    </li>
+  </ul>
 </nav>

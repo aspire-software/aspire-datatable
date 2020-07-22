@@ -10,9 +10,7 @@ import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AspireDatatableComponent,
-  ],
+  declarations: [AspireDatatableComponent],
   imports: [
     CommonModule,
     AspireSearchingModule,

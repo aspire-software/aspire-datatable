@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 
