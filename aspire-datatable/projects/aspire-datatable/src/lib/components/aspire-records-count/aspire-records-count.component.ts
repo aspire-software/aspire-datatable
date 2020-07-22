@@ -13,7 +13,7 @@ export class AspireRecordsCountComponent implements OnInit {
   @Input()
   set totalRecords(val: number) {
     this.totalRecordsNo = val;
-    this.updatedTotalCounts(this.totalRecords);
+    this.updateTotalCounts(this.totalRecords);
   }
 
   get totalRecords(): number {
@@ -24,7 +24,7 @@ export class AspireRecordsCountComponent implements OnInit {
   @Input()
   set itemsPerPage(val: number) {
     this.itemsPerPageNo = val;
-    this.updatedTotalCounts(this.totalRecords);
+    this.updateTotalCounts(this.totalRecords);
   }
 
   get itemsPerPage(): number {
@@ -34,21 +34,20 @@ export class AspireRecordsCountComponent implements OnInit {
   startCount: number;
   endCount: number;
   totalCount: number;
-  totalPages: number;
 
   constructor(private tableEvents: TableEventsService) { }
 
   ngOnInit(): void {
-    this.updatedTotalCounts(this.totalRecords);
+    this.updateTotalCounts(this.totalRecords);
   }
 
   getRecordsCount(): void {
     this.tableEvents.currentPage.subscribe(page => {
       const itemCountDifference = this.itemsPerPage >= this.totalCount;
-      this.startCount = itemCountDifference ? page : ((page - 1) * this.itemsPerPage ? ((page - 1) * this.itemsPerPage) + 1 : 1);
+      const calculateCount = (page - 1) * this.itemsPerPage;
+      this.startCount = itemCountDifference ? page : (calculateCount ? (calculateCount) + 1 : 1);
       this.endCount = itemCountDifference ? this.totalCount :
-      // tslint:disable-next-line:max-line-length
-        (((page - 1) * this.itemsPerPage + this.itemsPerPage) > this.totalCount ? this.totalCount : (page - 1) * this.itemsPerPage + this.itemsPerPage);
+        ((calculateCount + this.itemsPerPage) > this.totalCount ? this.totalCount : calculateCount + this.itemsPerPage);
     });
   }
 
@@ -57,9 +56,8 @@ export class AspireRecordsCountComponent implements OnInit {
     this.getRecordsCount();
   }
 
-  updatedTotalCounts(recordsCount: number): void {
+  updateTotalCounts(recordsCount: number): void {
     this.totalCount = recordsCount;
-    this.totalPages = Math.ceil(this.totalCount / this.itemsPerPage);
     this.getRecordsCount();
   }
 }

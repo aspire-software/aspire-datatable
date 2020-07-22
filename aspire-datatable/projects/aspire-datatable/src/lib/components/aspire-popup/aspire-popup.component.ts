@@ -12,18 +12,20 @@ export class AspirePopupComponent implements OnInit {
   @Input() classList = 'dropdown-item';
   @Input() perAction;
 
-  private onconfirmAction = new BehaviorSubject(null);
-  @Output() confirmAction = this.onconfirmAction.asObservable();
+  private onConfirmAction = new BehaviorSubject(null);
+  @Output() confirmAction = this.onConfirmAction.asObservable();
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.popupLib = this.popupLib.filter(item => item.perAction === this.perAction);
   }
+
   open(content) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }
 
   onConfirm() {
-    this.onconfirmAction.next(this.perAction);
+    this.onConfirmAction.next(this.perAction);
   }
 }

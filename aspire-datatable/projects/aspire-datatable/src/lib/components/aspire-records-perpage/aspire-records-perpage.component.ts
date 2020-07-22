@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -8,19 +8,20 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./aspire-records-perpage.component.css']
 })
 export class AspireRecordsPerpageComponent implements OnInit {
-  recordsPerPageForm: FormGroup;
   @Input() itemsPerPage: number;
   @Input() recordsPerPageOptions: any[] = [5, 10, 20, 30, 50];
 
   private getPerPageRecords = new BehaviorSubject(this.itemsPerPage);
   @Output() perPageRecords = this.getPerPageRecords.asObservable();
 
-  constructor() { }
+  recordsPerPageForm = this.formBuilder.group({
+    recordsPerPage: [null, Validators.required]
+  });
+
+  constructor(protected formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.recordsPerPageForm = new FormGroup({
-      recordsPerPage: new FormControl(this.itemsPerPage, Validators.required)
-    });
+    this.recordsPerPageForm.controls.recordsPerPage.setValue(this.itemsPerPage);
     this.getPerPageRecords.next(this.itemsPerPage);
   }
 
