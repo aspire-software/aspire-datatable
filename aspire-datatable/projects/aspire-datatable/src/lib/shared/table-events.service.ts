@@ -39,10 +39,8 @@ export class TableEventsService {
   private sortData(prop: any, asc: boolean, dataType: string): any {
     return (first: any, second: any) => {
       if (dataType === 'date') {
-        first[prop] = new Date(first[prop]).getTime();
-        second[prop] = new Date(second[prop]).getTime();
-        if (!first[prop]) { first[prop] = 0; }
-        if (!second[prop]) { second[prop] = 0; }
+        first[prop] = new Date(first[prop]).getTime() ? new Date(first[prop]).getTime() : 0;
+        second[prop] = new Date(second[prop]).getTime() ? new Date(second[prop]).getTime() : 0;
       }
 
       if (asc) {

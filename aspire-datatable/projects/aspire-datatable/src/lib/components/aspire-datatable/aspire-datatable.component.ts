@@ -111,5 +111,4 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   getEnd(): number {
     return ((this.options.page - 1) * Number(this.options.itemsPerPage)) + Number(this.options.itemsPerPage);
   }
-
 }
