@@ -76,11 +76,9 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   onPageClick(page: number): void {
-    this.pageModel.currentPage = page;
-
     const median = Math.ceil(this.validateMaxSize() / 2) - 1;
-    let min = this.pageModel.currentPage - median;
-    let max = this.pageModel.currentPage + median - 1;
+    let min = page - median;
+    let max = page + median - 1;
 
     if (min < 2) {
       min = 2;
@@ -92,9 +90,9 @@ export class AspirePaginationComponent implements OnInit {
       min = min + 1;
     }
 
+    this.pageModel.currentPage = page;
     this.pageModel.firstPage = min;
     this.pageModel.lastPage = max;
-
     this.onPageChanged.next(this.pageModel);
     this.setPages();
   }
@@ -104,12 +102,7 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   disablePagination(flag: number = 0): boolean {
-    debugger;
-    if (this.totalItems <= 0 || this.options.disable || (flag === 1 && this.pageModel.currentPage === 1)
-      || (flag === 2 && this.pageModel.currentPage === this.totalPages)) {
-      return true;
-    }
-    return false;
+    return (this.totalItems <= 0 || this.options.disable || (flag === 1 && this.pageModel.currentPage === 1) || (flag === 2 && this.pageModel.currentPage === this.totalPages));
   }
 
   cancelEvent(event) {
