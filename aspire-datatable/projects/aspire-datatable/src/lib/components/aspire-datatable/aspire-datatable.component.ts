@@ -81,19 +81,20 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
 
   public getSearchRecords(value: any): void {
     if (!this.isPageLoad) { this.records = value; }
-    this.onPageChanged(null);
+    this.onPageChanged(null, false);
   }
 
-  onPageChanged(event: any): void {
+  onPageChanged(event: any, reset: boolean): void {
     this.options.page = event ? event.currentPage : 1;
-    this.options.resetPagination = true;
+    this.options.resetPagination = reset;
     this.tableEvents.setPage(this.options.page);
   }
 
   onConfirmAction(event: any, record) {
     if (event) {
       this.onRecordAction.next({ action: event, item: record });
-      this.onPageChanged(null);
+      this.options.resetPagination = true;
+      this.onPageChanged(null, true);
     }
   }
 

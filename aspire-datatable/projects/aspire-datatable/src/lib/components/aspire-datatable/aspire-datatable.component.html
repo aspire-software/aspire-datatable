@@ -27,8 +27,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'top-left'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
@@ -66,8 +66,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'top-center'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
@@ -98,8 +98,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'top-right'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
@@ -195,8 +195,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'bottom-left'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
@@ -234,8 +234,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'bottom-center'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
@@ -266,8 +266,8 @@
     <div *ngIf="options.showPagination && options?.componentsClass?.pagination?.position === 'bottom-right'"
       [class]="options?.componentsClass?.pagination?.classList">
       <aspire-pagination [totalItems]="records.length" [itemsPerPage]="options.itemsPerPage"
-        [reset]="options.resetPagination" [options]="options.paginationOptions" (pageChanged)="onPageChanged($event)"
-        [class]="options?.componentsClass?.pagination?.alignmentClassList">
+        [reset]="options.resetPagination" [options]="options.paginationOptions"
+        (pageChanged)="onPageChanged($event, false)" [class]="options?.componentsClass?.pagination?.alignmentClassList">
       </aspire-pagination>
     </div>
 
