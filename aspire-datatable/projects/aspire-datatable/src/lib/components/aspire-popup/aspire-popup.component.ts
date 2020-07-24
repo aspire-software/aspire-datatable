@@ -17,7 +17,7 @@ export class AspirePopupComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.popupLib = this.popupLib.filter(item => item.perAction === this.perAction);
+    this.popupLib = this.popupLib ? this.popupLib.filter(item => item.perAction === this.perAction) : [{ body: 'Do You want to continue ?', header: 'Action', perAction: this.perAction }];
   }
 
   open(content) {

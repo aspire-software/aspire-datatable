@@ -8,6 +8,12 @@ It is developed using `Angular CLI` version `9.1.4`.
 
 `npm install @aspire.software/aspire-datatable --save`
 
+There are some other dependencies required: 
+* bootstrap >=4.4.1
+`npm install bootstrap --save`
+* @ng-bootstrap/ng-bootstrap >=6.1.0
+`npm install ng-bootstrap/ng-bootstrap --save`
+
 ## Usage
 
 Import aspire-datatable module as below:<br>
