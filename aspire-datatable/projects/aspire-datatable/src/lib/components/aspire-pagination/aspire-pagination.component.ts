@@ -59,7 +59,6 @@ export class AspirePaginationComponent implements OnInit {
   }
 
   initPagination(): void {
-    this.pages = [];
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
     this.pageModel = new Page(this.startPageNumber, 1, this.validateMaxSize() - 1);
     this.setPages();
@@ -68,9 +67,7 @@ export class AspirePaginationComponent implements OnInit {
   setPages(): void {
     this.pages = [];
     for (let i = this.pageModel.firstPage; i <= this.pageModel.lastPage && i <= this.totalPages; i++) {
-      if (i !== this.startPageNumber && i !== this.totalPages) {
-        this.pages.push(i);
-      }
+      if (i !== this.startPageNumber && i !== this.totalPages) this.pages.push(i);
     }
   }
 
@@ -102,9 +99,5 @@ export class AspirePaginationComponent implements OnInit {
 
   disablePagination(flag: number = 0): boolean {
     return (this.totalItems <= 0 || this.options.disable || (flag === 1 && this.pageModel.currentPage === 1) || (flag === 2 && this.pageModel.currentPage === this.totalPages));
-  }
-
-  cancelEvent(event) {
-    event.preventDefault();
   }
 }

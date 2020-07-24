@@ -17,7 +17,6 @@ export class TableEventsService {
 
   public sorting(field: string, records: any[], event: any, dataType: string): any[] {
     const item = event.currentTarget.children[1];
-
     const elements = document.querySelectorAll('thead tr th i.active');
     if (elements) {
       for (const element of elements[Symbol.iterator]()) {

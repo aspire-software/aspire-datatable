@@ -17,10 +17,9 @@ export class AspireDatatableComponent implements OnInit, AfterViewInit {
   @Input() options: ITableOptions = new TableOptions();
   @Input() popup: any;
 
+  isPageLoad: boolean = true;
   private onRecordAction = new BehaviorSubject(null);
   @Output() actionConfirm = this.onRecordAction.asObservable();
-
-  isPageLoad: boolean = true;
 
   constructor(private tableEvents: TableEventsService) { }
 
