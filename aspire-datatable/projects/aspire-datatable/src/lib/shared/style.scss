@@ -112,3 +112,13 @@ select.form-control {
 .dropdown-menu {
   min-width: 85px;
 }
+
+/* pagination css*/
+li.page-item {
+  display: inline-block;
+}
+
+/* records count css*/
+.records-count {
+  margin-bottom: 1rem;
+}

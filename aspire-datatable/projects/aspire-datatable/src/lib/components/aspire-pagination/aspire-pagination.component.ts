@@ -5,8 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-pagination',
-  templateUrl: './aspire-pagination.component.html',
-  styleUrls: ['./aspire-pagination.component.css']
+  templateUrl: './aspire-pagination.component.html'
 })
 
 export class AspirePaginationComponent implements OnInit {

@@ -4,8 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'lib-aspire-popup',
-  templateUrl: './aspire-popup.component.html',
-  styleUrls: ['./aspire-popup.component.css']
+  templateUrl: './aspire-popup.component.html'
 })
 export class AspirePopupComponent implements OnInit {
   @Input() popupLib;

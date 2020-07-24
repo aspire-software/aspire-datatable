@@ -6,7 +6,7 @@ It is developed using `Angular CLI` version `9.1.4`.
 
 ## Installations
 
-`npm install aspire-datatable`
+`npm install @aspire.software/aspire-datatable --save`
 
 ## Usage
 

@@ -1,6 +1,6 @@
 {
-  "name": "aspire-datatable-ws",
-  "version": "0.0.0",
+  "name": "aspire-datatable",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -52,5 +52,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.",
+  "main": "index.js",
+  "author": "Aspire Software Solutions",
+  "license": "MIT"
 }

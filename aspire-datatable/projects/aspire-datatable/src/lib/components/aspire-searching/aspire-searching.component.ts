@@ -3,8 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-searching',
-  templateUrl: './aspire-searching.component.html',
-  styleUrls: ['./aspire-searching.component.css']
+  templateUrl: './aspire-searching.component.html'
 })
 
 export class AspireSearchingComponent implements OnInit {

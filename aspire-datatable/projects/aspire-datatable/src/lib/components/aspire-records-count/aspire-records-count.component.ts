@@ -3,8 +3,7 @@ import { TableEventsService } from '../../shared/table-events.service';
 
 @Component({
   selector: 'aspire-records-count',
-  templateUrl: './aspire-records-count.component.html',
-  styleUrls: ['./aspire-records-count.component.css']
+  templateUrl: './aspire-records-count.component.html'
 })
 
 export class AspireRecordsCountComponent implements OnInit {

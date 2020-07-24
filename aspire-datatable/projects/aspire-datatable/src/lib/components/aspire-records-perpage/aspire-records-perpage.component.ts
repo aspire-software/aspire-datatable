@@ -4,8 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'aspire-records-perpage',
-  templateUrl: './aspire-records-perpage.component.html',
-  styleUrls: ['./aspire-records-perpage.component.css']
+  templateUrl: './aspire-records-perpage.component.html'
 })
 export class AspireRecordsPerpageComponent implements OnInit {
   @Input() itemsPerPage: number;

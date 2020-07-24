@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'aspire-datatable',
   templateUrl: './aspire-datatable.component.html',
-  styleUrls: ['./aspire-datatable.component.css']
+  styleUrls: ['../../shared/style.scss']
 })
 
 export class AspireDatatableComponent implements OnInit, AfterViewInit {
