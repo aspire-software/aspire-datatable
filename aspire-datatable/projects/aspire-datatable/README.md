@@ -46,9 +46,13 @@ headers = [
     { field: 'status', type: 'boolean' },
     { field: 'date', type: 'date' },
     { field: 'age', type: 'number' },
+    { field: 'customColumn', type: 'html' },
     { field: 'action', type: 'any' }
 ];
 ```
+For actions column in datatable, field name must be `action`.
+In case our action column does not fulfil your criteria you can configure your custom action column your own way.
+You can set your html code with field type `html` in case you want your custom HTML tag in column.
 
 **records:<br>**
 ```typescript
@@ -58,6 +62,7 @@ records = [
         status: 'yes',
         date: '01/01/2020',
         age: 25,
+        customColumn: '<span>Column</span>',
         action: {
             id: 1,
             classType: 'fa fa-cog',

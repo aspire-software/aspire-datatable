@@ -141,10 +141,11 @@
               <span *ngIf="header.type === 'date'">
                 {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field] | date: options.dateFormat}}
               </span>
-              <span *ngIf="header.type != 'date' && header.field != 'action'">
+              <span *ngIf="header.type === 'html'" [innerHTML]="item[header.field]"></span>
+              <span *ngIf="header.type != 'date' && header.type != 'html' && header.field != 'action'">
                 {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
               </span>
-              <div class="dropdown" ngbDropdown *ngIf="header.field==='action' || header.type==='any'">
+              <div class="dropdown" ngbDropdown *ngIf="header.field ==='action'">
                 <button type="button" class="dropdown-btn" id="dropdownMenuButton1" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
                   <span [class]=item[header.field].classType></span>
