@@ -141,7 +141,12 @@
               <span *ngIf="header.type === 'date'">
                 {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field] | date: options.dateFormat}}
               </span>
-              <span *ngIf="header.type === 'html'" [innerHTML]="item[header.field]"></span>
+              <span *ngIf="header.type === 'html'">
+                <span
+                  *ngIf="item[header.field] === null || item[header.field] === undefined || item[header.field] === ''">{{'-'}}</span>
+                <span *ngIf="item[header.field] !== null || item[header.field] !== undefined || item[header.field] !== ''"
+                  [innerHTML]="item[header.field]"></span>
+              </span>
               <span *ngIf="header.type != 'date' && header.type != 'html' && header.field != 'action'">
                 {{item[header.field] === null || item[header.field] === undefined || item[header.field] === '' ? '-' : item[header.field]}}
               </span>

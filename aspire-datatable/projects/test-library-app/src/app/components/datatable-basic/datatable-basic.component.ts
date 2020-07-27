@@ -122,7 +122,7 @@ export class DatatableBasicComponent implements OnInit {
     this.tableHeaders = [
       { field: 'name', type: 'string' },
       { field: 'address', type: 'string' },
-      { field: 'mobile', type: 'number' },
+      { field: 'mobile', type: 'html' },
       { field: 'balance', type: 'number' },
       { field: 'email', type: 'string' },
       { field: 'isActive', type: 'boolean' },
@@ -134,7 +134,7 @@ export class DatatableBasicComponent implements OnInit {
     this.tableData = JSON.parse(localStorage.getItem('records')).map((item, index) => ({
       name: `${item.name.first} ${item.name.last}`,
       address: item.address,
-      mobile: item.phone,
+      mobile: item.phone ? '<a href="tel:' + item.phone + '">' + item.phone + '</a>' : '',
       balance: item.balance,
       email: item.email,
       isActive: item.isActive === true || item.isActive === 'true' ? 'yes' : 'no',
